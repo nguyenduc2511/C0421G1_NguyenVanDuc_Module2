@@ -1,5 +1,7 @@
 package test;
 
+import _02_java_loop.exercise.VeCacHinh;
+
 public class songuyenTo {
     public static void main(String[] args) {
         int run = 2;
@@ -22,5 +24,6 @@ public class songuyenTo {
             run++;
         }
     }
+
 }
 
