@@ -60,10 +60,10 @@ public class XoaPhanTuKhoimang {
         boolean check = false;
         for (int i = 0; i < array.length; i++) {
             if (array[i] == valuve) {
+                check = true;
                 for (int j = i; j < array.length - 1; j++) {
                     array[j] = array[j + 1];
                     array[j + 1] = 0;
-                    check = true;
                 }
             }
         }

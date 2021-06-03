@@ -38,7 +38,15 @@ public class demoQuanLySinhVien {
                     }
                     break;
                 case 3:
-                    System.out.println("code chinh sua danh sach sinh vien");
+                    System.out.println("ten sinh vien ban muon sua");
+                    String nameStudent = scanner.nextLine();
+                    System.out.println(" ten ban muon doi thanh ");
+                    String editStudent= scanner.nextLine();
+                    for(int i=0; i< students.length;i++) {
+                        if (nameStudent.equals(students[i])) {
+                            students[i] = editStudent;
+                        }
+                    }
                     break;
                 case 4:
                     System.out.println("code them moi sinh vien");
@@ -52,7 +60,7 @@ public class demoQuanLySinhVien {
                     break;
                 case 5:
                     System.out.println("code thoat danh sach sinh vien");
-
+                    System.exit(0);
 
 
             }
