@@ -28,24 +28,50 @@ public class XoaPhanTuKhoimang {
 //        }
         System.out.println(Arrays.toString(array));
 
-//tim vi tri va xoa phan tu
         System.out.println("input number want delete");
         int number = scanner.nextInt();
-        int index = 0;
-        for (int l = 0; l < array.length; l++) {
-            if (array[l] == number) {
-                index = l;
-            }
-        }
-        for (int j = index; j < array.length - 1; j++) {
-            array[j] = array[j + 1];
-            array[j + 1] = 0;
-        }
 
-//        for (int k = 0; k < array.length; i++) {
-//            System.out.print(array[k] + "\t");
+//tim vi tri va xoa phan tu CACH 1:
+//        boolean check = false;
+//        int index = 0;
+//        for (int l = 0; l < array.length; l++) {
+//            if (array[l] == number) {
+//                index = l;
+//                check = true;
+//            }
 //        }
-        System.out.println(Arrays.toString(array));
+//        if (check) {
+//            for (int j = index; j < array.length - 1; j++) {
+//                array[j] = array[j + 1];
+//                array[j + 1] = 0;
+//            }
+//        } else {
+//            System.out.println(" khong co gia tri trong mang ");
+//        }
+////        for (int k = 0; k < array.length; i++) {
+////            System.out.print(array[k] + "\t");
+////        }
+//        System.out.println(Arrays.toString(array));
+
+        DeleteValue(array, number);
     }
 
+    public static void DeleteValue(int[] array, int valuve) {
+        boolean check = false;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == valuve) {
+                for (int j = i; j < array.length - 1; j++) {
+                    array[j] = array[j + 1];
+                    array[j + 1] = 0;
+                    check = true;
+                }
+            }
+        }
+        if (check) {
+            System.out.println("mang sau khi xoa : ");
+            System.out.println(Arrays.toString(array));
+        } else {
+            System.out.println(" khong co gia tri " + valuve + " trong mang");
+        }
+    }
 }
