@@ -2,7 +2,7 @@ package _01_introduction_to_java.practise;
 
 import java.util.Scanner;
 
-public class _03_toan_tu {
+public class ToanTu {
     public static void main(String[] args) {
         float width;
         float height;

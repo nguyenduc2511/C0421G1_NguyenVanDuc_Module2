@@ -2,7 +2,7 @@ package _01_introduction_to_java.practise;
 
 import java.util.Scanner;
 
-public class _07_chi_so_bmi {
+public class ChiSoBMI {
     public static void main(String[] args) {
         double weight, height, bmi;
 

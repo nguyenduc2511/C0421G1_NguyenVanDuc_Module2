@@ -2,7 +2,7 @@ package _01_introduction_to_java.exercise;
 
 import java.util.Scanner;
 
-public class _02_doc_so_thanh_chu {
+public class DocSoThanhChu {
     public static void main(String[] args) {
         int number;
         Scanner input = new Scanner(System.in);

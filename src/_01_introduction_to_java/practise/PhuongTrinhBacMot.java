@@ -2,7 +2,7 @@ package _01_introduction_to_java.practise;
 
 import java.util.Scanner;
 
-public class _04_phuong_trinh_bac_mot {
+public class PhuongTrinhBacMot {
     public static void main(String[] args) {
         System.out.println("linear equation ");
         System.out.println("Given a equation as 'a * x + b = c', please enter constants:");

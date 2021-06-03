@@ -2,7 +2,7 @@ package _01_introduction_to_java.practise;
 
 import java.sql.SQLOutput;
 
-public class _02_khai_bao_su_dung_bien {
+public class KhaiBaoSuDungBien {
     public static void main(String[] args) {
         int i = 10;
         float f = 20.5f;

@@ -2,7 +2,7 @@ package _01_introduction_to_java.practise;
 
 import java.util.Scanner;
 
-public class _06_nam_nhuan {
+public class TinhNamNhuan {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int year;

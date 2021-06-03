@@ -2,7 +2,7 @@ package _01_introduction_to_java.exercise;
 
 import java.util.Scanner;
 
-public class _03_chuyen_doi_tien {
+public class ChuyenDoiTienTe {
     public static void main(String[] args) {
         double vnd = 23000;
         double usd;

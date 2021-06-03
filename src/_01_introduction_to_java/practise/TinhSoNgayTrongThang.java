@@ -2,7 +2,7 @@ package _01_introduction_to_java.practise;
 
 import java.util.Scanner;
 
-public class _05_tinh_so_ngay_trong_thang {
+public class TinhSoNgayTrongThang {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter your month: ");
