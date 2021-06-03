@@ -11,16 +11,17 @@ public class _02_doc_so_thanh_chu {
         int hangTram = number / 100;
         int hangChuc = (number - hangTram * 100) / 10;
         int hangDonVi = (number - hangTram * 100 - hangChuc * 10);
+
         if (number < 0 || number > 1000) {
             System.out.println("vuot qua gioi han");
         }
         if (number <= 10) {
             soHangDonVi(number);
         }
-        if (number < 20 && number > 10) {
+        if (number < 20) {
             soDacBiet(number);
         }
-        if (number > 20 && number < 1000) {
+        if (number >= 20 && number < 1000) {
             soHangTram(hangTram);
             if (hangChuc == 1) {
                 soDacBiet((number - hangTram * 100));
@@ -126,7 +127,7 @@ public class _02_doc_so_thanh_chu {
                 word="ninety ";
                 break;
         }
-        System.out.println(word);
+        System.out.print(word);
     }
 
     public static void soHangTram(int number) {
