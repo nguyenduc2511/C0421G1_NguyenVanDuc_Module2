@@ -61,10 +61,23 @@ public class demoQuanLySinhVien {
                 case 5:
                     System.out.println("code thoat danh sach sinh vien");
                     System.exit(0);
-
+                default:
+                    System.out.println("cho nguoi dung nhap lai ");
 
             }
 
         }
+
+    }
+
+    public static void displayListStudent(String[] students) {
+        for(String student : students){
+            if(student != null){
+                System.out.println(student);
+            }
     }
 }
+
+
+}
+
