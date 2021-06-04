@@ -2,8 +2,6 @@ package _02_java_loop.exercise;
 
 public class SoNguyenToNhoHon100 {
     public static void main(String[] args) {
-
-
 //        Cach 1:
 //        int run = 2;
 //        while (true){
@@ -23,19 +21,17 @@ public class SoNguyenToNhoHon100 {
 //            run++;
 //        }
 
-        boolean check = true;
-        for(int run = 2;run<100;run++){
+        for (int run = 2; run <= 100; run++) {
+            boolean check = true;
             for (int i = 2; i < run; i++) {
                 if (run % i == 0) {
-                    check=false;
+                    check = false;
                     break;
-                }else {
-                    check=true;
                 }
-        }
+            }
             if (check) {
                 System.out.println(run);
             }
+        }
     }
-}
 }

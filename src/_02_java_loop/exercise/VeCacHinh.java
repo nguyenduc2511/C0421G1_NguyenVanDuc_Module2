@@ -3,11 +3,11 @@ package _02_java_loop.exercise;
 import java.util.Scanner;
 
 public class VeCacHinh {
-    public static  Scanner input = new Scanner(System.in);
+    public static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
         int choice = -1;
-        while(choice != 0) {
+        while (choice != 0) {
             System.out.println("Menu");
             System.out.println("1. Print the rectangle");
             System.out.println("2. Print the square triangle (The corner is square at 4 different angles: top-left, top-right, botton-left, botton-right)");
@@ -43,8 +43,8 @@ public class VeCacHinh {
         int a = input.nextInt();
         System.out.println("nhap chieu rong");
         int b = input.nextInt();
-        for(int i=1;i<=a;i++){
-            for (int j=1;j<=b;j++){
+        for (int i = 1; i <= a; i++) {
+            for (int j = 1; j <= b; j++) {
                 System.out.print("*");
             }
             System.out.print("\n");
@@ -55,19 +55,20 @@ public class VeCacHinh {
 //        Scanner input = new Scanner(System.in);
         System.out.println("nhap chieu cao");
         int h = input.nextInt();
-        for(int i=1;i<=h;i++){
-            for(int j=1;j<=i;j++){
+        for (int i = 1; i <= h; i++) {
+            for (int j = 1; j <= i; j++) {
                 System.out.print("*");
             }
             System.out.print("\n");
         }
     }
+
     public static void TamGiacGocvuongTraiTren() {
 //        Scanner input = new Scanner(System.in);
         System.out.println("nhap chieu cao");
         int h = input.nextInt();
-        for(int i=1;i<=h;i++){
-            for(int j=h;j>=i;j--){
+        for (int i = 1; i <= h; i++) {
+            for (int j = h; j >= i; j--) {
                 System.out.print("*");
             }
             System.out.print("\n");
@@ -77,19 +78,20 @@ public class VeCacHinh {
     public static void TamGiacCan() {
         System.out.println("nhap chieu cao");
         int h = input.nextInt();
-        for( int i=1;i<=h;i++){
-            for (int k = h ; k > i; k--) {
+        for (int i = 1; i <= h; i++) {
+            for (int k = h; k > i; k--) {
                 System.out.print(" ");
             }
             for (int j = 1; j <= (2 * i - 1); j++) {
-                if (j == i*2-1 || j == 1 || i == h||i==1) {
-                    System.out.print("*");
-                } else {
-                    System.out.print(" ");
-                }
+                System.out.print("*");
+//                if (j == i * 2 - 1 || j == 1 || i == h) {
+//                    System.out.print("*");
+//                }
+//                 else {
+//                    System.out.print(" ");
+//                }
             }
-            System.out.println("\n");
+            System.out.print("\n");
         }
     }
 }
-

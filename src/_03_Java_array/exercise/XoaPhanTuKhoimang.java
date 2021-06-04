@@ -48,9 +48,6 @@ public class XoaPhanTuKhoimang {
 //        } else {
 //            System.out.println(" khong co gia tri trong mang ");
 //        }
-////        for (int k = 0; k < array.length; i++) {
-////            System.out.print(array[k] + "\t");
-////        }
 //        System.out.println(Arrays.toString(array));
 
         DeleteValue(array, number);
