@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class TImGiaTriTrongMang {
     public static void main(String[] args) {
-        String[] students = {"Christian", "Michael", "Camila", "Sienna", "Tanya", "Connor", "Zachariah", "Mallory", "Zoe", "Emily"};
+        String[] students = {"Hung", "Dung", "Duc", "Nhat", "Tai", "Phuc", "Ha", "Quang", "Huy", "Thang"};
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter a name’s student:");
         String name = scanner.nextLine();

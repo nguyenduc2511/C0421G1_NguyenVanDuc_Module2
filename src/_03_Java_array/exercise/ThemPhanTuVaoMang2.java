@@ -30,8 +30,21 @@ public class ThemPhanTuVaoMang2 {
                         break;
                     }
                 } else {
-                    System.out.println("mang full gia tri khong the them ");
-                    break;
+                    System.out.println("mang full gia tri khong the them; ban co chac muon them vao nua khong?");
+                    System.out.println(" 1.OK    2.Cancel");
+                    int choise = input.nextInt();
+                    switch (choise){
+                        case 1:
+                            int[] array2 = new int[array.length+1];
+                            for (int i =0;i<array.length;i++){
+                                array2[i]=array[i];
+                            }
+                            ThemPhanTu(array2,number,index);
+                        case 2:
+                            System.out.println("mang sau khi them ");
+                            System.out.println(Arrays.toString(array));
+                            System.exit(0);
+                    }
                 }
             }
         }
