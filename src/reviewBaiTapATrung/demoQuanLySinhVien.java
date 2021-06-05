@@ -1,4 +1,4 @@
-package review;
+package reviewBaiTapATrung;
 
 import java.util.Scanner;
 

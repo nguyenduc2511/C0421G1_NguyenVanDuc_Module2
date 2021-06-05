@@ -52,7 +52,7 @@ public class ThemPhanTuVaoMang2 {
 
     public static void ThemPhanTu(int[] array, int value, int index) {
         for (int i = array.length - 2; i >= index; i--) {
-            array[i + 1] = array[i];
+            array[i +1] = array[i];
         }
         array[index] = value;
         System.out.println("mang sau khi them ");

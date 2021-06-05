@@ -20,7 +20,7 @@ public class GopMang {
         System.out.println(Arrays.toString(arr1));
         System.out.println(Arrays.toString(arr2));
 
-        int a = arr2.length;
+        int a = arr1.length;
         int[] arr3 = new int[arr1.length+arr2.length];
 
         for (int i=0;i<arr1.length;i++){
