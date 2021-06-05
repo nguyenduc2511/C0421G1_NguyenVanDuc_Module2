@@ -1,4 +1,4 @@
-package bai_tap_them;
+package bai_tap_them.Array;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -13,6 +13,7 @@ public class bai1 {
         styles[0] = "Jazz";
         styles[3] = "Blues";
         styles[styles.length - 1] = "Rock-n-Roll";
+
         System.out.println(Arrays.toString(styles));
 
         while (true) {
