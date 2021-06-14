@@ -7,9 +7,9 @@ public class bai1 {
     public static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-//        System.out.println("nhap do dai cua mang");
-//        int a = input.nextInt();
-        String styles[] = new String[7];
+        System.out.println("nhap do dai cua mang");
+        int a = Integer.parseInt(input.nextLine());
+        String styles[] = new String[a];
         styles[0] = "Jazz";
         styles[3] = "Blues";
         styles[styles.length - 1] = "Rock-n-Roll";
@@ -48,14 +48,12 @@ public class bai1 {
                     System.out.println(Arrays.toString(styles));
                     break;
                 case 7:
-                    System.out.println("da thoat khoi day");
+                    System.out.println("da thoat chuong trinh ");
                     System.exit(0);
                 default:
                     System.out.println("moi ban nhap lai");
             }
         }
-
-
     }
 
     public static void displayMenu() {
@@ -134,9 +132,9 @@ public class bai1 {
     }
 
     public static void editValue(String[] array) {
-        System.out.println(" nhap ten ban muon sua");
+        System.out.println(" nhap ten ban muon sua :");
         String value = input.nextLine();
-        System.out.println(" ban mua sua ten " + value + "thanh");
+        System.out.println(" ban mua sua ten " + value + " thanh : ");
         String value2 = input.nextLine();
         boolean check = false;
         int ind = 0;

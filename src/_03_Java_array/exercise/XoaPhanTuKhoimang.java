@@ -18,7 +18,7 @@ public class XoaPhanTuKhoimang {
         array = new int[size];
         int i = 0;
         while (i < array.length) {
-            System.out.print("Enter element" + (i + 1) + " : ");
+            System.out.print("Enter element " + (i + 1) + " : ");
             array[i] = scanner.nextInt();
             i++;
         }
@@ -33,34 +33,42 @@ public class XoaPhanTuKhoimang {
 
 //tim vi tri va xoa phan tu CACH 1:
 //        boolean check = false;
-//        int index = 0;
 //        for (int l = 0; l < array.length; l++) {
-//            if (array[l] == number) {
-//                index = l;
-//                check = true;
-//            }
+//                if (array[l] == number) {
+//                    check = true;
+//                    array[l]=0;
+//                    for (int j = l; j < array.length - 1; j++) {
+//                        array[j] = array[j + 1];
+//                        array[j + 1] = 0;
+//                    }
+//                l--;
+//                }
 //        }
 //        if (check) {
-//            for (int j = index; j < array.length - 1; j++) {
-//                array[j] = array[j + 1];
-//                array[j + 1] = 0;
-//            }
+//            System.out.println("mang sau khi xoa : ");
+//            System.out.println(Arrays.toString(array));
 //        } else {
-//            System.out.println(" khong co gia tri trong mang ");
+//            System.out.println(" khong co gia tri " + number + " trong mang");
 //        }
-//        System.out.println(Arrays.toString(array));
+                DeleteValue(array, number);
 
-        DeleteValue(array, number);
     }
+
+
 
     public static void DeleteValue(int[] array, int valuve) {
         boolean check = false;
         for (int i = 0; i < array.length; i++) {
-            if (array[i] == valuve) {
-                check = true;
-                for (int j = i; j < array.length - 1; j++) {
-                    array[j] = array[j + 1];
-                    array[j + 1] = 0;
+            while (true) {
+                if (array[i] == valuve) {
+                    check = true;
+                    array[i]=0;
+                    for (int j = i; j < array.length - 1; j++) {
+                        array[j] = array[j + 1];
+                        array[j + 1] = 0;
+                    }
+                } else {
+                    break;
                 }
             }
         }

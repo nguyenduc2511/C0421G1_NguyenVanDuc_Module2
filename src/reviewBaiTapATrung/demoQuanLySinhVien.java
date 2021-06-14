@@ -6,8 +6,10 @@ public class demoQuanLySinhVien {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        String[] students = new String[50];
+        Student[] students = new Student[50];
         System.out.println("------chuong tirnh quan ly sinh vien------");
+
+
         while (true) {
             displayMenu();
             int choice = Integer.parseInt(scanner.nextLine());
@@ -46,47 +48,47 @@ public class demoQuanLySinhVien {
         System.out.println("chon chuc nang su dung: ");
     }
 
-    public static void displayListStudent(String[] students) {
+    public static void displayListStudent(Student[] student) {
 //        hien thi danh sach sv
         System.out.println("hien thi danh sach sinh vien");
-        for (String student : students) {
-            if (student != null) {
+        for (Student studentView : student) {
+            if (studentView != null) {
                 System.out.println(student);
             }
         }
     }
 
-    public static void deleteStudent(String[] student) {
-        System.out.println("code xoa ten sinh vien");
-        String deleteStudent = scanner.nextLine();
+    public static void deleteStudent(Student[] student) {
+        System.out.println("code xoa sinh vien theo id; nhap id  :");
+        int deleteStudent = Integer.parseInt(scanner.nextLine());
         for (int i = 0; i < student.length; i++) {
-            if (deleteStudent.equals(student[i])) {
+            if (deleteStudent ==(student[i].getId())) {
                 student[i] = null;
             }
         }
     }
 
-    public static void editStudent(String[] student) {
+    public static void editStudent(Student[] student) {
         System.out.println("ten sinh vien ban muon sua");
         String nameStudent = scanner.nextLine();
         System.out.println(" ten ban muon doi thanh ");
         String editStudent = scanner.nextLine();
-        for (int i = 0; i < student.length; i++) {
-            if (nameStudent.equals(student[i])) {
-                student[i] = editStudent;
-            }
-        }
+//        for (int i = 0; i < student.length; i++) {
+//            if (nameStudent.equals(student[i])) {
+//                student[i] = editStudent;
+//            }
+//        }
     }
 
-    public static void addNewStudent(String[] student) {
+    public static void addNewStudent(Student[] student) {
         System.out.println("them moi sinh vien");
         String newStudent = scanner.nextLine();
-        for (int i = 0; i < student.length; i++) {
-            if (student[i] == null) {
-                student[i] = newStudent;
-                break;
-            }
-        }
+//        for (int i = 0; i < student.length; i++) {
+//            if (student[i] == null) {
+//                student[i] = newStudent;
+//                break;
+//            }
+//        }
     }
 
 }
