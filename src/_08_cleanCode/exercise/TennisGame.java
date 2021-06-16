@@ -7,7 +7,7 @@ public class TennisGame {
     public static String getScore(String playerNameOne, String playerNameTwo, int scoreOne, int scoreTwo) {
         score = new StringBuilder();
         if (scoreOne == scoreTwo) {
-            equalPoint(scoreTwo);
+            equalPoint(scoreOne);
         } else if (scoreOne >= 4 || scoreTwo >= 4) {
             finalPoint(scoreOne, scoreTwo);
         } else {
@@ -38,12 +38,24 @@ public class TennisGame {
 
     public static void finalPoint(int pointOne, int pointTwo) {
         int minusResult = pointOne - pointTwo;
-        if (minusResult == 1) score = new StringBuilder("Advantage player1");
-        else if (minusResult == -1) score = new StringBuilder("Advantage player2");
-        else if (minusResult >= 2) score = new StringBuilder("Win for player1");
-        else score = new StringBuilder("Win for player2");
+        if (minusResult >= 2) {
+            score = new StringBuilder("Win for player1");
+        } else {
+            switch (minusResult) {
+                case 1: {
+                    score = new StringBuilder("Advantage player1");
+                    break;
+                }
+                case -1: {
+                    score = new StringBuilder("Advantage player2");
+                    break;
+                }
+                default: {
+                    score = new StringBuilder("Win for player2");
+                }
+            }
+        }
     }
-
     public static void pointInMatch(int pointOne, int pointTwo) {
         int tempPoint = 0;
         for (int i = 1; i < 3; i++) {
