@@ -102,4 +102,16 @@ public class MyLinkedList<E> {
         }
         return false;
     }
+     public E getFirst() {
+        return (E) head.data;
+    }
+
+    public E getLast() {
+        Nodes temp = head;
+        while (temp.next != null) {
+            temp = temp.next;
+        }
+        return (E) temp.data;
+    }
+    
 }
