@@ -1,4 +1,4 @@
-package _11_Stack_Queue.exercise;
+package bai_tap_them;
 
 public class Queue<E> {
      class Node{
@@ -39,11 +39,11 @@ public class Queue<E> {
     }
 
     public void display() {
-        Node tepm = this.front;
+        Node temp = this.front;
         do {
-            System.out.println(tepm.data);
-            tepm = tepm.next;
-        } while (!(tepm == front));
+            System.out.println(temp.data);
+            temp = temp.next;
+        } while (!(temp == front));
     }
 
     public static void main(String[] args) {
