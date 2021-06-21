@@ -1,6 +1,6 @@
 package bai_tap_them;
 
-public class Queue<E> {
+public class Queue2<E> {
      class Node{
         public Object data;
         public Node next;
@@ -11,7 +11,7 @@ public class Queue<E> {
     private Node front;
     private Node rear;
 
-    public Queue() {
+    public Queue2() {
         this.front = null;
         this.rear = null;
     }
@@ -47,7 +47,7 @@ public class Queue<E> {
     }
 
     public static void main(String[] args) {
-        Queue<Integer> myQuene = new Queue<>();
+        Queue2<Integer> myQuene = new Queue2<>();
         myQuene.enQueue(9);
         myQuene.enQueue(8);
         myQuene.enQueue(7);

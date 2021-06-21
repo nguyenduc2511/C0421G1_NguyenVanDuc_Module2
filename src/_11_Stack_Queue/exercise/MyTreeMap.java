@@ -8,8 +8,8 @@ public class MyTreeMap {
 
     public static void main(String[] args) {
 
-        java.util.TreeMap<String, Integer> myTreeMap = new java.util.TreeMap<>();
-        String arr = "I belive, i can   fly";
+        TreeMap<String, Integer> myTreeMap = new java.util.TreeMap<>();
+        String arr = "I belive, i can   fly aa bb cc";
         System.out.println(arr);
         String[] countStr = arr.toLowerCase().split("");
 
@@ -19,15 +19,12 @@ public class MyTreeMap {
                 continue;
             }
             if (myTreeMap.containsKey(countStr[i])) {
-
                 count = myTreeMap.get(countStr[i]) + 1;
                 myTreeMap.put(countStr[i], count);
-
             } else {
                 myTreeMap.put(countStr[i], 1);
             }
         }
         System.out.println(myTreeMap);
-
     }
 }
