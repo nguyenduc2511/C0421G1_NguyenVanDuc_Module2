@@ -1,8 +1,5 @@
 package _11_Stack_Queue.Optional.exercise;
 
-
-
-
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;

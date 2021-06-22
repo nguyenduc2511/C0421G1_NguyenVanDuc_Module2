@@ -14,5 +14,7 @@ public class TestArrayList {
         System.out.println("\n");
         testArr.remove(9);
         testArr.forEach();
+
+
     }
 }
