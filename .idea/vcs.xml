@@ -2,8 +2,5 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/src/_07_abstrack_interface/exercise/bai1/pf-java-shape" vcs="" />
-    <mapping directory="$PROJECT_DIR$/src/_08_cleanCode/practise/thuc_hanh_1/java-cleancode-refactoring-renaming" vcs="" />
-    <mapping directory="$PROJECT_DIR$/src/_08_cleanCode/practise/thuc_hanh_2/java-cleancode-refactoring-variable-extraction" vcs="" />
   </component>
 </project>
