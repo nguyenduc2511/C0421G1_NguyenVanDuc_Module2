@@ -4,16 +4,22 @@ import java.util.Arrays;
 
 public class SapXepBeDenLon {
     public static void main(String[] args) {
-        int[] a = {1,9,3,2};
-        for(int i=0;i<a.length-1;i++){
-            for(int j=i+1;j<a.length;j++){
-                if(a[i] > a[j]){
-                    int x = a[i];
-                    a[i] = a[j];
-                    a[j] = x;
+//        sx lua chon
+        int[] arrays = {6, 4, 10, 15, 8, 7, 5, 7};
+        bubbleSort(arrays);
+        System.out.print(Arrays.toString(arrays));
+
+    }
+    private static void bubbleSort(int[] arrays){
+        for(int i=0;i<arrays.length-1;i++){
+            for(int j=i+1;j<arrays.length;j++){
+                if(arrays[i] > arrays[j]){
+                    int x = arrays[i];
+                    arrays[i] = arrays[j];
+                    arrays[j] = x;
                 }
             }
         }
-        System.out.print(Arrays.toString(a));
     }
 }
+
