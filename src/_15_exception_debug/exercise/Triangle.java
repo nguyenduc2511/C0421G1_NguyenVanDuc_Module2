@@ -18,17 +18,27 @@ public class Triangle {
                 b = exceptionCheck();
                 System.out.print("c: ");
                 c = exceptionCheck();
-                if (((a + b) < c) || ((a + c) < b) || ((c + b) < a)) {
-                    throw new IllegalTriangleException("");
-                } else {
+                Triangle triangle = new Triangle(a,b,c);
                     check = true;
-                }
             } catch (IllegalTriangleException ex) {
                 System.out.println(ex.getMessage());
             }
         }
         double sum = a + b + c;
         System.out.println(" chu vi tam giac = " + sum);
+    }
+
+    private double a;
+    private double b;
+    private double c;
+
+    public Triangle(double a, double b, double c) throws IllegalTriangleException {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        if (((a + b) < c) || ((a + c) < b) || ((c + b) < a)) {
+            throw new IllegalTriangleException("");
+        }
     }
 
     static double exceptionCheck() {
