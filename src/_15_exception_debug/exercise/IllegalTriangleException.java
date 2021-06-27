@@ -7,6 +7,6 @@ public class IllegalTriangleException extends Exception{
 
     @Override
     public String getMessage() {
-        return "Tong 2 canh phai lon hon canh con lai";
+        return "Tong 2 canh phai lon hon canh con lai vui long nhap lai ";
     }
 }

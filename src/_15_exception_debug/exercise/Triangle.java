@@ -2,19 +2,18 @@ package _15_exception_debug.exercise;
 
 import java.util.Scanner;
 
-public class IllegalTriangleExceptionTest {
+public class Triangle {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         boolean check = false;
-
-        double a =0;
-        double b =0;
-        double c =0;
+        double a = 0;
+        double b = 0;
+        double c = 0;
         while (!check) {
             try {
                 System.out.print("a: ");
-                 a = exceptionCheck();
+                a = exceptionCheck();
                 System.out.print("b: ");
                 b = exceptionCheck();
                 System.out.print("c: ");
@@ -28,7 +27,7 @@ public class IllegalTriangleExceptionTest {
                 System.out.println(ex.getMessage());
             }
         }
-        double sum = a+b+c;
+        double sum = a + b + c;
         System.out.println(" chu vi tam giac = " + sum);
     }
 
@@ -43,7 +42,7 @@ public class IllegalTriangleExceptionTest {
                 }
                 check = true;
             } catch (NumberFormatException ex) {
-                System.out.println(ex.getMessage() + " nhap vao la so ");
+                System.out.println(ex.getMessage() + " nhap vao la so vui long nhap lai ");
             } catch (NegativeNumberException ex) {
                 System.out.println(ex.getMessage());
             }

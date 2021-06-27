@@ -8,7 +8,7 @@ public class NegativeNumberException extends Exception {
 
     @Override
     public String getMessage() {
-        return " do dai phai la so duong >0 ";
+        return " do dai phai la so duong >0 vui long nhap lai";
     }
 
 }
