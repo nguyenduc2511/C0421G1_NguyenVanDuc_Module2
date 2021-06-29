@@ -1,11 +1,13 @@
-package _16_IO_File.exercise;
+package reviewBaiTapATrung;
+
+import _16_IO_File.exercise.ReadAndWriteNational;
 
 import java.io.*;
 import java.util.ArrayList;
-
 import java.util.List;
 
-public class ReadAndWriteNational {
+public class ReadAndWriteStudent {
+
     public List<String[]> readFile(String filePath) {
         List<String[]> list = new ArrayList<>();
         try {
@@ -17,15 +19,17 @@ public class ReadAndWriteNational {
                 list.add(element);
             }
             fileReader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return list;
     }
 
-    public void writeFile(String filePath, String line) {
+    public void writeData(String filePath, String line) {
         try {
-            FileWriter fileWriter = new FileWriter(filePath, true);
+            FileWriter fileWriter = new FileWriter(filePath,true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             bufferedWriter.write(line);
             bufferedWriter.newLine();
@@ -34,7 +38,6 @@ public class ReadAndWriteNational {
             e.printStackTrace();
         }
     }
-
     public void clearData(String filePath) {
         try {
             FileWriter fileWriter = new FileWriter(filePath);
@@ -57,11 +60,11 @@ public class ReadAndWriteNational {
                     list.add(element);
                 }
             }
-            new ReadAndWriteNational().clearData(filePath);
+            new ReadAndWriteStudent().clearData(filePath);
             String line2="";
             for (String[] element : list) {
                 line2 = Integer.parseInt(element[0])+ ","+ element[1]+ ","+ Integer.parseInt(element[2])+","+element[3];
-                new ReadAndWriteNational().writeFile(filePath,line2);
+                new ReadAndWriteStudent().writeData(filePath,line2);
             }
             fileReader.close();
         } catch (IOException e) {
@@ -69,4 +72,36 @@ public class ReadAndWriteNational {
         }
     }
 
+    public void editData(String filePath, String lineLocation, String lineEdit){
+        List<String[]> list = new ArrayList<>();
+
+        try {
+            FileReader fileReader = new FileReader(filePath);
+            BufferedReader bufferedReader =new BufferedReader(fileReader);
+            String line ="";
+            while ((line = bufferedReader.readLine()) != null) {
+                if (!line.equals(lineLocation)) {
+                    String[] element = line.split(",");
+                    list.add(element);
+                }else {
+                    String[] element = lineEdit.split(",");
+                    list.add(element);
+                }
+            }
+            new ReadAndWriteStudent().clearData(filePath);
+            String line2="";
+            for (String[] element : list) {
+                line2 = Integer.parseInt(element[0])+ ","+ element[1]+ ","+ Integer.parseInt(element[2])+","+element[3];
+                new ReadAndWriteStudent().writeData(filePath,line2);
+            }
+            fileReader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }
+
