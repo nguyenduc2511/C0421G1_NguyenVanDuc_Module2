@@ -19,8 +19,6 @@ public class ReadAndWriteStudent {
                 list.add(element);
             }
             fileReader.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -95,8 +93,6 @@ public class ReadAndWriteStudent {
                 new ReadAndWriteStudent().writeData(filePath,line2);
             }
             fileReader.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
