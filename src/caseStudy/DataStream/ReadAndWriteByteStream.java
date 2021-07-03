@@ -11,10 +11,7 @@ public class ReadAndWriteByteStream<T> implements InterFaceByteStream<T>{
         try {
             FileInputStream fileInputStream = new FileInputStream(path);
            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            T dm = null;
-            while((dm = (T) objectInputStream.readObject()) != null){
-                list.add(dm);
-            }
+            list = (List<T>) objectInputStream.readObject();
             objectInputStream.close();
             fileInputStream.close();
         } catch (ClassNotFoundException | IOException e) {
