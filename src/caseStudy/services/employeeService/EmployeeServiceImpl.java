@@ -48,7 +48,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         System.out.println(" chon vi tri  ");
         String position = new PositionChoice().positionChoicee();
         System.out.println(" nhap lương  ");
-        float salary = new Scan().input().nextFloat();
+        int salary = new Choice().choice();
 
         Employee employee = new Employee(id, name, dateBirth, gender, cmnd, numPhone, email, academicLevel, position, salary);
         employees.add(employee);
@@ -119,7 +119,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                             break;
                         case 9:
                             System.out.println("Nhập lương");
-                            float salary = new Scan().input().nextFloat();
+                            int salary = new Choice().choice();
                             employees.get(i).setSalary(salary);
                             break;
                         case 10:

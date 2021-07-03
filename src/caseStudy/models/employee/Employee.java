@@ -7,18 +7,18 @@ import java.io.Serializable;
 public class Employee extends Person implements Serializable {
     private String  academicLevel;
     private String position;
-    private float salary;
+    private Integer salary;
 
     public Employee() {
     }
 
-    public Employee(String academicLevel, String position, float salary) {
+    public Employee(String academicLevel, String position, int salary) {
         this.academicLevel = academicLevel;
         this.position = position;
         this.salary = salary;
     }
 
-    public Employee(Integer code, String fullName, String dateOfBirth, String gender, String idNumber, String phoneNumber, String email, String academicLevel, String position, float salary) {
+    public Employee(Integer code, String fullName, String dateOfBirth, String gender, String idNumber, String phoneNumber, String email, String academicLevel, String position, int salary) {
         super(code, fullName, dateOfBirth, gender, idNumber, phoneNumber, email);
         this.academicLevel = academicLevel;
         this.position = position;
@@ -45,7 +45,7 @@ public class Employee extends Person implements Serializable {
         return salary;
     }
 
-    public void setSalary(float salary) {
+    public void setSalary(int salary) {
         this.salary = salary;
     }
 

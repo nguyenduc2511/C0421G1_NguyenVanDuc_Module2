@@ -7,12 +7,12 @@ import caseStudy.models.Customer.Customer;
 import caseStudy.models.Customer.TypeCustomer;
 import caseStudy.models.employee.Gioitinh;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class CustomverServiceImpl implements CustomerService {
     private static final String filepath = "src\\caseStudy\\data\\Customer.csv";
-    public static List<Customer> customers = new ArrayList<>();
+    public static List<Customer> customers = new LinkedList<>();
     public static final ReadAndWriteByteStream<Customer> readAndWriteByteStream = new ReadAndWriteByteStream<Customer>();
 
     @Override

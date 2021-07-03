@@ -4,15 +4,15 @@ import java.io.Serializable;
 
 public abstract class Facility implements Serializable {
     private String utilName;
-    private float useArea;
-    private float rentalFees;
-    private int maxNumsPeople;
+    private Integer useArea;
+    private Integer rentalFees;
+    private Integer maxNumsPeople;
     private String rentalType;
 
     public Facility() {
     }
 
-    public Facility(String utilName, float useArea, float rentalFees, int maxNumsPeople, String rentalType) {
+    public Facility(String utilName, int useArea, int rentalFees, int maxNumsPeople, String rentalType) {
         this.utilName = utilName;
         this.useArea = useArea;
         this.rentalFees = rentalFees;
@@ -32,7 +32,7 @@ public abstract class Facility implements Serializable {
         return useArea;
     }
 
-    public void setUseArea(float useArea) {
+    public void setUseArea(int useArea) {
         this.useArea = useArea;
     }
 
@@ -40,7 +40,7 @@ public abstract class Facility implements Serializable {
         return rentalFees;
     }
 
-    public void setRentalFees(float rentalFees) {
+    public void setRentalFees(int rentalFees) {
         this.rentalFees = rentalFees;
     }
 

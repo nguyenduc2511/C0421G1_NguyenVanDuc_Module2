@@ -1,6 +1,8 @@
 package caseStudy.models.facility;
 
-public class Villa extends Facility {
+import java.io.Serializable;
+
+public class Villa extends Facility implements Serializable {
     private String roomStandard;
     private float poolArea;
     private int floors;
@@ -14,7 +16,7 @@ public class Villa extends Facility {
         this.floors = floors;
     }
 
-    public Villa(String utilName, float useArea, float rentalFees, int maxNumsPeople, String rentalType, String roomStandard, float poolArea, int floors) {
+    public Villa(String utilName, int useArea, int rentalFees, int maxNumsPeople, String rentalType, String roomStandard, float poolArea, int floors) {
         super(utilName, useArea, rentalFees, maxNumsPeople, rentalType);
         this.roomStandard = roomStandard;
         this.poolArea = poolArea;

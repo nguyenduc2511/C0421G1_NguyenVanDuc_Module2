@@ -8,7 +8,7 @@ public class Choice {
         try {
             choice = Integer.parseInt(new Scan().input().nextLine());
         } catch (NumberFormatException ex) {
-            System.out.println("ban phai gia tri dung, vui long nhap lai: ");
+            System.out.println("ban phai gia tri so, vui long nhap lai: ");
         }
         return choice;
     }

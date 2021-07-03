@@ -9,7 +9,7 @@ public class TypeCustomer implements Serializable {
         String a = null;
         boolean check = true;
         while (check) {
-            System.out.println("choice 1: diamond \n 2: Platinium \n 3: Gold \n 4: Silver \n 5:Member");
+            System.out.println(" 1: diamond \n 2: Platinium \n 3: Gold \n 4: Silver \n 5:Member");
             System.out.println("your choice = ");
             int choice = new Choice().choice();
             switch (choice) {
