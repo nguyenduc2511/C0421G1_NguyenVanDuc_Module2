@@ -1,6 +1,7 @@
 package caseStudy.models.facility;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Room extends Facility implements Serializable {
     private String freeServices;
@@ -27,8 +28,23 @@ public class Room extends Facility implements Serializable {
 
     @Override
     public String toString() {
-        return "Room{" +
-                "freeServices='" + freeServices + '\'' +
+        return "Room " + super.toString()+
+                ", freeServices='" + freeServices + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Room room = (Room) o;
+        return  super.equals(room)&&
+                Objects.equals(freeServices, room.freeServices);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), freeServices);
     }
 }

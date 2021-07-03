@@ -1,6 +1,7 @@
 package caseStudy.models.facility;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public abstract class Facility implements Serializable {
     private String utilName;
@@ -28,7 +29,7 @@ public abstract class Facility implements Serializable {
         this.utilName = utilName;
     }
 
-    public float getUseArea() {
+    public int getUseArea() {
         return useArea;
     }
 
@@ -36,7 +37,7 @@ public abstract class Facility implements Serializable {
         this.useArea = useArea;
     }
 
-    public float getRentalFees() {
+    public int getRentalFees() {
         return rentalFees;
     }
 
@@ -67,7 +68,23 @@ public abstract class Facility implements Serializable {
                 ", useArea=" + useArea +
                 ", rentalFees=" + rentalFees +
                 ", maxNumsPeople=" + maxNumsPeople +
-                ", rentalType='" + rentalType + '\'' +
-                '}';
+                ", rentalType='" + rentalType + '\'';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Facility facility = (Facility) o;
+        return Objects.equals(utilName, facility.utilName) &&
+                Objects.equals(useArea, facility.useArea) &&
+                Objects.equals(rentalFees, facility.rentalFees) &&
+                Objects.equals(maxNumsPeople, facility.maxNumsPeople) &&
+                Objects.equals(rentalType, facility.rentalType);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(utilName, useArea, rentalFees, maxNumsPeople, rentalType);
     }
 }

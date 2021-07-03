@@ -7,7 +7,6 @@ import java.util.List;
 public class FacilityServiceImpl implements FacilityService{
     @Override
     public List<Facility> getAll() {
-
         return null;
     }
 

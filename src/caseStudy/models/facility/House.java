@@ -1,6 +1,7 @@
 package caseStudy.models.facility;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class House extends Facility implements Serializable {
     private String roomStandard;
@@ -38,9 +39,27 @@ public class House extends Facility implements Serializable {
 
     @Override
     public String toString() {
-        return "House{" +
-                "roomStandard='" + roomStandard + '\'' +
+        return "House "+super.toString() +
+                ", roomStandard='" + roomStandard + '\'' +
                 ", floors=" + floors +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        House house = (House) o;
+        return super.equals(house) &&
+                floors == house.floors &&
+                roomStandard.equals(house.roomStandard);
+    }
+
+    @Override
+    public int hashCode() {
+        return
+            Objects.hash(roomStandard, floors);
+
     }
 }
