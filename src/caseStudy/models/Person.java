@@ -1,9 +1,9 @@
-package furamaResort.models;
+package caseStudy.models;
 
-import java.util.Date;
+import java.io.Serializable;
 
-public abstract class Person {
-    private String code;
+public abstract class Person implements Serializable {
+    private Integer code;
     private String fullName;
     private String dateOfBirth;
     private String gender;
@@ -14,7 +14,7 @@ public abstract class Person {
     public Person() {
     }
 
-    public Person(String code, String fullName, String dateOfBirth, String gender, String idNumber, String phoneNumber, String email) {
+    public Person(Integer code, String fullName, String dateOfBirth, String gender, String idNumber, String phoneNumber, String email) {
         this.code = code;
         this.fullName = fullName;
         this.dateOfBirth = dateOfBirth;
@@ -24,11 +24,11 @@ public abstract class Person {
         this.email = email;
     }
 
-    public String getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 
@@ -89,7 +89,7 @@ public abstract class Person {
                 ", gender='" + gender + '\'' +
                 ", idNumber=" + idNumber +
                 ", phoneNumber=" + phoneNumber +
-                ", email='" + email + '\'' +
-                '}';
+                ", email='" + email + '\''
+                ;
     }
 }

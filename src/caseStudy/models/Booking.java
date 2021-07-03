@@ -1,4 +1,4 @@
-package furamaResort.models;
+package caseStudy.models;
 
 import java.util.Date;
 
@@ -8,7 +8,7 @@ public class Booking {
     private Date endDay;
     private String customerId;
     private String serviceName;
-    private String serviceType;  //???? loại dịch vụ là gì?
+    private String serviceType;
 
     public Booking() {
     }

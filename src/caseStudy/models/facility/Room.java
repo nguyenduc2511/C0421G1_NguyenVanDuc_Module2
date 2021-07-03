@@ -1,4 +1,4 @@
-package furamaResort.models;
+package caseStudy.models.facility;
 
 public class Room extends Facility {
     private String freeServices;

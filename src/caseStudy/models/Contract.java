@@ -1,4 +1,4 @@
-package furamaResort.models;
+package caseStudy.models;
 
 public class Contract {
    private String contractNumber;

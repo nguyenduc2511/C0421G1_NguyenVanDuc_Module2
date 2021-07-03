@@ -1,35 +1,35 @@
-package furamaResort.models.employee;
+package caseStudy.models.employee;
 
-import furamaResort.models.Person;
+import caseStudy.models.Person;
 
-import java.util.Date;
+import java.io.Serializable;
 
-public class Employee extends Person {
-    private AcademicLevel academicLevel;// (Trung cấp, Cao đẳng, Đại học và sau đại học)  Note: có thể để data-type: là String or AcademicLevel
-    private String position;   //(Lễ tân, phục vụ, chuyên viên, giám sát, quản lý, giám đốc.)
+public class Employee extends Person implements Serializable {
+    private String  academicLevel;
+    private String position;
     private float salary;
 
     public Employee() {
     }
 
-    public Employee(AcademicLevel academicLevel, String position, float salary) {
+    public Employee(String academicLevel, String position, float salary) {
         this.academicLevel = academicLevel;
         this.position = position;
         this.salary = salary;
     }
 
-    public Employee(String code, String fullName, String dateOfBirth, String gender, String idNumber, String phoneNumber, String email, AcademicLevel academicLevel, String position, float salary) {
+    public Employee(Integer code, String fullName, String dateOfBirth, String gender, String idNumber, String phoneNumber, String email, String academicLevel, String position, float salary) {
         super(code, fullName, dateOfBirth, gender, idNumber, phoneNumber, email);
         this.academicLevel = academicLevel;
         this.position = position;
         this.salary = salary;
     }
 
-    public AcademicLevel getAcademicLevel() {
+    public String getAcademicLevel() {
         return academicLevel;
     }
 
-    public void setAcademicLevel(AcademicLevel academicLevel) {
+    public void setAcademicLevel(String academicLevel) {
         this.academicLevel = academicLevel;
     }
 
@@ -51,10 +51,10 @@ public class Employee extends Person {
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "qualification ='" + academicLevel + '\'' +
+        return "" + super.toString()+
+                ", qualification ='" + academicLevel + '\'' +
                 ", position='" + position + '\'' +
                 ", salary=" + salary +
-                '}' + super.toString();
+                '}';
     }
 }

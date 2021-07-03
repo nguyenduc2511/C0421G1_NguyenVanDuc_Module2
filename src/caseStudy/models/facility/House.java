@@ -1,23 +1,20 @@
-package furamaResort.models;
+package caseStudy.models.facility;
 
-public class Villa extends Facility {
+public class House extends Facility {
     private String roomStandard;
-    private float poolArea;
     private int floors;
 
-    public Villa() {
+    public House() {
     }
 
-    public Villa(String roomStandard, float poolArea, int floors) {
+    public House(String roomStandard, int floors) {
         this.roomStandard = roomStandard;
-        this.poolArea = poolArea;
         this.floors = floors;
     }
 
-    public Villa(String utilName, float useArea, float rentalFees, int maxNumsPeople, String rentalType, String roomStandard, float poolArea, int floors) {
+    public House(String utilName, float useArea, float rentalFees, int maxNumsPeople, String rentalType, String roomStandard, int floors) {
         super(utilName, useArea, rentalFees, maxNumsPeople, rentalType);
         this.roomStandard = roomStandard;
-        this.poolArea = poolArea;
         this.floors = floors;
     }
 
@@ -27,14 +24,6 @@ public class Villa extends Facility {
 
     public void setRoomStandard(String roomStandard) {
         this.roomStandard = roomStandard;
-    }
-
-    public float getPoolArea() {
-        return poolArea;
-    }
-
-    public void setPoolArea(float poolArea) {
-        this.poolArea = poolArea;
     }
 
     public int getFloors() {
@@ -47,9 +36,8 @@ public class Villa extends Facility {
 
     @Override
     public String toString() {
-        return "Villa{" +
+        return "House{" +
                 "roomStandard='" + roomStandard + '\'' +
-                ", poolArea=" + poolArea +
                 ", floors=" + floors +
                 '}';
     }

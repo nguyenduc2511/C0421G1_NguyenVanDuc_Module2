@@ -4,7 +4,6 @@ import java.util.regex.Pattern;
 
 public class ValidatePhone {
     public static void main(String[] args) {
-        String[] validate = {};
         String[] invalidate = {"(84)-(0978489648)", "(96)-(0986058250)","(ah)-(0123456789)", "(123)-(0123456789)", "(1)-(0123456789)", "(12)-(5123456789)", "(12)-(0123456)"};
 
         System.out.println("----------test PhoneNumber------------");

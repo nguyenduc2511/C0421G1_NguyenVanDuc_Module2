@@ -2,38 +2,31 @@ package caseStudy.models.employee;
 
 import caseStudy.controllers.Choice;
 
-public class AcademicLevel {
-    public String choiceLevel() {
-
+public class Gioitinh {
+    public String gender() {
         String a = null;
         boolean check = true;
         while (check) {
-            System.out.println(" 1:Trung cấp \n 2: Cao đẳng \n 3: Đại học \n 4: Sau đại học ");
-            System.out.println("chon bằng cấp");
+            System.out.println(" 1: gioi tinh nam \n 2: gioi tinh nu \n 3: LGPT");
+            System.out.println("chon gio tinh ");
             int choice = new Choice().choice();
             switch (choice) {
                 case 1: {
-                    a = "Trung Cap";
+                    a = " male";
                     check = false;
                     break;
                 }
                 case 2: {
-                    a = "Cao Dang";
+                    a = "female";
                     check = false;
                     break;
                 }
                 case 3: {
-                    a = "Dai hoc";
+                    a = "LGPT";
                     check = false;
                     break;
                 }
-                case 4: {
-                    a = "Sau Dai hoc";
-                    check = false;
-                    break;
-                }
-                default:
-                   break;
+                default: break;
             }
         }
         return a;

@@ -1,6 +1,8 @@
-package furamaResort.models;
+package caseStudy.models.facility;
 
-public abstract class Facility {
+import java.io.Serializable;
+
+public abstract class Facility implements Serializable {
     private String utilName;
     private float useArea;
     private float rentalFees;
