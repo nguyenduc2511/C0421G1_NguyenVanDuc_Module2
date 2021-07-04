@@ -23,17 +23,20 @@ public class RoomServiceImpl implements RoomService{
 
     @Override
     public void updateData(Room data) {
+        new RoomServiceImpl().getAllRoom();
         int i = roomMap.get(data)+1;
         roomMap.replace(data,i);
     }
 
     @Override
     public void fixData(Room data) {
+        new RoomServiceImpl().getAllRoom();
         roomMap.replace(data,0);
     }
 
     @Override
     public void displayFixData() {
+        new RoomServiceImpl().getAllRoom();
         for (Room i : roomMap.keySet()){
             if(roomMap.get(i)==5){
                 System.out.println(i + " " + roomMap.get(i));
@@ -67,7 +70,7 @@ public class RoomServiceImpl implements RoomService{
         boolean check3 = true;
         int rentalFees = 0;
         while (check3) {
-            System.out.println(" nhap dien tich su dung phai la so >0  ");
+            System.out.println(" nhap ch phi the phai la so >0  ");
             rentalFees = new Choice().choice();
             if (rentalFees > 0) {
                 check3 = false;

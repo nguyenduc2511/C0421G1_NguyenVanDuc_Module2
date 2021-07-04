@@ -28,18 +28,21 @@ public class VillaServiceImpl implements VillaService {
 
     @Override
     public void updateData(Villa data) {
+        new VillaServiceImpl().getAllVilla();
         int i = villaMap.get(data)+1;
         villaMap.replace(data,i);
     }
 
     @Override
     public void fixData(Villa data) {
+        new VillaServiceImpl().getAllVilla();
         villaMap.replace(data,0);
     }
 
 
     @Override
     public void displayFixData() {
+        new VillaServiceImpl().getAllVilla();
         for(Villa i: villaMap.keySet()){
             if(villaMap.get(i)==5){
                 System.out.println(i + " " + villaMap.get(i));

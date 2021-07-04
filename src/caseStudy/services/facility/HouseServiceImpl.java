@@ -212,17 +212,20 @@ public class HouseServiceImpl implements HouseService {
     }
     @Override
     public void updateData(House houseData) {
+        new HouseServiceImpl().getAllHouse();
         int i=  houseMap.get(houseData) + 1;
         houseMap.replace(houseData,i);
     }
 
     @Override
     public void fixData(House data) {
+        new HouseServiceImpl().getAllHouse();
         int i= 0;
         houseMap.replace(data,i);
     }
     @Override
     public void displayFixData(){
+        new HouseServiceImpl().getAllHouse();
         for(House i : houseMap.keySet()){
             if(houseMap.get(i)== 5){
                 System.out.println(i + "  " + houseMap.get(i));
