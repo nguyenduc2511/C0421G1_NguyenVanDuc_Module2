@@ -9,7 +9,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.regex.Pattern;
 
 public class VillaServiceImpl implements VillaService {
     private static final String filepath = "src\\caseStudy\\data\\Villa.csv";
@@ -27,33 +26,25 @@ public class VillaServiceImpl implements VillaService {
         return villaMap;
     }
 
-    private static boolean validateidVilla(String string) {
-        boolean checkPatten = false;
-        String regexCheck = "^[S][V][V][L][-]\\d{4}$";
-        String regexCheck2 = "^[D][a][y][-]\\d{4}$";
-        String regexCheck3 = "^[M][o][n][-]\\d{4}$";
-        String regexCheck4 = "^[Y][e][a][-]\\d{4}$";
-        String regexCheck5 = "^[H][o][u][-]\\d{4}$";
-        String regexCheck6 = "^[T][C][H][O][-]\\d{2}$";
-        if (Pattern.matches(regexCheck, string)) {
-            checkPatten = true;
+    @Override
+    public void updateData(Villa data) {
+        int i = villaMap.get(data)+1;
+        villaMap.replace(data,i);
+    }
+
+    @Override
+    public void fixData(Villa data) {
+        villaMap.replace(data,0);
+    }
+
+
+    @Override
+    public void displayFixData() {
+        for(Villa i: villaMap.keySet()){
+            if(villaMap.get(i)==5){
+                System.out.println(i + " " + villaMap.get(i));
+            }
         }
-        if (Pattern.matches(regexCheck2, string)) {
-            checkPatten = true;
-        }
-        if (Pattern.matches(regexCheck3, string)) {
-            checkPatten = true;
-        }
-        if (Pattern.matches(regexCheck4, string)) {
-            checkPatten = true;
-        }
-        if (Pattern.matches(regexCheck5, string)) {
-            checkPatten = true;
-        }
-        if (Pattern.matches(regexCheck6, string)) {
-            checkPatten = true;
-        }
-        return checkPatten;
     }
 
     @Override
@@ -64,7 +55,7 @@ public class VillaServiceImpl implements VillaService {
         while (!check) {
             System.out.println(" nhap ma dich vu: Villa có dinh dang SVXX-YYYY, với YYYY là các số từ 0-9, XX là: VL vd: SVVL-0001 ");
             name = new Scan().input().nextLine();
-            check = validateidVilla(name);
+            check = new CheckValidateId().checkIdName(name);
         }
         boolean check2 = true;
         int useArea = 0;
@@ -98,14 +89,14 @@ public class VillaServiceImpl implements VillaService {
         while (!check5) {
             System.out.println(" Kiểu thuê co dinh dang XXX-YYYY :bao gồm thuê theo năm: Yea, tháng: Mon, ngày: Day, giờ: Hou; YYYY là các số từ 0-9 vd: Day-0001");
             rentalType = new Scan().input().nextLine();
-            check5 = validateidVilla(rentalType);
+            check5 = new CheckValidateId().checkDate(rentalType);
         }
         boolean check6 = false;
         String roomStandard = null;
         while (!check6) {
-            System.out.println(" nhap tieu chuan phong co dinh dang TCHO-YY; YY la so tieu chuan; vd TCHO-01 ");
+            System.out.println(" nhap tieu chuan phong co dinh dang TCVL-YY; YY la so tieu chuan; vd TCVL-01 ");
             roomStandard = new Scan().input().nextLine();
-            check6 = validateidVilla(roomStandard);
+            check6 = new CheckValidateId().checkTC(roomStandard);
         }
         boolean check7 = true;
         int poolArea = 0;
@@ -136,9 +127,9 @@ public class VillaServiceImpl implements VillaService {
         boolean check = false;
         String name = null;
         while (!check) {
-            System.out.println(" nhap ma dich vu ban mua sua: House có dinh dang SVXX-YYYY, với YYYY là các số từ 0-9, XX là: HO vd: SVHO-0001 ");
+            System.out.println(" nhap ma dich vu ban mua sua: Villa có dinh dang SVXX-YYYY, với YYYY là các số từ 0-9, XX là: VL vd: SVVL-0001 ");
             name = new Scan().input().nextLine();
-            check = validateidVilla(name);
+            check = new CheckValidateId().checkIdName(name);
         }
         for (Villa villa : villaMap.keySet()) {
             if (villa.getUtilName().equals(name)) {
@@ -155,8 +146,8 @@ public class VillaServiceImpl implements VillaService {
                     System.out.println("1. nhap dien tich su dung  ");
                     System.out.println("2. nhap chi phi thue la so >0  ");
                     System.out.println("3. so nguoi toi da la 20 nguoi.");
-                    System.out.println("4. Kiểu thuê co dinh dang XXX-YYYY :bao gồm thuê theo năm: Yea, tháng: Hou, ngày: Day, giờ: Hou; YYYY là các số từ 0-9 vd: Day-0001");
-                    System.out.println("5. nhap tieu chuan phong co dinh dang TCHO-YY; YY la so tieu chuan; vd TCHO-01 ");
+                    System.out.println("4. Kiểu thuê co dinh dang XXX-YYYY :bao gồm thuê theo năm: Yea, tháng: Mon, ngày: Day, giờ: Hou; YYYY là các số từ 0-9 vd: Day-0001");
+                    System.out.println("5. nhap tieu chuan phong co dinh dang TCVL-YY; YY la so tieu chuan; vd TCVL-01 ");
                     System.out.println("6. nhap dien tich ho boi >30 ");
                     System.out.println("7. nhap so tang phai la so > 0  ");
                     System.out.println("8. Ket thuc chinh sua ");
@@ -201,16 +192,16 @@ public class VillaServiceImpl implements VillaService {
                             while (!check5) {
                                 System.out.println(" Kiểu thuê co dinh dang XXX-YYYY :bao gồm thuê theo năm: Yea, tháng: Mon, ngày: Day, giờ: Hou; YYYY là các số từ 0-9 vd: Day-0001");
                                 rentalType = new Scan().input().nextLine();
-                                check5 = validateidVilla(rentalType);
+                                check5 = new CheckValidateId().checkDate(rentalType);
                             }
                             break;
                         }
                         case 5: {
                             boolean check6 = false;
                             while (!check6) {
-                                System.out.println(" nhap tieu chuan phong co dinh dang TCHO-YY; YY la so tieu chuan; vd TCHO-01 ");
+                                System.out.println(" nhap tieu chuan phong co dinh dang TCVL-YY; YY la so tieu chuan; vd TCVL-01 ");
                                 roomStandard = new Scan().input().nextLine();
-                                check6 = validateidVilla(roomStandard);
+                                check6 = new CheckValidateId().checkTC(roomStandard);
                             }
                             break;
                         }

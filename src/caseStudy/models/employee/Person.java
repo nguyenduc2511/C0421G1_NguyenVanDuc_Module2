@@ -1,4 +1,4 @@
-package caseStudy.models;
+package caseStudy.models.employee;
 
 import java.io.Serializable;
 

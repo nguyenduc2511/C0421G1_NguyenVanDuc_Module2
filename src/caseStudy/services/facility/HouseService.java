@@ -7,4 +7,7 @@ import java.util.Map;
 
 public interface HouseService extends CRUDService<House> {
     Map<House,Integer> getAllHouse();
+    void updateData(House data);
+    void fixData(House data);
+    void displayFixData();
 }

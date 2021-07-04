@@ -9,7 +9,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.regex.Pattern;
 
 public class HouseServiceImpl implements HouseService {
     private static final String filepath = "src\\caseStudy\\data\\House.csv";
@@ -27,35 +26,6 @@ public class HouseServiceImpl implements HouseService {
         return null;
     }
 
-    private static boolean validateidHouse(String string) {
-        boolean checkPatten = false;
-        String regexCheck = "^[S][V][H][O][-]\\d{4}$";
-        String regexCheck2 = "^[D][a][y][-]\\d{4}$";
-        String regexCheck3 = "^[M][o][n][-]\\d{4}$";
-        String regexCheck4 = "^[Y][e][a][-]\\d{4}$";
-        String regexCheck5 = "^[H][o][u][-]\\d{4}$";
-        String regexCheck6 = "^[T][C][H][O][-]\\d{2}$";
-        if (Pattern.matches(regexCheck, string)) {
-            checkPatten = true;
-        }
-        if (Pattern.matches(regexCheck2, string)) {
-            checkPatten = true;
-        }
-        if (Pattern.matches(regexCheck3, string)) {
-            checkPatten = true;
-        }
-        if (Pattern.matches(regexCheck4, string)) {
-            checkPatten = true;
-        }
-        if (Pattern.matches(regexCheck5, string)) {
-            checkPatten = true;
-        }
-        if (Pattern.matches(regexCheck6, string)) {
-            checkPatten = true;
-        }
-        return checkPatten;
-    }
-
     @Override
     public void addNew() {
         new HouseServiceImpl().getAllHouse();
@@ -64,7 +34,7 @@ public class HouseServiceImpl implements HouseService {
         while (!check) {
             System.out.println(" nhap ma dich vu: House có dinh dang SVXX-YYYY, với YYYY là các số từ 0-9, XX là: HO vd: SVHO-0001 ");
             name = new Scan().input().nextLine();
-            check = validateidHouse(name);
+            check = new CheckValidateId().checkIdName(name);
         }
         boolean check2 = true;
         int useArea = 0;
@@ -98,14 +68,14 @@ public class HouseServiceImpl implements HouseService {
         while (!check5) {
             System.out.println(" Kiểu thuê co dinh dang XXX-YYYY :bao gồm thuê theo năm: Yea, tháng: Mon, ngày: Day, giờ: Hou; YYYY là các số từ 0-9 vd: Day-0001");
             rentalType = new Scan().input().nextLine();
-            check5 = validateidHouse(rentalType);
+            check5 = new CheckValidateId().checkDate(rentalType);
         }
         boolean check6 = false;
         String roomStandard = null;
         while (!check6) {
             System.out.println(" nhap tieu chuan phong co dinh dang TCHO-YY; YY la so tieu chuan; vd TCHO-01 ");
             roomStandard = new Scan().input().nextLine();
-            check6 = validateidHouse(roomStandard);
+            check6 = new CheckValidateId().checkTC(roomStandard);
         }
         boolean check7 = true;
         int floors = 0;
@@ -129,7 +99,7 @@ public class HouseServiceImpl implements HouseService {
         while (!check) {
             System.out.println(" nhap ma dich vu ban mua sua: House có dinh dang SVXX-YYYY, với YYYY là các số từ 0-9, XX là: HO vd: SVHO-0001 ");
             name = new Scan().input().nextLine();
-            check = validateidHouse(name);
+            check = new CheckValidateId().checkIdName(name);
         }
         for(House house : houseMap.keySet()){
             if(house.getUtilName().equals(name)){
@@ -192,7 +162,7 @@ public class HouseServiceImpl implements HouseService {
                             while (!check5) {
                                 System.out.println(" Kiểu thuê co dinh dang XXX-YYYY :bao gồm thuê theo năm: Yea, tháng: Mon, ngày: Day, giờ: Hou; YYYY là các số từ 0-9 vd: Day-0001");
                                 rentalType = new Scan().input().nextLine();
-                                check5 = validateidHouse(rentalType);
+                                check5 = new CheckValidateId().checkDate(rentalType);
                             }
                             break;
                         }
@@ -202,7 +172,7 @@ public class HouseServiceImpl implements HouseService {
                             while (!check6) {
                                 System.out.println(" nhap tieu chuan phong co dinh dang TCHO-YY; YY la so tieu chuan; vd TCHO-01 ");
                                 roomStandard = new Scan().input().nextLine();
-                                check6 = validateidHouse(roomStandard);
+                                check6 = new CheckValidateId().checkTC(roomStandard);
                             }
                             break;
                         }
@@ -238,6 +208,25 @@ public class HouseServiceImpl implements HouseService {
         Set<House> keySet = houseMap.keySet();
         for (House key : keySet) {
             System.out.println(key + " " + houseMap.get(key));
+        }
+    }
+    @Override
+    public void updateData(House houseData) {
+        int i=  houseMap.get(houseData) + 1;
+        houseMap.replace(houseData,i);
+    }
+
+    @Override
+    public void fixData(House data) {
+        int i= 0;
+        houseMap.replace(data,i);
+    }
+    @Override
+    public void displayFixData(){
+        for(House i : houseMap.keySet()){
+            if(houseMap.get(i)== 5){
+                System.out.println(i + "  " + houseMap.get(i));
+            }
         }
     }
 

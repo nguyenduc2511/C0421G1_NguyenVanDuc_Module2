@@ -9,7 +9,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.regex.Pattern;
 
 public class RoomServiceImpl implements RoomService{
     private static final String filepath = "src\\caseStudy\\data\\Room.csv";
@@ -21,37 +20,30 @@ public class RoomServiceImpl implements RoomService{
         roomMap = roomReadAndWrite.readMapbyteStream(filepath);
         return roomMap;
     }
+
+    @Override
+    public void updateData(Room data) {
+        int i = roomMap.get(data)+1;
+        roomMap.replace(data,i);
+    }
+
+    @Override
+    public void fixData(Room data) {
+        roomMap.replace(data,0);
+    }
+
+    @Override
+    public void displayFixData() {
+        for (Room i : roomMap.keySet()){
+            if(roomMap.get(i)==5){
+                System.out.println(i + " " + roomMap.get(i));
+            }
+        }
+    }
+
     @Override
     public List<Room> getAll() {
         return null;
-    }
-    private static boolean validateRoom(String string) {
-        boolean checkPatten = false;
-        String regexCheck = "^[S][V][R][O][-]\\d{4}$";
-        String regexCheck2 = "^[D][a][y][-]\\d{4}$";
-        String regexCheck3 = "^[M][o][n][-]\\d{4}$";
-        String regexCheck4 = "^[Y][e][a][-]\\d{4}$";
-        String regexCheck5 = "^[H][o][u][-]\\d{4}$";
-        String regexCheck6 = "^[T][C][H][O][-]\\d{2}$";
-        if (Pattern.matches(regexCheck, string)) {
-            checkPatten = true;
-        }
-        if (Pattern.matches(regexCheck2, string)) {
-            checkPatten = true;
-        }
-        if (Pattern.matches(regexCheck3, string)) {
-            checkPatten = true;
-        }
-        if (Pattern.matches(regexCheck4, string)) {
-            checkPatten = true;
-        }
-        if (Pattern.matches(regexCheck5, string)) {
-            checkPatten = true;
-        }
-        if (Pattern.matches(regexCheck6, string)) {
-            checkPatten = true;
-        }
-        return checkPatten;
     }
     @Override
     public void addNew() {
@@ -61,7 +53,7 @@ public class RoomServiceImpl implements RoomService{
         while (!check) {
             System.out.println(" nhap ma dich vu: Room có dinh dang SVXX-YYYY, với YYYY là các số từ 0-9, XX là: RO vd: SVRO-0001");
             name = new Scan().input().nextLine();
-            check = validateRoom(name);
+            check = new CheckValidateId().checkIdName(name);
         }
         boolean check2 = true;
         int useArea = 0;
@@ -93,9 +85,9 @@ public class RoomServiceImpl implements RoomService{
         boolean check5 = false;
         String rentalType = null;
         while (!check5) {
-            System.out.println(" Kiểu thuê co dinh dang XXX-YYYY :bao gồm thuê theo năm: Yea, tháng: Hou, ngày: Day, giờ: Hou; YYYY là các số từ 0-9 vd: Day-0001");
+            System.out.println(" Kiểu thuê co dinh dang XXX-YYYY :bao gồm thuê theo năm: Yea, tháng: Mon, ngày: Day, giờ: Hou; YYYY là các số từ 0-9 vd: Day-0001");
             rentalType = new Scan().input().nextLine();
-            check5 = validateRoom(rentalType);
+            check5 = new CheckValidateId().checkDate(rentalType);
         }
         System.out.println("nhap dich vu mien phi di kem room");
         String free = new Scan().input().nextLine();
@@ -112,7 +104,7 @@ public class RoomServiceImpl implements RoomService{
         while (!check) {
             System.out.println(" nhap ma dich vu: Room có dinh dang SVXX-YYYY, với YYYY là các số từ 0-9, XX là: RO vd: SVRO-0001");
             name = new Scan().input().nextLine();
-            check = validateRoom(name);
+            check = new CheckValidateId().checkIdName(name);
         }
         for(Room roomEdit : roomMap.keySet()){
             if(roomEdit.getUtilName().equals(name)){
@@ -127,7 +119,7 @@ public class RoomServiceImpl implements RoomService{
                     System.out.println("1. nhap dien tich su dung >30 ");
                     System.out.println("2. nhap chi phi thue la so >0  ");
                     System.out.println("3. so nguoi toi da la 20 nguoi.");
-                    System.out.println("4. Kiểu thuê co dinh dang XXX-YYYY :bao gồm thuê theo năm: Yea, tháng: Hou, ngày: Day, giờ: Hou; YYYY là các số từ 0-9 vd: Day-0001");
+                    System.out.println("4. Kiểu thuê co dinh dang XXX-YYYY :bao gồm thuê theo năm: Yea, tháng: Mon, ngày: Day, giờ: Hou; YYYY là các số từ 0-9 vd: Day-0001");
                     System.out.println("5. dich vu mien phi di kem ");
                     System.out.println("6. Ket thuc chinh sua ");
                     System.out.println("nhap lua chon cua ban ");
@@ -173,7 +165,7 @@ public class RoomServiceImpl implements RoomService{
                             while (!check5) {
                                 System.out.println(" Kiểu thuê co dinh dang XXX-YYYY :bao gồm thuê theo năm: Yea, tháng: Mon, ngày: Day, giờ: Hou; YYYY là các số từ 0-9 vd: Day-0001");
                                 rentalType = new Scan().input().nextLine();
-                                check5 = validateRoom(rentalType);
+                                check5 = new CheckValidateId().checkDate(rentalType);
                             }
                             break;
                         }

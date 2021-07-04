@@ -1,6 +1,6 @@
 package caseStudy.models.Customer;
 
-import caseStudy.models.Person;
+import caseStudy.models.employee.Person;
 
 import java.io.Serializable;
 
