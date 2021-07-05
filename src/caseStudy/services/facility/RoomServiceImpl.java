@@ -23,16 +23,44 @@ public class RoomServiceImpl implements RoomService{
     }
 
     @Override
-    public void updateData(Room data) {
+    public void updateData(String idRoom) {
         new RoomServiceImpl().getAllRoom();
-        int i = roomMap.get(data)+1;
-        roomMap.replace(data,i);
+        boolean check = true;
+        boolean checkId = false;
+        while (check) {
+            while (!checkId) {
+                checkId = new CheckValidateId().checkIdNameRoom(idRoom);
+            }
+            for (Room i : roomMap.keySet()) {
+                if (i.getUtilName().equals(idRoom) && roomMap.get(i) < 5) {
+                    int num = roomMap.get(i) + 1;
+                    roomMap.replace(i, num);
+                    check = false;
+                    break;
+                }
+            }
+        }
+
     }
 
     @Override
-    public void fixData(Room data) {
+    public void fixData(String idRoom) {
         new RoomServiceImpl().getAllRoom();
-        roomMap.replace(data,0);
+        boolean check = true;
+        boolean checkId = false;
+        while (check) {
+            while (!checkId) {
+                checkId = new CheckValidateId().checkIdNameRoom(idRoom);
+            }
+            for (Room i : roomMap.keySet()) {
+                if (i.getUtilName().equals(idRoom) && roomMap.get(i) == 5) {
+                    int num = 0;
+                    roomMap.replace(i, num);
+                    check = false;
+                    break;
+                }
+            }
+        }
     }
 
     @Override

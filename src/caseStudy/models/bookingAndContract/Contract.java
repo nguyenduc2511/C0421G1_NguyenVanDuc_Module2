@@ -1,18 +1,19 @@
 package caseStudy.models.bookingAndContract;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Contract {
-   private String contractNumber;
+public class Contract implements Serializable {
+   private Integer contractNumber;
    private String bookingId;
-   private double deposit;
-   private double totalPayment;
-   private String customerId;
+   private Integer deposit;
+   private Integer totalPayment;
+   private Integer customerId;
 
     public Contract() {
     }
 
-    public Contract(String contractNumber, String bookingId, double deposit, double totalPayment, String customerId) {
+    public Contract(int contractNumber, String bookingId, int deposit, int totalPayment, int customerId) {
         this.contractNumber = contractNumber;
         this.bookingId = bookingId;
         this.deposit = deposit;
@@ -20,11 +21,11 @@ public class Contract {
         this.customerId = customerId;
     }
 
-    public String getContractNumber() {
+    public int getContractNumber() {
         return contractNumber;
     }
 
-    public void setContractNumber(String contractNumber) {
+    public void setContractNumber(int contractNumber) {
         this.contractNumber = contractNumber;
     }
 
@@ -36,27 +37,27 @@ public class Contract {
         this.bookingId = bookingId;
     }
 
-    public double getDeposit() {
+    public int getDeposit() {
         return deposit;
     }
 
-    public void setDeposit(double deposit) {
+    public void setDeposit(int deposit) {
         this.deposit = deposit;
     }
 
-    public double getTotalPayment() {
+    public int getTotalPayment() {
         return totalPayment;
     }
 
-    public void setTotalPayment(double totalPayment) {
+    public void setTotalPayment(int totalPayment) {
         this.totalPayment = totalPayment;
     }
 
-    public String getCustomerId() {
+    public int getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 

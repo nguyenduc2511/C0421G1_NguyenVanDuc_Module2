@@ -1,19 +1,19 @@
 package caseStudy.models.bookingAndContract;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Booking{
+public class Booking implements Serializable,Comparable{
     private String bookingId;
     private String startDay;
     private String endDay;
-    private String customerId;
+    private Integer customerId;
     private String serviceName;
     private String serviceType;
 
     public Booking() {
     }
-
-    public Booking(String bookingId, String startDay, String endDay, String customerId, String serviceName, String serviceType) {
+    public Booking(String bookingId, String startDay, String endDay, int customerId, String serviceName, String serviceType) {
         this.bookingId = bookingId;
         this.startDay = startDay;
         this.endDay = endDay;
@@ -46,11 +46,11 @@ public class Booking{
         this.endDay = endDay;
     }
 
-    public String getCustomerId() {
+    public int getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 
@@ -98,5 +98,11 @@ public class Booking{
     @Override
     public int hashCode() {
         return Objects.hash(bookingId, startDay, endDay, customerId, serviceName, serviceType);
+    }
+
+    @Override
+    public int compareTo(Object o) {
+
+        return 0;
     }
 }

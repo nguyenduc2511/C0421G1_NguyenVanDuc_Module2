@@ -180,7 +180,6 @@ public class HouseServiceImpl implements HouseService {
                         }
                         case 6: {
                             boolean check7 = true;
-
                             while (check7) {
                                 System.out.println(" nhap so tang phai la so > 0  ");
                                 floors = new Choice().choice();
@@ -197,8 +196,9 @@ public class HouseServiceImpl implements HouseService {
                     }
                 }
                 House house1 = new House(name, useArea, rentalFees, maxNumsPeople, rentalType, roomStandard, floors);
+                int num = houseMap.get(house);
                 houseMap.remove(house);
-                houseMap.put(house1, 0);
+                houseMap.put(house1,num);
                 break;
             }
         }
@@ -216,17 +216,44 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public void updateData(House houseData) {
+    public void updateData(String idHouse) {
         new HouseServiceImpl().getAllHouse();
-        int i = houseMap.get(houseData) + 1;
-        houseMap.replace(houseData, i);
+        boolean check = true;
+        boolean checkId = false;
+        while (check) {
+            while (!checkId) {
+                checkId = new CheckValidateId().checkIdNameHouse(idHouse);
+            }
+            for (House i : houseMap.keySet()) {
+                if (i.getUtilName().equals(idHouse) && houseMap.get(i) < 5) {
+                    int num = houseMap.get(i) + 1;
+                    houseMap.replace(i, num);
+                    check = false;
+                    break;
+                }
+            }
+        }
+
     }
 
     @Override
-    public void fixData(House data) {
+    public void fixData(String  idHouse) {
         new HouseServiceImpl().getAllHouse();
-        int i = 0;
-        houseMap.replace(data, i);
+        boolean check = true;
+        boolean checkId = false;
+        while (check) {
+            while (!checkId) {
+                checkId = new CheckValidateId().checkIdNameHouse(idHouse);
+            }
+            for (House i : houseMap.keySet()) {
+                if (i.getUtilName().equals(idHouse) && houseMap.get(i) == 5) {
+                    int num = 0;
+                    houseMap.replace(i, num);
+                    check = false;
+                    break;
+                }
+            }
+        }
     }
 
     @Override
@@ -246,16 +273,18 @@ public class HouseServiceImpl implements HouseService {
         boolean checkId = false;
         while (check) {
             while (!checkId) {
-                System.out.println("nhap idname ban muon book");
+                System.out.println("nhap idname House ban muon book voi dinh dang la SVHO-0001");
                 id = new Scan().input().nextLine();
                 checkId = new CheckValidateId().checkIdNameHouse(id);
             }
             for (House i : houseMap.keySet()) {
                 if (i.getUtilName().equals(id) && houseMap.get(i) <5) {
                     check =false;
-                }else {
-                    System.out.println(id + "khong co trong danh sach hoac dang trong qua trinh bao trì!!!");
+
                 }
+            }
+            if(check){
+                System.out.println(id + " khong co trong danh sach hoac dang trong qua trinh bao trì!!!");
             }
         }
         return id;

@@ -1,5 +1,8 @@
 package caseStudy.controllers;
 
+import caseStudy.services.booking.BookingServiceImpl;
+import caseStudy.services.booking.ContactServiceImpl;
+
 public class BookingManagerment {
     public void bookingMenu() {
         while (true) {
@@ -12,23 +15,28 @@ public class BookingManagerment {
             int choice = new Choice().choice();
             switch (choice) {
                 case 1:
-                    System.out.println("1. Add new booking");;
+                    System.out.println("1. Add new booking");
+                    new BookingServiceImpl().addNew();
 //                    code here
                     break;
                 case 2:
                     System.out.println("2. Display list booking");
+                    new BookingServiceImpl().disPlay();
 //                    code here
                     break;
                 case 3:
                     System.out.println("3. Create new constracts");
+                    new ContactServiceImpl().addNew();
 //                    code here
                     break;
                 case 4:
                     System.out.println("4. Display list contracts");
+                    new ContactServiceImpl().disPlay();
 //                    code here
                     break;
                 case 5:
                     System.out.println("5. Edit contracts");
+                    new ContactServiceImpl().editData();
 //                    code here
                     break;
                 case 6:

@@ -29,15 +29,42 @@ public class VillaServiceImpl implements VillaService {
     }
 
     @Override
-    public void updateData(Villa data) {
+    public void updateData(String idVilla) {
         new VillaServiceImpl().getAllVilla();
-        int i = villaMap.get(data)+1;
-        villaMap.replace(data,i);
+        boolean check = true;
+        boolean checkId = false;
+        while (check) {
+            while (!checkId) {
+                checkId = new CheckValidateId().checkIdNameRoom(idVilla);
+            }
+            for (Villa i : villaMap.keySet()) {
+                if (i.getUtilName().equals(idVilla) && villaMap.get(i) < 5) {
+                    int num = villaMap.get(i) + 1;
+                    villaMap.replace(i, num);
+                    check = false;
+                    break;
+                }
+            }
+        }
     }
     @Override
-    public void fixData(Villa data) {
+    public void fixData(String idVilla) {
         new VillaServiceImpl().getAllVilla();
-        villaMap.replace(data,0);
+        boolean check = true;
+        boolean checkId = false;
+        while (check) {
+            while (!checkId) {
+                checkId = new CheckValidateId().checkIdNameRoom(idVilla);
+            }
+            for (Villa i : villaMap.keySet()) {
+                if (i.getUtilName().equals(idVilla) && villaMap.get(i) < 5) {
+                    int num = 0;
+                    villaMap.replace(i, num);
+                    check = false;
+                    break;
+                }
+            }
+        }
     }
     @Override
     public void displayFixData() {
