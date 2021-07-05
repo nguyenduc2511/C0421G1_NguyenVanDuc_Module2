@@ -3,6 +3,7 @@ package caseStudy.services.CustomerService;
 import caseStudy.DataStream.ReadAndWriteByteStream;
 import caseStudy.Scan;
 import caseStudy.controllers.Choice;
+import caseStudy.models.CheckDateOfBirth;
 import caseStudy.models.Customer.Customer;
 import caseStudy.models.Customer.TypeCustomer;
 import caseStudy.models.employee.Gioitinh;
@@ -33,7 +34,7 @@ public class CustomverServiceImpl implements CustomerService {
         System.out.println(" nhap ten  ");
         String name = new Scan().input().nextLine();
         System.out.println(" nhap ngay sinh  ");
-        String dateBirth = new Scan().input().nextLine();
+        String dateBirth = new CheckDateOfBirth().CheckDateOfBirth();
         System.out.println(" chon gioi tinh  ");
         String gender = new Gioitinh().gender();
         System.out.println(" nhap so CMND  ");
@@ -80,7 +81,7 @@ public class CustomverServiceImpl implements CustomerService {
                             break;
                         case 2:
                             System.out.println("Nhập dateOfBirth");
-                            String day = new Scan().input().nextLine();
+                            String day = new CheckDateOfBirth().CheckDateOfBirth();
                             customers.get(i).setDateOfBirth(day);
                             break;
                         case 3:

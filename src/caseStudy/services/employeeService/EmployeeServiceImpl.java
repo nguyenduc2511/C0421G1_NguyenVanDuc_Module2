@@ -3,6 +3,7 @@ package caseStudy.services.employeeService;
 import caseStudy.DataStream.ReadAndWriteByteStream;
 import caseStudy.Scan;
 import caseStudy.controllers.Choice;
+import caseStudy.models.CheckDateOfBirth;
 import caseStudy.models.employee.AcademicLevel;
 import caseStudy.models.employee.Employee;
 import caseStudy.models.employee.Gioitinh;
@@ -34,7 +35,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         System.out.println(" nhap ten  ");
         String name = new Scan().input().nextLine();
         System.out.println(" nhap ngay sinh  ");
-        String dateBirth = new Scan().input().nextLine();
+        String dateBirth = new CheckDateOfBirth().CheckDateOfBirth();
         System.out.println(" chon gioi tinh  ");
         String gender = new Gioitinh().gender();
         System.out.println(" nhap so CMND  ");
@@ -84,7 +85,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                             break;
                         case 2:
                             System.out.println("Nhập dateOfBirth");
-                            String day = new Scan().input().nextLine();
+                            String day = new CheckDateOfBirth().CheckDateOfBirth();
                             employees.get(i).setDateOfBirth(day);
                             break;
                         case 3:

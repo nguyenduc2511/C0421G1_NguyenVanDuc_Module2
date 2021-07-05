@@ -1,7 +1,5 @@
 package _12_Java_Collection_Framework.exercise.ProductManager;
 
-import javafx.scene.web.PromptData;
-
 import java.util.*;
 
 public class ProductManager {

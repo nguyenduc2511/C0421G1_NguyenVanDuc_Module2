@@ -1,4 +1,6 @@
-package caseStudy.models;
+package caseStudy.models.bookingAndContract;
+
+import java.util.Objects;
 
 public class Contract {
    private String contractNumber;
@@ -67,5 +69,22 @@ public class Contract {
                 ", totalPayment=" + totalPayment +
                 ", customerId='" + customerId + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Contract contract = (Contract) o;
+        return Double.compare(contract.deposit, deposit) == 0 &&
+                Double.compare(contract.totalPayment, totalPayment) == 0 &&
+                Objects.equals(contractNumber, contract.contractNumber) &&
+                Objects.equals(bookingId, contract.bookingId) &&
+                Objects.equals(customerId, contract.customerId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(contractNumber, bookingId, deposit, totalPayment, customerId);
     }
 }
