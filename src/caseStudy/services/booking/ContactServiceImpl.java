@@ -27,7 +27,9 @@ public class ContactServiceImpl implements ContactService {
     public Queue<Booking> getAllBookByQueue() {
         Set<Booking> bookingSet = new BookingServiceImpl().getAllBooking();
        for(Booking booking: bookingSet){
-           bookingtoQueue.offer(booking);
+           if (new CheckIdBook().idBookingHouse(booking.getBookingId())||new CheckIdBook().idBookingVilla(booking.getBookingId())) {
+               bookingtoQueue.offer(booking);
+           }
        }
         return bookingtoQueue;
     }
@@ -35,7 +37,6 @@ public class ContactServiceImpl implements ContactService {
     public void addNew() {
         new ContactServiceImpl().getAll();
         new ContactServiceImpl().getAllBookByQueue();
-        
         if (!bookingtoQueue.isEmpty()) {
             int idContract = 0;
             if (contractList.isEmpty()) {
@@ -61,8 +62,6 @@ public class ContactServiceImpl implements ContactService {
             int paydayMoney = 0;
             if (new CheckIdBook().idBookingHouse(idBooking)) {
                 paydayMoney = day * 700 - moneyF;
-            } else if (new CheckIdBook().idBookingRoom(idBooking)) {
-                paydayMoney = day * 400-moneyF;
             } else if (new CheckIdBook().idBookingVilla(idBooking)) {
                 paydayMoney = day * 1000-moneyF;
             }
@@ -74,7 +73,6 @@ public class ContactServiceImpl implements ContactService {
             System.out.println("khong co booking nao de lam hop dong");
         }
     }
-
 
     @Override
     public void editData() {

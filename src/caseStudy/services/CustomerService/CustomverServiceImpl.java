@@ -56,13 +56,14 @@ public class CustomverServiceImpl implements CustomerService {
     @Override
     public void editData() {
         new CustomverServiceImpl().getAll();
+        new CustomverServiceImpl().disPlay();
         System.out.println("nhap id ban muon sua");
         int id = new Choice().choice();
         for (int i = 0; i < customers.size(); i++) {
             if (customers.get(i).getCode() == id) {
                 boolean check = true;
                 while (check) {
-                    System.out.println("Bạn muốn sửa thông tin nào cho " + customers.get(i).getFullName());
+                    System.out.println("Bạn muốn sửa thông tin nào cho " + customers.get(i).toString());
                     System.out.println("1. Name customers");
                     System.out.println("2. Ngày sinh");
                     System.out.println("3. Giới tính");
@@ -87,7 +88,7 @@ public class CustomverServiceImpl implements CustomerService {
                         case 3:
                             System.out.println("chon giới tính");
                             String gender = new Gioitinh().gender();
-                            customers.get(i).setDateOfBirth(gender);
+                            customers.get(i).setGender(gender);
                             break;
                         case 4:
                             System.out.println("Nhập CMND");

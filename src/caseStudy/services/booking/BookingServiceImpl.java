@@ -54,7 +54,14 @@ public class BookingServiceImpl implements BookingService {
                     boolean check1 = false;
                     while (!check1) {
                         idbook = new CheckIdBook().idBooking();
-                        check1 = new CheckIdBook().idBookingHouse(idbook);
+                        for (Booking booking : bookingSet){
+                            if(!booking.getBookingId().equals(idbook)){
+                                check1 = new CheckIdBook().idBookingHouse(idbook);
+                            }
+                        }
+                        if(!check1){
+                            System.out.println(idbook + " da trung lap!!! hay ");
+                        }
                     }
                     idHouse = new HouseServiceImpl().checkDataBooking();
                     idname = "House";
@@ -66,9 +73,15 @@ public class BookingServiceImpl implements BookingService {
                     new RoomServiceImpl().disPlay();
                     boolean check1 = false;
                     while (!check1) {
-                        System.out.println(" nhap id booking theo đúng định dạng BR-YY; vd BR-01");
                         idbook = new CheckIdBook().idBooking();
-                        check1 = new CheckIdBook().idBookingRoom(idbook);
+                        for (Booking booking : bookingSet){
+                            if(!booking.getBookingId().equals(idbook)){
+                                check1 = new CheckIdBook().idBookingRoom(idbook);
+                            }
+                        }
+                        if(!check1){
+                            System.out.println(idbook + " da trung lap!!! hay ");
+                        }
                     }
                     System.out.println("nhap id Room ban muon book ");
                     idHouse = new RoomServiceImpl().checkDataBooking();
@@ -81,9 +94,15 @@ public class BookingServiceImpl implements BookingService {
                     new VillaServiceImpl().disPlay();
                     boolean check1 = false;
                     while (!check1) {
-                        System.out.println(" nhap id booking theo đúng định dạng BV-YY; vd BV-01");
                         idbook = new CheckIdBook().idBooking();
-                        check1 = new CheckIdBook().idBookingVilla(idbook);
+                        for (Booking booking : bookingSet){
+                            if(!booking.getBookingId().equals(idbook)){
+                                check1 = new CheckIdBook().idBookingVilla(idbook);
+                            }
+                        }
+                        if(!check1){
+                            System.out.println(idbook + " da trung lap!!! hay ");
+                        }
                     }
                     System.out.println("nhap id house ban mua book ");
                     idHouse = new VillaServiceImpl().checkDataBooking();

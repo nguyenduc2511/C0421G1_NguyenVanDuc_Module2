@@ -20,6 +20,7 @@ public class WaitFixFacility {
                     new RoomServiceImpl().displayFixData();
                     System.out.println("\n");
                     new VillaServiceImpl().displayFixData();
+                    break;
                 }
                 case 2: {
                     boolean check = true;

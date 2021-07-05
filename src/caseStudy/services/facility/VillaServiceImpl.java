@@ -81,7 +81,19 @@ public class VillaServiceImpl implements VillaService {
         while (!check) {
             System.out.println(" nhap ma dich vu: Villa có dinh dang SVXX-YYYY, với YYYY là các số từ 0-9, XX là: VL vd: SVVL-0001 ");
             name = new Scan().input().nextLine();
-            check = new CheckValidateId().checkIdNameHouse(name);
+            if (!villaMap.isEmpty()) {
+                for (Villa villa : villaMap.keySet()) {
+                    if (!villa.getUtilName().equals(name)) {
+                        check = new CheckValidateId().checkIdNameVilla(name);
+                        break;
+                    }
+                }
+            } else {
+                check = new CheckValidateId().checkIdNameVilla(name);
+            }
+            if (!check) {
+                System.out.println("trung ma dich vu " + name + " vui long nhap lai ");
+            }
         }
         boolean check2 = true;
         int useArea = 0;
@@ -281,20 +293,17 @@ public class VillaServiceImpl implements VillaService {
     public String checkDataBooking() {
         new VillaServiceImpl().getAllVilla();
         String id = null;
-        boolean check = true;
         boolean checkId = false;
-        while (check) {
-            while (!checkId) {
-                System.out.println("nhap idname ban muon book");
-                id = new Scan().input().nextLine();
-                checkId = new CheckValidateId().checkIdNameHouse(id);
-            }
+        while (!checkId) {
+            System.out.println("nhap idname ban muon book");
+            id = new Scan().input().nextLine();
             for (Villa i : villaMap.keySet()) {
                 if (i.getUtilName().equals(id) && villaMap.get(i) < 5) {
-                    check = false;
-                } else {
-                    System.out.println(id + "khong co trong danh sach hoac dang trong qua trinh bao trì!!!");
+                    checkId = new CheckValidateId().checkIdNameHouse(id);
                 }
+            }
+            if (!checkId) {
+                System.out.println(id + "khong co trong danh sach hoac dang trong qua trinh bao trì!!!");
             }
         }
         return id;

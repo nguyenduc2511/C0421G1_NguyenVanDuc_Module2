@@ -36,7 +36,19 @@ public class HouseServiceImpl implements HouseService {
         while (!check) {
             System.out.println(" nhap ma dich vu: House có dinh dang SVXX-YYYY, với YYYY là các số từ 0-9, XX là: HO vd: SVHO-0001 ");
             name = new Scan().input().nextLine();
-            check = new CheckValidateId().checkIdNameHouse(name);
+            if (!houseMap.isEmpty()) {
+                for (House house : houseMap.keySet()) {
+                    if (!house.getUtilName().equals(name)) {
+                        check = new CheckValidateId().checkIdNameHouse(name);
+                        break;
+                    }
+                }
+            } else {
+                check = new CheckValidateId().checkIdNameHouse(name);
+            }
+            if (!check) {
+                System.out.println("trung ma dich vu " + name + " vui long nhap lai ");
+            }
         }
         boolean check2 = true;
         int useArea = 0;
@@ -264,21 +276,16 @@ public class HouseServiceImpl implements HouseService {
     public String checkDataBooking() {
         new HouseServiceImpl().getAllHouse();
         String id = null;
-        boolean check = true;
         boolean checkId = false;
-        while (check) {
-            while (!checkId) {
-                System.out.println("nhap idname House ban muon book voi dinh dang la SVHO-0001");
-                id = new Scan().input().nextLine();
-                checkId = new CheckValidateId().checkIdNameHouse(id);
-            }
+        while (!checkId) {
+            System.out.println("nhap idname House ban muon book voi dinh dang la SVHO-0001");
+            id = new Scan().input().nextLine();
             for (House i : houseMap.keySet()) {
                 if (i.getUtilName().equals(id) && houseMap.get(i) < 5) {
-                    check = false;
-
+                    checkId = new CheckValidateId().checkIdNameHouse(id);
                 }
             }
-            if (check) {
+            if (!checkId) {
                 System.out.println(id + " khong co trong danh sach hoac dang trong qua trinh bao trì!!!");
             }
         }
