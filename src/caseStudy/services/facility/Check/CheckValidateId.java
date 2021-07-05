@@ -1,25 +1,35 @@
-package caseStudy.services.facility;
+package caseStudy.services.facility.Check;
 
 import java.util.regex.Pattern;
 
 public class CheckValidateId {
-    public  boolean checkIdName(String string) {
+    public  boolean checkIdNameHouse(String string) {
         boolean checkPatten = false;
         String regexCheck = "^[S][V][H][O][-]\\d{4}$";
-        String regexCheck2 = "^[S][V][R][O][-]\\d{4}$";
-        String regexCheck3 = "^[S][V][V][L][-]\\d{4}$";
-
         if (Pattern.matches(regexCheck, string)) {
             checkPatten = true;
         }
+        return checkPatten;
+    }
+
+    public  boolean checkIdNameRoom(String string) {
+        boolean checkPatten = false;
+        String regexCheck2 = "^[S][V][R][O][-]\\d{4}$";
         if (Pattern.matches(regexCheck2, string)) {
             checkPatten = true;
         }
+        return checkPatten;
+    }
+    public  boolean checkIdNameVilla(String string) {
+        boolean checkPatten = false;
+        String regexCheck3 = "^[S][V][V][L][-]\\d{4}$";
+
         if (Pattern.matches(regexCheck3, string)) {
             checkPatten = true;
         }
         return checkPatten;
     }
+
     public  boolean checkDate(String string) {
         boolean checkPatten = false;
         String regexCheck2 = "^[D][a][y][-]\\d{4}$";
@@ -40,21 +50,5 @@ public class CheckValidateId {
         }
         return checkPatten;
     }
-    public   boolean checkTC(String string) {
-        boolean checkPatten = false;
-        String regexCheck = "^[T][C][H][O][-]\\d{2}$";
-        String regexCheck2 = "^[T][C][R][O][-]\\d{2}$";
-        String regexCheck3 = "^[T][C][V][L][-]\\d{2}$";
 
-        if (Pattern.matches(regexCheck, string)) {
-            checkPatten = true;
-        }
-        if (Pattern.matches(regexCheck2, string)) {
-            checkPatten = true;
-        }
-        if (Pattern.matches(regexCheck3, string)) {
-            checkPatten = true;
-        }
-        return checkPatten;
-    }
 }

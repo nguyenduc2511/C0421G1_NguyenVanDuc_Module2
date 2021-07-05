@@ -3,10 +3,10 @@ package caseStudy.services.CustomerService;
 import caseStudy.DataStream.ReadAndWriteByteStream;
 import caseStudy.Scan;
 import caseStudy.controllers.Choice;
-import caseStudy.models.CheckDateOfBirth;
 import caseStudy.models.Customer.Customer;
 import caseStudy.models.Customer.TypeCustomer;
 import caseStudy.models.employee.Gioitinh;
+import caseStudy.services.employeeService.CheckDateOfBirth;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -25,7 +25,7 @@ public class CustomverServiceImpl implements CustomerService {
     @Override
     public void addNew() {
         new CustomverServiceImpl().getAll();
-        int id=0;
+        int id = 0;
         if (customers.isEmpty()) {
             id = 1;
         } else {
@@ -169,5 +169,26 @@ public class CustomverServiceImpl implements CustomerService {
         }
         readAndWriteByteStream.clearData(filepath);
         readAndWriteByteStream.writeFileByteStream(customers, filepath);
+    }
+
+    public Integer CheckidBook() {
+        new CustomverServiceImpl().getAll();
+        new CustomverServiceImpl().disPlay();
+        boolean check = false;
+        int id = 0;
+        while (!check) {
+            System.out.println(" nhap id cua Customer ");
+            id = new Choice().choice();
+            for (int i = 0; i < customers.size(); i++) {
+                if (customers.get(i).getCode() == id) {
+                    check = true;
+                    break;
+                }
+            }
+            if(!check){
+                System.out.println("id khong dung, moi nhap lai theo danh sanh da hien ");
+            }
+        }
+        return id;
     }
 }

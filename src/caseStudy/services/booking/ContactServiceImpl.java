@@ -1,8 +1,8 @@
-package caseStudy.services;
+package caseStudy.services.booking;
 
 import java.util.List;
 
-public class ContactServiceImpl implements ContactService{
+public class ContactServiceImpl implements ContactService {
     @Override
     public List getAll() {
         return null;

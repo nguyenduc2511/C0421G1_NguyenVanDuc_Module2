@@ -4,6 +4,8 @@ import caseStudy.DataStream.ReadAndWriteByteStream;
 import caseStudy.Scan;
 import caseStudy.controllers.Choice;
 import caseStudy.models.facility.House;
+import caseStudy.services.facility.Check.CheckTC;
+import caseStudy.services.facility.Check.CheckValidateId;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -34,7 +36,7 @@ public class HouseServiceImpl implements HouseService {
         while (!check) {
             System.out.println(" nhap ma dich vu: House có dinh dang SVXX-YYYY, với YYYY là các số từ 0-9, XX là: HO vd: SVHO-0001 ");
             name = new Scan().input().nextLine();
-            check = new CheckValidateId().checkIdName(name);
+            check = new CheckValidateId().checkIdNameHouse(name);
         }
         boolean check2 = true;
         int useArea = 0;
@@ -75,7 +77,7 @@ public class HouseServiceImpl implements HouseService {
         while (!check6) {
             System.out.println(" nhap tieu chuan phong co dinh dang TCHO-YY; YY la so tieu chuan; vd TCHO-01 ");
             roomStandard = new Scan().input().nextLine();
-            check6 = new CheckValidateId().checkTC(roomStandard);
+            check6 = new CheckTC().checkTChouse(roomStandard);
         }
         boolean check7 = true;
         int floors = 0;
@@ -87,7 +89,7 @@ public class HouseServiceImpl implements HouseService {
             }
         }
         House house2 = new House(name, useArea, rentalFees, maxNumsPeople, rentalType, roomStandard, floors);
-        houseMap.put(house2,0);
+        houseMap.put(house2, 0);
         houseReadAndWrite.writeMapByteStream(houseMap, filepath);
     }
 
@@ -99,18 +101,18 @@ public class HouseServiceImpl implements HouseService {
         while (!check) {
             System.out.println(" nhap ma dich vu ban mua sua: House có dinh dang SVXX-YYYY, với YYYY là các số từ 0-9, XX là: HO vd: SVHO-0001 ");
             name = new Scan().input().nextLine();
-            check = new CheckValidateId().checkIdName(name);
+            check = new CheckValidateId().checkIdNameHouse(name);
         }
-        for(House house : houseMap.keySet()){
-            if(house.getUtilName().equals(name)){
+        for (House house : houseMap.keySet()) {
+            if (house.getUtilName().equals(name)) {
                 boolean checkedit = true;
-                int useArea =  house.getUseArea();
-                int rentalFees =  house.getRentalFees();
+                int useArea = house.getUseArea();
+                int rentalFees = house.getRentalFees();
                 int maxNumsPeople = house.getMaxNumsPeople();
                 String rentalType = house.getRentalType();
                 String roomStandard = house.getRoomStandard();
                 int floors = house.getFloors();
-                while (checkedit){
+                while (checkedit) {
                     System.out.println("ban muon sua thong tin cho " + house.toString());
                     System.out.println("1. nhap dien tich su dung  ");
                     System.out.println("2. nhap chi phi thue la so >0  ");
@@ -121,8 +123,8 @@ public class HouseServiceImpl implements HouseService {
                     System.out.println("7. Ket thuc chinh sua ");
                     System.out.println("nhap lua chon cua ban ");
                     int choice = new Choice().choice();
-                    switch (choice){
-                        case 1:{
+                    switch (choice) {
+                        case 1: {
                             boolean check2 = true;
                             while (check2) {
                                 System.out.println(" nhap dien tich su dung  ");
@@ -133,7 +135,7 @@ public class HouseServiceImpl implements HouseService {
                             }
                             break;
                         }
-                        case 2:{
+                        case 2: {
                             boolean check3 = true;
 
                             while (check3) {
@@ -145,7 +147,7 @@ public class HouseServiceImpl implements HouseService {
                             }
                             break;
                         }
-                        case 3:{
+                        case 3: {
                             boolean check4 = true;
 
                             while (check4) {
@@ -157,7 +159,7 @@ public class HouseServiceImpl implements HouseService {
                             }
                             break;
                         }
-                        case 4:{
+                        case 4: {
                             boolean check5 = false;
                             while (!check5) {
                                 System.out.println(" Kiểu thuê co dinh dang XXX-YYYY :bao gồm thuê theo năm: Yea, tháng: Mon, ngày: Day, giờ: Hou; YYYY là các số từ 0-9 vd: Day-0001");
@@ -166,17 +168,17 @@ public class HouseServiceImpl implements HouseService {
                             }
                             break;
                         }
-                        case 5:{
+                        case 5: {
                             boolean check6 = false;
 
                             while (!check6) {
                                 System.out.println(" nhap tieu chuan phong co dinh dang TCHO-YY; YY la so tieu chuan; vd TCHO-01 ");
                                 roomStandard = new Scan().input().nextLine();
-                                check6 = new CheckValidateId().checkTC(roomStandard);
+                                check6 = new CheckTC().checkTChouse(roomStandard);
                             }
                             break;
                         }
-                        case 6:{
+                        case 6: {
                             boolean check7 = true;
 
                             while (check7) {
@@ -188,18 +190,20 @@ public class HouseServiceImpl implements HouseService {
                             }
                             break;
                         }
-                        case 7: checkedit=false;
-                        default:break;
+                        case 7:
+                            checkedit = false;
+                        default:
+                            break;
                     }
                 }
                 House house1 = new House(name, useArea, rentalFees, maxNumsPeople, rentalType, roomStandard, floors);
                 houseMap.remove(house);
-                houseMap.put(house1,0);
+                houseMap.put(house1, 0);
                 break;
             }
         }
         houseReadAndWrite.clearData(filepath);
-        houseReadAndWrite.writeMapByteStream(houseMap,filepath);
+        houseReadAndWrite.writeMapByteStream(houseMap, filepath);
     }
 
     @Override
@@ -210,27 +214,50 @@ public class HouseServiceImpl implements HouseService {
             System.out.println(key + " " + houseMap.get(key));
         }
     }
+
     @Override
     public void updateData(House houseData) {
         new HouseServiceImpl().getAllHouse();
-        int i=  houseMap.get(houseData) + 1;
-        houseMap.replace(houseData,i);
+        int i = houseMap.get(houseData) + 1;
+        houseMap.replace(houseData, i);
     }
 
     @Override
     public void fixData(House data) {
         new HouseServiceImpl().getAllHouse();
-        int i= 0;
-        houseMap.replace(data,i);
+        int i = 0;
+        houseMap.replace(data, i);
     }
+
     @Override
-    public void displayFixData(){
+    public void displayFixData() {
         new HouseServiceImpl().getAllHouse();
-        for(House i : houseMap.keySet()){
-            if(houseMap.get(i)== 5){
+        for (House i : houseMap.keySet()) {
+            if (houseMap.get(i) == 5) {
                 System.out.println(i + "  " + houseMap.get(i));
             }
         }
     }
 
+    public String checkDataBooking() {
+        new HouseServiceImpl().getAllHouse();
+        String id = null;
+        boolean check = true;
+        boolean checkId = false;
+        while (check) {
+            while (!checkId) {
+                System.out.println("nhap idname ban muon book");
+                id = new Scan().input().nextLine();
+                checkId = new CheckValidateId().checkIdNameHouse(id);
+            }
+            for (House i : houseMap.keySet()) {
+                if (i.getUtilName().equals(id) && houseMap.get(i) <5) {
+                    check =false;
+                }else {
+                    System.out.println(id + "khong co trong danh sach hoac dang trong qua trinh bao trì!!!");
+                }
+            }
+        }
+        return id;
+    }
 }

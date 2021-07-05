@@ -4,6 +4,8 @@ import caseStudy.DataStream.ReadAndWriteByteStream;
 import caseStudy.Scan;
 import caseStudy.controllers.Choice;
 import caseStudy.models.facility.Villa;
+import caseStudy.services.facility.Check.CheckTC;
+import caseStudy.services.facility.Check.CheckValidateId;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -55,7 +57,7 @@ public class VillaServiceImpl implements VillaService {
         while (!check) {
             System.out.println(" nhap ma dich vu: Villa có dinh dang SVXX-YYYY, với YYYY là các số từ 0-9, XX là: VL vd: SVVL-0001 ");
             name = new Scan().input().nextLine();
-            check = new CheckValidateId().checkIdName(name);
+            check = new CheckValidateId().checkIdNameHouse(name);
         }
         boolean check2 = true;
         int useArea = 0;
@@ -96,7 +98,7 @@ public class VillaServiceImpl implements VillaService {
         while (!check6) {
             System.out.println(" nhap tieu chuan phong co dinh dang TCVL-YY; YY la so tieu chuan; vd TCVL-01 ");
             roomStandard = new Scan().input().nextLine();
-            check6 = new CheckValidateId().checkTC(roomStandard);
+            check6 = new CheckTC().checkTCVilla(roomStandard);
         }
         boolean check7 = true;
         int poolArea = 0;
@@ -129,7 +131,7 @@ public class VillaServiceImpl implements VillaService {
         while (!check) {
             System.out.println(" nhap ma dich vu ban mua sua: Villa có dinh dang SVXX-YYYY, với YYYY là các số từ 0-9, XX là: VL vd: SVVL-0001 ");
             name = new Scan().input().nextLine();
-            check = new CheckValidateId().checkIdName(name);
+            check = new CheckValidateId().checkIdNameHouse(name);
         }
         for (Villa villa : villaMap.keySet()) {
             if (villa.getUtilName().equals(name)) {
@@ -201,7 +203,7 @@ public class VillaServiceImpl implements VillaService {
                             while (!check6) {
                                 System.out.println(" nhap tieu chuan phong co dinh dang TCVL-YY; YY la so tieu chuan; vd TCVL-01 ");
                                 roomStandard = new Scan().input().nextLine();
-                                check6 = new CheckValidateId().checkTC(roomStandard);
+                                check6 = new CheckTC().checkTCVilla(roomStandard);
                             }
                             break;
                         }
@@ -251,5 +253,25 @@ public class VillaServiceImpl implements VillaService {
             System.out.println(key + " " + villaMap.get(key));
         }
     }
-
+    public String checkDataBooking() {
+        new VillaServiceImpl().getAllVilla();
+        String id = null;
+        boolean check = true;
+        boolean checkId = false;
+        while (check) {
+            while (!checkId) {
+                System.out.println("nhap idname ban muon book");
+                id = new Scan().input().nextLine();
+                checkId = new CheckValidateId().checkIdNameHouse(id);
+            }
+            for (Villa i : villaMap.keySet()) {
+                if (i.getUtilName().equals(id) && villaMap.get(i) <5) {
+                    check =false;
+                }else {
+                    System.out.println(id + "khong co trong danh sach hoac dang trong qua trinh bao trì!!!");
+                }
+            }
+        }
+        return id;
+    }
 }

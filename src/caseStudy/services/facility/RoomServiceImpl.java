@@ -4,6 +4,7 @@ import caseStudy.DataStream.ReadAndWriteByteStream;
 import caseStudy.Scan;
 import caseStudy.controllers.Choice;
 import caseStudy.models.facility.Room;
+import caseStudy.services.facility.Check.CheckValidateId;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -56,7 +57,7 @@ public class RoomServiceImpl implements RoomService{
         while (!check) {
             System.out.println(" nhap ma dich vu: Room có dinh dang SVXX-YYYY, với YYYY là các số từ 0-9, XX là: RO vd: SVRO-0001");
             name = new Scan().input().nextLine();
-            check = new CheckValidateId().checkIdName(name);
+            check = new CheckValidateId().checkIdNameRoom(name);
         }
         boolean check2 = true;
         int useArea = 0;
@@ -107,7 +108,7 @@ public class RoomServiceImpl implements RoomService{
         while (!check) {
             System.out.println(" nhap ma dich vu: Room có dinh dang SVXX-YYYY, với YYYY là các số từ 0-9, XX là: RO vd: SVRO-0001");
             name = new Scan().input().nextLine();
-            check = new CheckValidateId().checkIdName(name);
+            check = new CheckValidateId().checkIdNameRoom(name);
         }
         for(Room roomEdit : roomMap.keySet()){
             if(roomEdit.getUtilName().equals(name)){
@@ -199,6 +200,26 @@ public class RoomServiceImpl implements RoomService{
             System.out.println(key + " " + roomMap.get(key));
         }
     }
-
+    public String checkDataBooking() {
+       new RoomServiceImpl().getAllRoom();
+        String id = null;
+        boolean check = true;
+        boolean checkId = false;
+        while (check) {
+            while (!checkId) {
+                System.out.println("nhap idname ban muon book");
+                id = new Scan().input().nextLine();
+                checkId = new CheckValidateId().checkIdNameRoom(id);
+            }
+            for (Room i : roomMap.keySet()) {
+                if (i.getUtilName().equals(id) && roomMap.get(i) <5) {
+                    check =false;
+                }else {
+                    System.out.println(id + "khong co trong danh sach hoac dang trong qua trinh bao trì!!!");
+                }
+            }
+        }
+        return id;
+    }
 
 }

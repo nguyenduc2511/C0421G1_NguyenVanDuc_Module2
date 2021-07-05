@@ -29,32 +29,32 @@ public class BookingComparatorDate implements Comparator<Booking> {
                         if (endMonth == 0) {
                             if (endDay == 0) {
                                 return 0;
-                            } else if (endDay > 0) {
+                            } else if (endDay < 0) {
                                 return 1;
                             } else {
                                 return -1;
                             }
-                        } else if (endMonth > 0) {
+                        } else if (endMonth < 0) {
                             return 1;
                         } else {
                             return -1;
                         }
-                    } else if (endyear > 0) {
+                    } else if (endyear < 0) {
                         return 1;
                     } else {
                         return -1;
                     }
-                } else if (startDay > 0) {
+                } else if (startDay < 0) {
                     return 1;
                 } else {
                     return -1;
                 }
-            } else if (startMonth > 0) {
+            } else if (startMonth < 0) {
                 return 1;
             } else {
                 return -1;
             }
-        } else if (startYear > 0) {
+        } else if (startYear < 0) {
             return 1;
         } else {
             return -1;

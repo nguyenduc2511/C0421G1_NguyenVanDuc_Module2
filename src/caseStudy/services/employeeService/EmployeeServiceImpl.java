@@ -3,7 +3,6 @@ package caseStudy.services.employeeService;
 import caseStudy.DataStream.ReadAndWriteByteStream;
 import caseStudy.Scan;
 import caseStudy.controllers.Choice;
-import caseStudy.models.CheckDateOfBirth;
 import caseStudy.models.employee.AcademicLevel;
 import caseStudy.models.employee.Employee;
 import caseStudy.models.employee.Gioitinh;
