@@ -46,31 +46,28 @@ public class VillaServiceImpl implements VillaService {
                 }
             }
         }
+        villaReadAndWrite.clearData(filepath);
+        villaReadAndWrite.writeMapByteStream(villaMap, filepath);
     }
+
     @Override
-    public void fixData(String idVilla) {
+    public void fixData() {
         new VillaServiceImpl().getAllVilla();
-        boolean check = true;
-        boolean checkId = false;
-        while (check) {
-            while (!checkId) {
-                checkId = new CheckValidateId().checkIdNameRoom(idVilla);
-            }
-            for (Villa i : villaMap.keySet()) {
-                if (i.getUtilName().equals(idVilla) && villaMap.get(i) < 5) {
-                    int num = 0;
-                    villaMap.replace(i, num);
-                    check = false;
-                    break;
-                }
+        for (Villa i : villaMap.keySet()) {
+            if (villaMap.get(i) < 5) {
+                int num = 0;
+                villaMap.replace(i, num);
             }
         }
+        villaReadAndWrite.clearData(filepath);
+        villaReadAndWrite.writeMapByteStream(villaMap, filepath);
     }
+
     @Override
     public void displayFixData() {
         new VillaServiceImpl().getAllVilla();
-        for(Villa i: villaMap.keySet()){
-            if(villaMap.get(i)==5){
+        for (Villa i : villaMap.keySet()) {
+            if (villaMap.get(i) == 5) {
                 System.out.println(i + " " + villaMap.get(i));
             }
         }
@@ -280,6 +277,7 @@ public class VillaServiceImpl implements VillaService {
             System.out.println(key + " " + villaMap.get(key));
         }
     }
+
     public String checkDataBooking() {
         new VillaServiceImpl().getAllVilla();
         String id = null;
@@ -292,9 +290,9 @@ public class VillaServiceImpl implements VillaService {
                 checkId = new CheckValidateId().checkIdNameHouse(id);
             }
             for (Villa i : villaMap.keySet()) {
-                if (i.getUtilName().equals(id) && villaMap.get(i) <5) {
-                    check =false;
-                }else {
+                if (i.getUtilName().equals(id) && villaMap.get(i) < 5) {
+                    check = false;
+                } else {
                     System.out.println(id + "khong co trong danh sach hoac dang trong qua trinh bao trì!!!");
                 }
             }

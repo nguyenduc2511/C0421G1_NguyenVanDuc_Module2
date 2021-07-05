@@ -13,7 +13,8 @@ public class FuramaController {
             System.out.println("3. Facility Management ");
             System.out.println("4. Booking Managerment");
             System.out.println("5. Promotion Management");
-            System.out.println("6. Exit");
+            System.out.println("6. Fix Facility Managerment");
+            System.out.println("7. Exit");
             System.out.println("choice number ");
             int choice = new Choice().choice();
             switch (choice) {
@@ -33,6 +34,8 @@ public class FuramaController {
                     new PromotionManagerment().promotionMenu();
                     break;
                 case 6:
+                    new WaitFixFacility().waitFixxing();
+                case 7:
                     check = false;
             }
         }

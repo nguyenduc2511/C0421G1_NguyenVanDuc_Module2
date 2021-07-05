@@ -43,6 +43,9 @@ public class ContactServiceImpl implements ContactService {
             } else {
                 idContract = contractList.get(contractList.size() - 1).getContractNumber() + 1;
             }
+            System.out.println("danh sach booking con lai : ");
+            new BookingServiceImpl().disPlay();
+            System.out.println("ban se lam hop dong voi booking nay: ");
             Booking bookingContract = bookingtoQueue.poll();
             System.out.println(bookingContract.toString());
             String idBooking = bookingContract.getBookingId();

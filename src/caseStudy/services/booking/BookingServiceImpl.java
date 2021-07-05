@@ -17,6 +17,8 @@ import java.util.TreeSet;
 public class BookingServiceImpl implements BookingService {
 
     private static final String filepath = "src\\caseStudy\\data\\Booking.csv";
+    private static final String filepathFinalBookYear = "src\\caseStudy\\data\\BookingYear.csv";
+
     private static final ReadWriteTreeSet readwriteTreeSet = new ReadWriteTreeSet();
     private static Set<Booking> bookingSet = new TreeSet<>(new BookingComparatorDate());
 
@@ -106,6 +108,7 @@ public class BookingServiceImpl implements BookingService {
         Booking booking = new Booking(idbook, startBook, endBook, idCustomer, idHouse, idname);
         bookingSet.add(booking);
         readwriteTreeSet.writeFileByteStream(bookingSet, filepath);
+        readwriteTreeSet.writeFileByteStream(bookingSet, filepathFinalBookYear);
     }
 
     @Override
@@ -186,7 +189,15 @@ public class BookingServiceImpl implements BookingService {
         }
         readwriteTreeSet.clearData(filepath);
         readwriteTreeSet.writeFileByteStream(bookingSet, filepath);
+        readwriteTreeSet.writeFileByteStream(bookingSet, filepathFinalBookYear);
+    }
 
+    public void displayAllBooking() {
+        Set<Booking> bookingSetFinal = new TreeSet<>(new BookingComparatorDate());
+        bookingSetFinal = readwriteTreeSet.readFileByteStream(filepathFinalBookYear);
+        for (Booking booking : bookingSetFinal) {
+            System.out.println(booking.toString());
+        }
     }
 
     @Override

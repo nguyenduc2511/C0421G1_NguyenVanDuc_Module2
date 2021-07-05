@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class RoomServiceImpl implements RoomService{
+public class RoomServiceImpl implements RoomService {
     private static final String filepath = "src\\caseStudy\\data\\Room.csv";
     private static final ReadAndWriteByteStream<Room> roomReadAndWrite = new ReadAndWriteByteStream<Room>();
     private static Map<Room, Integer> roomMap = new LinkedHashMap<>();
@@ -40,34 +40,30 @@ public class RoomServiceImpl implements RoomService{
                 }
             }
         }
-
+        roomReadAndWrite.clearData(filepath);
+        roomReadAndWrite.writeMapByteStream(roomMap, filepath);
     }
 
     @Override
-    public void fixData(String idRoom) {
+    public void fixData() {
         new RoomServiceImpl().getAllRoom();
-        boolean check = true;
-        boolean checkId = false;
-        while (check) {
-            while (!checkId) {
-                checkId = new CheckValidateId().checkIdNameRoom(idRoom);
-            }
-            for (Room i : roomMap.keySet()) {
-                if (i.getUtilName().equals(idRoom) && roomMap.get(i) == 5) {
-                    int num = 0;
-                    roomMap.replace(i, num);
-                    check = false;
-                    break;
-                }
+        for (Room i : roomMap.keySet()) {
+            if (roomMap.get(i) == 5) {
+                int num = 0;
+                roomMap.replace(i, num);
+                break;
             }
         }
+        roomReadAndWrite.clearData(filepath);
+        roomReadAndWrite.writeMapByteStream(roomMap, filepath);
     }
+
 
     @Override
     public void displayFixData() {
         new RoomServiceImpl().getAllRoom();
-        for (Room i : roomMap.keySet()){
-            if(roomMap.get(i)==5){
+        for (Room i : roomMap.keySet()) {
+            if (roomMap.get(i) == 5) {
                 System.out.println(i + " " + roomMap.get(i));
             }
         }
@@ -77,6 +73,7 @@ public class RoomServiceImpl implements RoomService{
     public List<Room> getAll() {
         return null;
     }
+
     @Override
     public void addNew() {
         new RoomServiceImpl().getAllRoom();
@@ -123,8 +120,8 @@ public class RoomServiceImpl implements RoomService{
         }
         System.out.println("nhap dich vu mien phi di kem room");
         String free = new Scan().input().nextLine();
-        Room room2 = new Room(name, useArea, rentalFees, maxNumsPeople, rentalType,free);
-        roomMap.put(room2,0);
+        Room room2 = new Room(name, useArea, rentalFees, maxNumsPeople, rentalType, free);
+        roomMap.put(room2, 0);
         roomReadAndWrite.writeMapByteStream(roomMap, filepath);
     }
 
@@ -138,15 +135,15 @@ public class RoomServiceImpl implements RoomService{
             name = new Scan().input().nextLine();
             check = new CheckValidateId().checkIdNameRoom(name);
         }
-        for(Room roomEdit : roomMap.keySet()){
-            if(roomEdit.getUtilName().equals(name)){
+        for (Room roomEdit : roomMap.keySet()) {
+            if (roomEdit.getUtilName().equals(name)) {
                 boolean checkedit = true;
-                int useArea =  roomEdit.getUseArea();
-                int rentalFees =  roomEdit.getRentalFees();
+                int useArea = roomEdit.getUseArea();
+                int rentalFees = roomEdit.getRentalFees();
                 int maxNumsPeople = roomEdit.getMaxNumsPeople();
                 String rentalType = roomEdit.getRentalType();
                 String free = roomEdit.getFreeServices();
-                while (checkedit){
+                while (checkedit) {
                     System.out.println("ban muon sua thong tin cho " + roomEdit.toString());
                     System.out.println("1. nhap dien tich su dung >30 ");
                     System.out.println("2. nhap chi phi thue la so >0  ");
@@ -156,8 +153,8 @@ public class RoomServiceImpl implements RoomService{
                     System.out.println("6. Ket thuc chinh sua ");
                     System.out.println("nhap lua chon cua ban ");
                     int choice = new Choice().choice();
-                    switch (choice){
-                        case 1:{
+                    switch (choice) {
+                        case 1: {
                             boolean check2 = true;
                             while (check2) {
                                 System.out.println(" nhap dien tich su dung >30  ");
@@ -168,7 +165,7 @@ public class RoomServiceImpl implements RoomService{
                             }
                             break;
                         }
-                        case 2:{
+                        case 2: {
                             boolean check3 = true;
 
                             while (check3) {
@@ -180,7 +177,7 @@ public class RoomServiceImpl implements RoomService{
                             }
                             break;
                         }
-                        case 3:{
+                        case 3: {
                             boolean check4 = true;
 
                             while (check4) {
@@ -192,7 +189,7 @@ public class RoomServiceImpl implements RoomService{
                             }
                             break;
                         }
-                        case 4:{
+                        case 4: {
                             boolean check5 = false;
                             while (!check5) {
                                 System.out.println(" Kiểu thuê co dinh dang XXX-YYYY :bao gồm thuê theo năm: Yea, tháng: Mon, ngày: Day, giờ: Hou; YYYY là các số từ 0-9 vd: Day-0001");
@@ -201,23 +198,25 @@ public class RoomServiceImpl implements RoomService{
                             }
                             break;
                         }
-                        case 5:{
+                        case 5: {
                             System.out.println("nhap dich vu mien phi di kem room");
-                             free = new Scan().input().nextLine();
+                            free = new Scan().input().nextLine();
                             break;
                         }
-                        case 6:checkedit=false;
-                        default:break;
+                        case 6:
+                            checkedit = false;
+                        default:
+                            break;
                     }
                 }
                 Room room1 = new Room(name, useArea, rentalFees, maxNumsPeople, rentalType, free);
                 roomMap.remove(roomEdit);
-                roomMap.put(room1,0);
+                roomMap.put(room1, 0);
                 break;
             }
         }
         roomReadAndWrite.clearData(filepath);
-        roomReadAndWrite.writeMapByteStream(roomMap,filepath);
+        roomReadAndWrite.writeMapByteStream(roomMap, filepath);
     }
 
     @Override
@@ -228,8 +227,9 @@ public class RoomServiceImpl implements RoomService{
             System.out.println(key + " " + roomMap.get(key));
         }
     }
+
     public String checkDataBooking() {
-       new RoomServiceImpl().getAllRoom();
+        new RoomServiceImpl().getAllRoom();
         String id = null;
         boolean check = true;
         boolean checkId = false;
@@ -240,9 +240,9 @@ public class RoomServiceImpl implements RoomService{
                 checkId = new CheckValidateId().checkIdNameRoom(id);
             }
             for (Room i : roomMap.keySet()) {
-                if (i.getUtilName().equals(id) && roomMap.get(i) <5) {
-                    check =false;
-                }else {
+                if (i.getUtilName().equals(id) && roomMap.get(i) < 5) {
+                    check = false;
+                } else {
                     System.out.println(id + "khong co trong danh sach hoac dang trong qua trinh bao trì!!!");
                 }
             }

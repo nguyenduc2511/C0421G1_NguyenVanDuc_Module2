@@ -7,7 +7,7 @@ public class BookingManagerment {
     public void bookingMenu() {
         while (true) {
             System.out.println("1. Add new booking");
-            System.out.println("2. Display list booking");
+            System.out.println("2. Display list booking waitting constracts");
             System.out.println("3. Create new constracts");
             System.out.println("4. Display list contracts");
             System.out.println("5. Edit contracts");
@@ -41,6 +41,8 @@ public class BookingManagerment {
                     break;
                 case 6:
                     return;
+                default:
+                    break;
             }
         }
     }

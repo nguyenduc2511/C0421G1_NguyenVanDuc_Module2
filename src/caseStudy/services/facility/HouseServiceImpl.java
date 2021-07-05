@@ -198,7 +198,7 @@ public class HouseServiceImpl implements HouseService {
                 House house1 = new House(name, useArea, rentalFees, maxNumsPeople, rentalType, roomStandard, floors);
                 int num = houseMap.get(house);
                 houseMap.remove(house);
-                houseMap.put(house1,num);
+                houseMap.put(house1, num);
                 break;
             }
         }
@@ -233,27 +233,22 @@ public class HouseServiceImpl implements HouseService {
                 }
             }
         }
-
+        houseReadAndWrite.clearData(filepath);
+        houseReadAndWrite.writeMapByteStream(houseMap, filepath);
     }
 
     @Override
-    public void fixData(String  idHouse) {
+    public void fixData() {
         new HouseServiceImpl().getAllHouse();
-        boolean check = true;
-        boolean checkId = false;
-        while (check) {
-            while (!checkId) {
-                checkId = new CheckValidateId().checkIdNameHouse(idHouse);
-            }
-            for (House i : houseMap.keySet()) {
-                if (i.getUtilName().equals(idHouse) && houseMap.get(i) == 5) {
-                    int num = 0;
-                    houseMap.replace(i, num);
-                    check = false;
-                    break;
-                }
+        for (House i : houseMap.keySet()) {
+            if (houseMap.get(i) == 5) {
+                int num = 0;
+                houseMap.replace(i, num);
+                break;
             }
         }
+        houseReadAndWrite.clearData(filepath);
+        houseReadAndWrite.writeMapByteStream(houseMap, filepath);
     }
 
     @Override
@@ -278,12 +273,12 @@ public class HouseServiceImpl implements HouseService {
                 checkId = new CheckValidateId().checkIdNameHouse(id);
             }
             for (House i : houseMap.keySet()) {
-                if (i.getUtilName().equals(id) && houseMap.get(i) <5) {
-                    check =false;
+                if (i.getUtilName().equals(id) && houseMap.get(i) < 5) {
+                    check = false;
 
                 }
             }
-            if(check){
+            if (check) {
                 System.out.println(id + " khong co trong danh sach hoac dang trong qua trinh bao trì!!!");
             }
         }

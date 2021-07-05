@@ -1,5 +1,7 @@
 package caseStudy.controllers;
 
+import caseStudy.services.PromotionService.PromotionServiceImpl;
+
 public class PromotionManagerment {
     public  void promotionMenu() {
         while (true) {
@@ -10,10 +12,12 @@ public class PromotionManagerment {
             switch (choice) {
                 case 1:
                     System.out.println("1. Display list customers use service");
+                    new PromotionServiceImpl().displayPlayByYear();
 //                    code here
                     break;
                 case 2:
                     System.out.println("2.Display list customers get voucher");
+                    new PromotionServiceImpl().voucher();
 //                    code here
                     break;
                 case 3:
