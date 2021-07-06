@@ -3,6 +3,7 @@ package caseStudy.controllers;
 import caseStudy.services.facility.HouseServiceImpl;
 import caseStudy.services.facility.RoomServiceImpl;
 import caseStudy.services.facility.VillaServiceImpl;
+import caseStudy.utils.Choice;
 
 public class WaitFixFacility {
     public void waitFixxing() {

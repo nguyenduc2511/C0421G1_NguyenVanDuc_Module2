@@ -1,10 +1,14 @@
 package caseStudy.services.booking;
 
 import caseStudy.DataStream.ReadAndWriteByteStream;
-import caseStudy.controllers.Choice;
 import caseStudy.models.bookingAndContract.Booking;
 import caseStudy.models.bookingAndContract.Contract;
 import caseStudy.services.CustomerService.CustomverServiceImpl;
+import caseStudy.services.facility.HouseServiceImpl;
+import caseStudy.services.facility.RoomServiceImpl;
+import caseStudy.services.facility.VillaServiceImpl;
+import caseStudy.utils.CheckIdBook;
+import caseStudy.utils.Choice;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -69,11 +73,15 @@ public class ContactServiceImpl implements ContactService {
                     int day = (int) ChronoUnit.DAYS.between(starBook, endbook);
                     int paydayMoney = 0;
                     if (new CheckIdBook().idBookingHouse(idBooking)) {
+                        new HouseServiceImpl().updateData(bookingContract.getServiceName());
                         paydayMoney = day * 700 - moneyF;
                         new BookingServiceImpl().addContract(idBooking);
                     } else if (new CheckIdBook().idBookingVilla(idBooking)) {
+                        new VillaServiceImpl().updateData(bookingContract.getServiceName());
                         paydayMoney = day * 1000 - moneyF;
                         new BookingServiceImpl().addContract(idBooking);
+                    }else {
+                        new RoomServiceImpl().updateData(bookingContract.getServiceName());
                     }
                     int idCustomer = bookingContract.getCustomerId();
                     Contract contract1 = new Contract(idContract, idBooking, moneyF, paydayMoney, idCustomer);

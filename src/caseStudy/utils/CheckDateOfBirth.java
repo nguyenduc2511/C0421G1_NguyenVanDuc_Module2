@@ -1,6 +1,4 @@
-package caseStudy.services.employeeService;
-
-import caseStudy.Scan;
+package caseStudy.utils;
 
 import java.time.LocalDate;
 import java.time.Period;

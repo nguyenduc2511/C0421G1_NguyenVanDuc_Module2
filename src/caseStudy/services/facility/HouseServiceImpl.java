@@ -1,11 +1,11 @@
 package caseStudy.services.facility;
 
 import caseStudy.DataStream.ReadAndWriteByteStream;
-import caseStudy.Scan;
-import caseStudy.controllers.Choice;
+import caseStudy.utils.Scan;
+import caseStudy.utils.Choice;
 import caseStudy.models.facility.House;
-import caseStudy.services.facility.Check.CheckTC;
-import caseStudy.services.facility.Check.CheckValidateId;
+import caseStudy.utils.CheckTC;
+import caseStudy.utils.CheckValidateId;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -266,8 +266,6 @@ public class HouseServiceImpl implements HouseService {
     @Override
     public void displayFixData() {
         new HouseServiceImpl().getAllHouse();
-
-
         for (House i : houseMap.keySet()) {
             if (houseMap.get(i) == 5) {
                 System.out.println(i + "  " + houseMap.get(i));

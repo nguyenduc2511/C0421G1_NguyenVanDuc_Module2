@@ -1,12 +1,12 @@
 package caseStudy.services.CustomerService;
 
 import caseStudy.DataStream.ReadAndWriteByteStream;
-import caseStudy.Scan;
-import caseStudy.controllers.Choice;
+import caseStudy.utils.Scan;
+import caseStudy.utils.Choice;
 import caseStudy.models.Customer.Customer;
 import caseStudy.models.Customer.TypeCustomer;
 import caseStudy.models.employee.Gioitinh;
-import caseStudy.services.employeeService.CheckDateOfBirth;
+import caseStudy.utils.CheckDateOfBirth;
 
 import java.util.LinkedList;
 import java.util.List;

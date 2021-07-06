@@ -1,6 +1,7 @@
 package caseStudy.controllers;
 
 import caseStudy.services.facility.FacilityServiceImpl;
+import caseStudy.utils.Choice;
 
 public class FacilityManagerment {
     public void facilityMenu() {

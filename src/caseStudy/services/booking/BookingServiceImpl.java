@@ -2,13 +2,15 @@ package caseStudy.services.booking;
 
 import caseStudy.DataStream.ReadAndWriteByteStream;
 import caseStudy.DataStream.ReadWriteTreeSet;
-import caseStudy.controllers.Choice;
+import caseStudy.utils.Choice;
 import caseStudy.models.bookingAndContract.Booking;
 import caseStudy.models.bookingAndContract.BookingComparatorDate;
 import caseStudy.services.CustomerService.CustomverServiceImpl;
 import caseStudy.services.facility.HouseServiceImpl;
 import caseStudy.services.facility.RoomServiceImpl;
 import caseStudy.services.facility.VillaServiceImpl;
+import caseStudy.utils.CheckDatebooking;
+import caseStudy.utils.CheckIdBook;
 
 import java.util.*;
 
@@ -56,25 +58,25 @@ public class BookingServiceImpl implements BookingService {
                     new HouseServiceImpl().disPlay();
                     boolean check1 = true;
                     while (check1) {
+                        int count = 0;
                         idbook = new CheckIdBook().idBooking();
                         for (Booking booking : bookingSet) {
-                            String[] a = booking.getBookingId().split("-", 2);
-                            String[] b = idbook.split("-", 2);
-                            if (a[0].equals(b[0])) {
-                                if (!booking.getBookingId().equals(idbook) && new CheckIdBook().idBookingHouse(idbook)&& bookingSet.last().getBookingId().equals(booking.getBookingId())) {
-                                    check1 = false;
-                                    break;
+                            if (new CheckIdBook().idBookingHouse(idbook)) {
+                                if (!booking.getBookingId().equals(idbook)) {
+                                    count++;
                                 }
                             }
                         }
-                        if(check){
+                        if (count == bookingSet.size()) {
+                            check1 = false;
+                        } else {
                             System.out.println(idbook + " da trung lap!!! hay ");
                         }
                     }
                     System.out.println("nhap id House ban mua book ");
                     idHouse = new HouseServiceImpl().checkDataBooking();
                     idname = "House";
-                    new HouseServiceImpl().updateData(idHouse);
+//                    new HouseServiceImpl().updateData(idHouse);
                     check = false;
                     break;
                 }
@@ -82,51 +84,51 @@ public class BookingServiceImpl implements BookingService {
                     new RoomServiceImpl().disPlay();
                     boolean check1 = true;
                     while (check1) {
+                        int count = 0;
                         idbook = new CheckIdBook().idBooking();
                         for (Booking booking : bookingSet) {
-                            String[] a = booking.getBookingId().split("-", 2);
-                            String[] b = idbook.split("-", 2);
-                            if (a[0].equals(b[0])) {
-                                if (!booking.getBookingId().equals(idbook) && new CheckIdBook().idBookingRoom(idbook)&& bookingSet.last().getBookingId().equals(booking.getBookingId())) {
-                                    check1 = false;
-                                    break;
+                                if (new CheckIdBook().idBookingRoom(idbook)) {
+                                    if (!booking.getBookingId().equals(idbook)) {
+                                        count++;
+                                    }
                                 }
                             }
+                        if (count == bookingSet.size()) {
+                            check1 = false;
+                        } else {
+                            System.out.println(idbook + " da trung lap!!! hay ");
                         }
-                       if(check){
-                           System.out.println(idbook + " da trung lap!!! hay ");
-                       }
                     }
-                        System.out.println("nhap id Room ban muon book ");
-                        idHouse = new RoomServiceImpl().checkDataBooking();
-                        idname = "Room";
-                        new RoomServiceImpl().updateData(idHouse);
-                        check = false;
-                        break;
+                    System.out.println("nhap id Room ban muon book ");
+                    idHouse = new RoomServiceImpl().checkDataBooking();
+                    idname = "Room";
+//                    new RoomServiceImpl().updateData(idHouse);
+                    check = false;
+                    break;
                 }
                 case 3: {
                     new VillaServiceImpl().disPlay();
                     boolean check1 = true;
                     while (check1) {
+                        int count = 0;
                         idbook = new CheckIdBook().idBooking();
                         for (Booking booking : bookingSet) {
-                            String[] a = booking.getBookingId().split("-", 2);
-                            String[] b = idbook.split("-", 2);
-                            if (a[0].equals(b[0])) {
-                                if (!booking.getBookingId().equals(idbook) && new CheckIdBook().idBookingVilla(idbook)&& bookingSet.last().getBookingId().equals(booking.getBookingId())) {
-                                    check1 = false;
-                                    break;
+                            if (new CheckIdBook().idBookingVilla(idbook)) {
+                                if (!booking.getBookingId().equals(idbook)) {
+                                    count++;
                                 }
                             }
                         }
-                        if(check){
+                        if (count == bookingSet.size()) {
+                            check1 = false;
+                        } else {
                             System.out.println(idbook + " da trung lap!!! hay ");
                         }
                     }
-                    System.out.println("nhap id Villa ban mua book ");
+                    System.out.println("nhap id Villa ban muon book ");
                     idHouse = new VillaServiceImpl().checkDataBooking();
-                    new VillaServiceImpl().updateData(idHouse);
                     idname = "Villa";
+//                    new VillaServiceImpl().updateData(idHouse);
                     check = false;
                     break;
                 }

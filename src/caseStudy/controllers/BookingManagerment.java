@@ -2,6 +2,7 @@ package caseStudy.controllers;
 
 import caseStudy.services.booking.BookingServiceImpl;
 import caseStudy.services.booking.ContactServiceImpl;
+import caseStudy.utils.Choice;
 
 public class BookingManagerment {
     public void bookingMenu() {

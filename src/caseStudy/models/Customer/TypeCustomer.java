@@ -1,6 +1,6 @@
 package caseStudy.models.Customer;
 
-import caseStudy.controllers.Choice;
+import caseStudy.utils.Choice;
 
 import java.io.Serializable;
 

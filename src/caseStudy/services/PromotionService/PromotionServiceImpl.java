@@ -2,8 +2,8 @@ package caseStudy.services.PromotionService;
 
 import caseStudy.DataStream.ReadAndWriteByteStream;
 import caseStudy.DataStream.ReadWriteTreeSet;
-import caseStudy.Scan;
-import caseStudy.controllers.Choice;
+import caseStudy.utils.Scan;
+import caseStudy.utils.Choice;
 import caseStudy.models.bookingAndContract.Booking;
 import caseStudy.models.bookingAndContract.BookingComparatorDate;
 

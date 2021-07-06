@@ -1,6 +1,6 @@
 package caseStudy.models.employee;
 
-import caseStudy.controllers.Choice;
+import caseStudy.utils.Choice;
 
 public class PositionChoice {
     public String positionChoicee() {

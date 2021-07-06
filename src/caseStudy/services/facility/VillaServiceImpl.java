@@ -1,11 +1,11 @@
 package caseStudy.services.facility;
 
 import caseStudy.DataStream.ReadAndWriteByteStream;
-import caseStudy.Scan;
-import caseStudy.controllers.Choice;
 import caseStudy.models.facility.Villa;
-import caseStudy.services.facility.Check.CheckTC;
-import caseStudy.services.facility.Check.CheckValidateId;
+import caseStudy.utils.CheckTC;
+import caseStudy.utils.CheckValidateId;
+import caseStudy.utils.Choice;
+import caseStudy.utils.Scan;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -35,7 +35,7 @@ public class VillaServiceImpl implements VillaService {
         boolean checkId = false;
         while (check) {
             while (!checkId) {
-                checkId = new CheckValidateId().checkIdNameRoom(idVilla);
+                checkId = new CheckValidateId().checkIdNameVilla(idVilla);
             }
             for (Villa i : villaMap.keySet()) {
                 if (i.getUtilName().equals(idVilla) && villaMap.get(i) < 5) {
@@ -295,18 +295,17 @@ public class VillaServiceImpl implements VillaService {
         String id = null;
         boolean checkId = false;
         while (!checkId) {
-            System.out.println("nhap idname ban muon book");
+            System.out.println("nhap idname Villa ban muon book voi dinh dang la SVVL-0001");
             id = new Scan().input().nextLine();
             for (Villa i : villaMap.keySet()) {
                 if (i.getUtilName().equals(id) && villaMap.get(i) < 5) {
-                    checkId = new CheckValidateId().checkIdNameHouse(id);
+                    checkId = new CheckValidateId().checkIdNameVilla(id);
                 }
             }
             if (!checkId) {
-                System.out.println(id + "khong co trong danh sach hoac dang trong qua trinh bao trì!!!");
+                System.out.println(id + " khong co trong danh sach hoac dang trong qua trinh bao trì!!!");
             }
         }
         return id;
     }
-
 }

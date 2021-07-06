@@ -1,6 +1,4 @@
-package caseStudy.controllers;
-
-import caseStudy.Scan;
+package caseStudy.utils;
 
 public class Choice {
     public Integer choice(){

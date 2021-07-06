@@ -1,6 +1,4 @@
-package caseStudy.services.booking;
-
-import caseStudy.Scan;
+package caseStudy.utils;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -56,7 +54,6 @@ public class CheckDatebooking {
 
             LocalDate endbooking = LocalDate.parse(dateBooking, formatter);
             LocalDate starBook = LocalDate.parse(startBooking, formatter);
-            LocalDate currentDate = LocalDate.now();
 
             long year = ChronoUnit.YEARS.between(starBook, endbooking);
             long month = ChronoUnit.MONTHS.between(starBook, endbooking);

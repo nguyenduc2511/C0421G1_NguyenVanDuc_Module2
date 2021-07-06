@@ -1,5 +1,7 @@
 package caseStudy.controllers;
 
+import caseStudy.utils.Choice;
+
 import java.util.Scanner;
 
 public class FuramaController {

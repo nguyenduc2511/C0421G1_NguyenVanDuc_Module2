@@ -1,6 +1,6 @@
 package caseStudy.services.facility;
 
-import caseStudy.controllers.Choice;
+import caseStudy.utils.Choice;
 import caseStudy.models.facility.Facility;
 
 import java.util.List;

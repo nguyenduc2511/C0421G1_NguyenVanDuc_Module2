@@ -1,6 +1,4 @@
-package caseStudy.services.booking;
-
-import caseStudy.Scan;
+package caseStudy.utils;
 
 import java.util.regex.Pattern;
 

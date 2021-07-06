@@ -1,6 +1,7 @@
 package caseStudy.controllers;
 
 import caseStudy.services.PromotionService.PromotionServiceImpl;
+import caseStudy.utils.Choice;
 
 public class PromotionManagerment {
     public  void promotionMenu() {
