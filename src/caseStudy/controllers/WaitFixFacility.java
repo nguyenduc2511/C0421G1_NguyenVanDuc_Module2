@@ -14,7 +14,6 @@ public class WaitFixFacility {
             int choice = new Choice().choice();
             switch (choice) {
                 case 1: {
-                    System.out.println("1. hien thi danh sach các danh mục cần sửa ");
                     new HouseServiceImpl().displayFixData();
                     System.out.println("\n");
                     new RoomServiceImpl().displayFixData();

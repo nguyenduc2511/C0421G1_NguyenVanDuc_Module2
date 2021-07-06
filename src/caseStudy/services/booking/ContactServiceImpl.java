@@ -56,7 +56,9 @@ public class ContactServiceImpl implements ContactService {
                     new BookingServiceImpl().disPlay();
                     System.out.println("ban se lam hop dong voi booking nay: ");
                     System.out.println(bookingContract.toString());
+
                     new BookingServiceImpl().removeBooking(idBooking);
+
                     System.out.println("nhap so tien coc USD");
                     int moneyF = new Choice().choice();
                     String startB = bookingContract.getStartDay();
@@ -78,6 +80,9 @@ public class ContactServiceImpl implements ContactService {
                     contractList.add(contract1);
                     readAndWriteByteStream.writeFileByteStream(contractList, filepath);
                     check = true;
+                }else {
+                    new BookingServiceImpl().removeBooking(idBooking);
+                    new BookingServiceImpl().addContract(idBooking);
                 }
             }
         } else {

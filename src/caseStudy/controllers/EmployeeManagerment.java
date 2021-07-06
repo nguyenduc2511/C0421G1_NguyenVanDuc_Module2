@@ -14,19 +14,15 @@ public class EmployeeManagerment {
             int choice = new Choice().choice();
             switch (choice) {
                 case 1:
-                    System.out.println("1. Display all employees");
                     new EmployeeServiceImpl().disPlay();
                     break;
                 case 2:
-                    System.out.println("2. Add new employees");
                     new EmployeeServiceImpl().addNew();
                     break;
                 case 3:
-                    System.out.println("3. Edit employees");
                     new EmployeeServiceImpl().editData();
                     break;
                 case 4:
-                    System.out.println("4. xoa thong tin theo id ");
                     new EmployeeServiceImpl().remove();
                     break;
                 case 5:

@@ -1,5 +1,6 @@
 package caseStudy.services.booking;
 
+import caseStudy.DataStream.ReadAndWriteByteStream;
 import caseStudy.DataStream.ReadWriteTreeSet;
 import caseStudy.controllers.Choice;
 import caseStudy.models.bookingAndContract.Booking;
@@ -9,10 +10,7 @@ import caseStudy.services.facility.HouseServiceImpl;
 import caseStudy.services.facility.RoomServiceImpl;
 import caseStudy.services.facility.VillaServiceImpl;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class BookingServiceImpl implements BookingService {
 
@@ -20,19 +18,23 @@ public class BookingServiceImpl implements BookingService {
     private static final String filepathFinalBookYear = "src\\caseStudy\\data\\BookingYear.csv";
 
     private static final ReadWriteTreeSet readwriteTreeSet = new ReadWriteTreeSet();
+    public static final ReadAndWriteByteStream<Booking> readAndWriteByteStream = new ReadAndWriteByteStream<Booking>();
     private static Set<Booking> bookingSet = new TreeSet<>(new BookingComparatorDate());
+    private static  List<Booking> bookingSetyears = new ArrayList<>();
 
     @Override
     public Set<Booking> getAllBooking() {
         bookingSet = readwriteTreeSet.readFileByteStream(filepath);
         return bookingSet;
     }
-
+    public List<Booking> getAllBookingYear() {
+        bookingSetyears = readAndWriteByteStream.readFileByteStream(filepathFinalBookYear);
+        return bookingSetyears;
+    }
     @Override
     public List getAll() {
         return null;
     }
-
 
     @Override
     public void addNew() {
@@ -45,7 +47,6 @@ public class BookingServiceImpl implements BookingService {
             System.out.println("1. book house vs id book la BH-01");
             System.out.println("2. book Room vs id book la BR-01");
             System.out.println("3. book Villa vs id book la BV-01");
-            System.out.println("4. thoat them mới booking ");
             System.out.println("nhap lua chon cua ban");
             int choice = new Choice().choice();
             switch (choice) {
@@ -63,6 +64,7 @@ public class BookingServiceImpl implements BookingService {
                             System.out.println(idbook + " da trung lap!!! hay ");
                         }
                     }
+                    System.out.println("nhap id House ban mua book ");
                     idHouse = new HouseServiceImpl().checkDataBooking();
                     idname = "House";
                     new HouseServiceImpl().updateData(idHouse);
@@ -104,25 +106,19 @@ public class BookingServiceImpl implements BookingService {
                             System.out.println(idbook + " da trung lap!!! hay ");
                         }
                     }
-                    System.out.println("nhap id house ban mua book ");
+                    System.out.println("nhap id Villa ban mua book ");
                     idHouse = new VillaServiceImpl().checkDataBooking();
                     new VillaServiceImpl().updateData(idHouse);
                     idname = "Villa";
                     check = false;
                     break;
                 }
-                case 4: {
-                    check = false;
-                }
                 default:
                     break;
             }
         }
-//                ngay bat dau
         String startBook = new CheckDatebooking().checkDateBookingStart();
-//                    ngay ket thuc
         String endBook = new CheckDatebooking().checkDateBookingEnd(startBook);
-//                    nhap id customer
         int idCustomer = new CustomverServiceImpl().CheckidBook();
         Booking booking = new Booking(idbook, startBook, endBook, idCustomer, idHouse, idname);
         bookingSet.add(booking);
@@ -210,17 +206,15 @@ public class BookingServiceImpl implements BookingService {
     }
 
     public void displayAllBooking() {
-        Set<Booking> bookingSetFinal = new TreeSet<>(new BookingComparatorDate());
-        bookingSetFinal = readwriteTreeSet.readFileByteStream(filepathFinalBookYear);
-        for (Booking booking : bookingSetFinal) {
+        new BookingServiceImpl().getAllBookingYear();
+        for (Booking booking : bookingSetyears) {
             System.out.println(booking.toString());
         }
     }
     public void editContract(String idold,String idNew){
+        new BookingServiceImpl().getAllBookingYear();
         new BookingServiceImpl().getAllBooking();
-        Set<Booking> bookingSetFinal = new TreeSet<>(new BookingComparatorDate());
-        bookingSetFinal = readwriteTreeSet.readFileByteStream(filepathFinalBookYear);
-        Iterator<Booking> iterator = bookingSetFinal.iterator();
+        Iterator<Booking> iterator = bookingSetyears.iterator();
         while (iterator.hasNext()) {
             Booking booking = iterator.next();
             if (booking.getBookingId().equals(idold)) {
@@ -229,24 +223,24 @@ public class BookingServiceImpl implements BookingService {
         }
         for(Booking booking : bookingSet){
             if(booking.getBookingId().equals(idNew)){
-                bookingSetFinal.add(booking);
+                bookingSetyears.add(booking);
                 break;
             }
         }
-        readwriteTreeSet.clearData(filepathFinalBookYear);
-        readwriteTreeSet.writeFileByteStream(bookingSetFinal, filepathFinalBookYear);
+        readAndWriteByteStream.clearData(filepathFinalBookYear);
+        readAndWriteByteStream.writeFileByteStream(bookingSetyears, filepathFinalBookYear);
     }
+
     public void addContract(String id){
+        new BookingServiceImpl().getAllBookingYear();
         new BookingServiceImpl().getAllBooking();
-        Set<Booking> bookingSetFinal = new TreeSet<>(new BookingComparatorDate());
-        bookingSetFinal = readwriteTreeSet.readFileByteStream(filepathFinalBookYear);
         for(Booking booking : bookingSet){
             if(booking.getBookingId().equals(id)){
-                bookingSetFinal.add(booking);
+                bookingSetyears.add(booking);
                 break;
             }
         }
-        readwriteTreeSet.writeFileByteStream(bookingSetFinal, filepathFinalBookYear);
+        readAndWriteByteStream.writeFileByteStream(bookingSetyears, filepathFinalBookYear);
     }
     @Override
     public void disPlay() {
