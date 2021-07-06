@@ -127,7 +127,6 @@ public class BookingServiceImpl implements BookingService {
         Booking booking = new Booking(idbook, startBook, endBook, idCustomer, idHouse, idname);
         bookingSet.add(booking);
         readwriteTreeSet.writeFileByteStream(bookingSet, filepath);
-        readwriteTreeSet.writeFileByteStream(bookingSet, filepathFinalBookYear);
     }
 
     @Override
@@ -208,7 +207,6 @@ public class BookingServiceImpl implements BookingService {
         }
         readwriteTreeSet.clearData(filepath);
         readwriteTreeSet.writeFileByteStream(bookingSet, filepath);
-        readwriteTreeSet.writeFileByteStream(bookingSet, filepathFinalBookYear);
     }
 
     public void displayAllBooking() {
@@ -218,7 +216,38 @@ public class BookingServiceImpl implements BookingService {
             System.out.println(booking.toString());
         }
     }
-
+    public void editContract(String idold,String idNew){
+        new BookingServiceImpl().getAllBooking();
+        Set<Booking> bookingSetFinal = new TreeSet<>(new BookingComparatorDate());
+        bookingSetFinal = readwriteTreeSet.readFileByteStream(filepathFinalBookYear);
+        Iterator<Booking> iterator = bookingSetFinal.iterator();
+        while (iterator.hasNext()) {
+            Booking booking = iterator.next();
+            if (booking.getBookingId().equals(idold)) {
+                iterator.remove();
+            }
+        }
+        for(Booking booking : bookingSet){
+            if(booking.getBookingId().equals(idNew)){
+                bookingSetFinal.add(booking);
+                break;
+            }
+        }
+        readwriteTreeSet.clearData(filepathFinalBookYear);
+        readwriteTreeSet.writeFileByteStream(bookingSetFinal, filepathFinalBookYear);
+    }
+    public void addContract(String id){
+        new BookingServiceImpl().getAllBooking();
+        Set<Booking> bookingSetFinal = new TreeSet<>(new BookingComparatorDate());
+        bookingSetFinal = readwriteTreeSet.readFileByteStream(filepathFinalBookYear);
+        for(Booking booking : bookingSet){
+            if(booking.getBookingId().equals(id)){
+                bookingSetFinal.add(booking);
+                break;
+            }
+        }
+        readwriteTreeSet.writeFileByteStream(bookingSetFinal, filepathFinalBookYear);
+    }
     @Override
     public void disPlay() {
         new BookingServiceImpl().getAllBooking();
