@@ -19,18 +19,20 @@ public class BookingServiceImpl implements BookingService {
 
     private static final ReadWriteTreeSet readwriteTreeSet = new ReadWriteTreeSet();
     public static final ReadAndWriteByteStream<Booking> readAndWriteByteStream = new ReadAndWriteByteStream<Booking>();
-    private static Set<Booking> bookingSet = new TreeSet<>(new BookingComparatorDate());
-    private static  List<Booking> bookingSetyears = new ArrayList<>();
+    private static TreeSet<Booking> bookingSet = new TreeSet<>(new BookingComparatorDate());
+    private static List<Booking> bookingSetyears = new ArrayList<>();
 
     @Override
-    public Set<Booking> getAllBooking() {
-        bookingSet = readwriteTreeSet.readFileByteStream(filepath);
+    public TreeSet<Booking> getAllBooking() {
+        bookingSet = (TreeSet<Booking>) readwriteTreeSet.readFileByteStream(filepath);
         return bookingSet;
     }
+
     public List<Booking> getAllBookingYear() {
         bookingSetyears = readAndWriteByteStream.readFileByteStream(filepathFinalBookYear);
         return bookingSetyears;
     }
+
     @Override
     public List getAll() {
         return null;
@@ -52,15 +54,20 @@ public class BookingServiceImpl implements BookingService {
             switch (choice) {
                 case 1: {
                     new HouseServiceImpl().disPlay();
-                    boolean check1 = false;
-                    while (!check1) {
+                    boolean check1 = true;
+                    while (check1) {
                         idbook = new CheckIdBook().idBooking();
-                        for (Booking booking : bookingSet){
-                            if(!booking.getBookingId().equals(idbook)){
-                                check1 = new CheckIdBook().idBookingHouse(idbook);
+                        for (Booking booking : bookingSet) {
+                            String[] a = booking.getBookingId().split("-", 2);
+                            String[] b = idbook.split("-", 2);
+                            if (a[0].equals(b[0])) {
+                                if (!booking.getBookingId().equals(idbook) && new CheckIdBook().idBookingHouse(idbook)&& bookingSet.last().getBookingId().equals(booking.getBookingId())) {
+                                    check1 = false;
+                                    break;
+                                }
                             }
                         }
-                        if(!check1){
+                        if(check){
                             System.out.println(idbook + " da trung lap!!! hay ");
                         }
                     }
@@ -73,36 +80,46 @@ public class BookingServiceImpl implements BookingService {
                 }
                 case 2: {
                     new RoomServiceImpl().disPlay();
-                    boolean check1 = false;
-                    while (!check1) {
+                    boolean check1 = true;
+                    while (check1) {
                         idbook = new CheckIdBook().idBooking();
-                        for (Booking booking : bookingSet){
-                            if(!booking.getBookingId().equals(idbook)){
-                                check1 = new CheckIdBook().idBookingRoom(idbook);
+                        for (Booking booking : bookingSet) {
+                            String[] a = booking.getBookingId().split("-", 2);
+                            String[] b = idbook.split("-", 2);
+                            if (a[0].equals(b[0])) {
+                                if (!booking.getBookingId().equals(idbook) && new CheckIdBook().idBookingRoom(idbook)&& bookingSet.last().getBookingId().equals(booking.getBookingId())) {
+                                    check1 = false;
+                                    break;
+                                }
                             }
                         }
-                        if(!check1){
-                            System.out.println(idbook + " da trung lap!!! hay ");
-                        }
+                       if(check){
+                           System.out.println(idbook + " da trung lap!!! hay ");
+                       }
                     }
-                    System.out.println("nhap id Room ban muon book ");
-                    idHouse = new RoomServiceImpl().checkDataBooking();
-                    idname = "Room";
-                    new RoomServiceImpl().updateData(idHouse);
-                    check = false;
-                    break;
+                        System.out.println("nhap id Room ban muon book ");
+                        idHouse = new RoomServiceImpl().checkDataBooking();
+                        idname = "Room";
+                        new RoomServiceImpl().updateData(idHouse);
+                        check = false;
+                        break;
                 }
                 case 3: {
                     new VillaServiceImpl().disPlay();
-                    boolean check1 = false;
-                    while (!check1) {
+                    boolean check1 = true;
+                    while (check1) {
                         idbook = new CheckIdBook().idBooking();
-                        for (Booking booking : bookingSet){
-                            if(!booking.getBookingId().equals(idbook)){
-                                check1 = new CheckIdBook().idBookingVilla(idbook);
+                        for (Booking booking : bookingSet) {
+                            String[] a = booking.getBookingId().split("-", 2);
+                            String[] b = idbook.split("-", 2);
+                            if (a[0].equals(b[0])) {
+                                if (!booking.getBookingId().equals(idbook) && new CheckIdBook().idBookingVilla(idbook)&& bookingSet.last().getBookingId().equals(booking.getBookingId())) {
+                                    check1 = false;
+                                    break;
+                                }
                             }
                         }
-                        if(!check1){
+                        if(check){
                             System.out.println(idbook + " da trung lap!!! hay ");
                         }
                     }
@@ -124,6 +141,7 @@ public class BookingServiceImpl implements BookingService {
         bookingSet.add(booking);
         readwriteTreeSet.writeFileByteStream(bookingSet, filepath);
     }
+
 
     @Override
     public void editData() {
@@ -211,7 +229,8 @@ public class BookingServiceImpl implements BookingService {
             System.out.println(booking.toString());
         }
     }
-    public void editContract(String idold,String idNew){
+
+    public void editContract(String idold, String idNew) {
         new BookingServiceImpl().getAllBookingYear();
         new BookingServiceImpl().getAllBooking();
         Iterator<Booking> iterator = bookingSetyears.iterator();
@@ -221,8 +240,8 @@ public class BookingServiceImpl implements BookingService {
                 iterator.remove();
             }
         }
-        for(Booking booking : bookingSet){
-            if(booking.getBookingId().equals(idNew)){
+        for (Booking booking : bookingSet) {
+            if (booking.getBookingId().equals(idNew)) {
                 bookingSetyears.add(booking);
                 break;
             }
@@ -231,17 +250,18 @@ public class BookingServiceImpl implements BookingService {
         readAndWriteByteStream.writeFileByteStream(bookingSetyears, filepathFinalBookYear);
     }
 
-    public void addContract(String id){
+    public void addContract(String id) {
         new BookingServiceImpl().getAllBookingYear();
         new BookingServiceImpl().getAllBooking();
-        for(Booking booking : bookingSet){
-            if(booking.getBookingId().equals(id)){
+        for (Booking booking : bookingSet) {
+            if (booking.getBookingId().equals(id)) {
                 bookingSetyears.add(booking);
                 break;
             }
         }
         readAndWriteByteStream.writeFileByteStream(bookingSetyears, filepathFinalBookYear);
     }
+
     @Override
     public void disPlay() {
         new BookingServiceImpl().getAllBooking();

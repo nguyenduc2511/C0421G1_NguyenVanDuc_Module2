@@ -266,6 +266,8 @@ public class HouseServiceImpl implements HouseService {
     @Override
     public void displayFixData() {
         new HouseServiceImpl().getAllHouse();
+
+
         for (House i : houseMap.keySet()) {
             if (houseMap.get(i) == 5) {
                 System.out.println(i + "  " + houseMap.get(i));
