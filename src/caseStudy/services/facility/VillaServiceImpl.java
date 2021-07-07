@@ -49,7 +49,26 @@ public class VillaServiceImpl implements VillaService {
         villaReadAndWrite.clearData(filepath);
         villaReadAndWrite.writeMapByteStream(villaMap, filepath);
     }
-
+    public void updateDataLow(String idVilla) {
+        new VillaServiceImpl().getAllVilla();
+        boolean check = true;
+        boolean checkId = false;
+        while (check) {
+            while (!checkId) {
+                checkId = new CheckValidateId().checkIdNameVilla(idVilla);
+            }
+            for (Villa i : villaMap.keySet()) {
+                if (i.getUtilName().equals(idVilla) && villaMap.get(i) < 5) {
+                    int num = villaMap.get(i) - 1;
+                    villaMap.replace(i, num);
+                    check = false;
+                    break;
+                }
+            }
+        }
+        villaReadAndWrite.clearData(filepath);
+        villaReadAndWrite.writeMapByteStream(villaMap, filepath);
+    }
     @Override
     public void fixData() {
         new VillaServiceImpl().getAllVilla();

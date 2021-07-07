@@ -43,7 +43,26 @@ public class RoomServiceImpl implements RoomService {
         roomReadAndWrite.clearData(filepath);
         roomReadAndWrite.writeMapByteStream(roomMap, filepath);
     }
-
+    public void updateDataLow(String idRoom) {
+        new RoomServiceImpl().getAllRoom();
+        boolean check = true;
+        boolean checkId = false;
+        while (check) {
+            while (!checkId) {
+                checkId = new CheckValidateId().checkIdNameRoom(idRoom);
+            }
+            for (Room i : roomMap.keySet()) {
+                if (i.getUtilName().equals(idRoom) && roomMap.get(i) < 5) {
+                    int num = roomMap.get(i) - 1;
+                    roomMap.replace(i, num);
+                    check = false;
+                    break;
+                }
+            }
+        }
+        roomReadAndWrite.clearData(filepath);
+        roomReadAndWrite.writeMapByteStream(roomMap, filepath);
+    }
     @Override
     public void fixData() {
         new RoomServiceImpl().getAllRoom();

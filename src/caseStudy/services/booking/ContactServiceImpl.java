@@ -4,9 +4,7 @@ import caseStudy.DataStream.ReadAndWriteByteStream;
 import caseStudy.models.bookingAndContract.Booking;
 import caseStudy.models.bookingAndContract.Contract;
 import caseStudy.services.CustomerService.CustomverServiceImpl;
-import caseStudy.services.facility.HouseServiceImpl;
 import caseStudy.services.facility.RoomServiceImpl;
-import caseStudy.services.facility.VillaServiceImpl;
 import caseStudy.utils.CheckIdBook;
 import caseStudy.utils.Choice;
 
@@ -71,12 +69,10 @@ public class ContactServiceImpl implements ContactService {
                     int day = (int) ChronoUnit.DAYS.between(starBook, endbook);
                     int paydayMoney = 0;
                     if (new CheckIdBook().idBookingHouse(idBooking)) {
-                        new HouseServiceImpl().updateData(bookingContract.getServiceName());
                         paydayMoney = day * 700 - moneyF;
                         new BookingServiceImpl().saveBooking(idBooking);
                         new BookingServiceImpl().removeBooking(idBooking);
                     } else if (new CheckIdBook().idBookingVilla(idBooking)) {
-                        new VillaServiceImpl().updateData(bookingContract.getServiceName());
                         paydayMoney = day * 1000 - moneyF;
                         new BookingServiceImpl().saveBooking(idBooking);
                         new BookingServiceImpl().removeBooking(idBooking);
@@ -88,7 +84,6 @@ public class ContactServiceImpl implements ContactService {
                     check = true;
                 } else {
                     new BookingServiceImpl().saveBooking(idBooking);
-                    new RoomServiceImpl().updateData(bookingContract.getServiceName());
                     new BookingServiceImpl().removeBooking(idBooking);
                 }
 
@@ -113,6 +108,7 @@ public class ContactServiceImpl implements ContactService {
                     System.out.println("1. nhap so tien coc ");
                     System.out.println("2. nhap tong so tien phai thanh toan ");
                     System.out.println("3. nhap id customer can thay doi ");
+
                     System.out.println("4. thoat chinh sua");
                     System.out.println("nhap lua chon");
                     int choice = new Choice().choice();

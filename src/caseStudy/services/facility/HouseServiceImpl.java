@@ -248,6 +248,27 @@ public class HouseServiceImpl implements HouseService {
         houseReadAndWrite.clearData(filepath);
         houseReadAndWrite.writeMapByteStream(houseMap, filepath);
     }
+    public void updateDataLow(String idHouse) {
+        new HouseServiceImpl().getAllHouse();
+        boolean check = true;
+        boolean checkId = false;
+        while (check) {
+            while (!checkId) {
+                checkId = new CheckValidateId().checkIdNameHouse(idHouse);
+            }
+            for (House i : houseMap.keySet()) {
+                if (i.getUtilName().equals(idHouse) && houseMap.get(i) < 5) {
+                    int num = houseMap.get(i) - 1;
+                    houseMap.replace(i, num);
+                    check = false;
+                    break;
+                }
+            }
+        }
+        houseReadAndWrite.clearData(filepath);
+        houseReadAndWrite.writeMapByteStream(houseMap, filepath);
+    }
+
 
     @Override
     public void fixData() {
