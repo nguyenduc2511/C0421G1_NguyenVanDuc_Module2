@@ -2,9 +2,9 @@ package caseStudy.services.booking;
 
 import caseStudy.DataStream.ReadAndWriteByteStream;
 import caseStudy.models.bookingAndContract.Booking;
+import caseStudy.models.bookingAndContract.BookingComparatorDate;
 import caseStudy.models.bookingAndContract.Contract;
 import caseStudy.services.CustomerService.CustomverServiceImpl;
-import caseStudy.services.facility.RoomServiceImpl;
 import caseStudy.utils.CheckIdBook;
 import caseStudy.utils.Choice;
 
@@ -17,7 +17,7 @@ public class ContactServiceImpl implements ContactService {
     private static final String filepath = "src\\caseStudy\\data\\Contact.csv";
     //    private static final ReadWriteTreeSet readwriteTreeSet = new ReadWriteTreeSet();
     public static final ReadAndWriteByteStream<Contract> readAndWriteByteStream = new ReadAndWriteByteStream<Contract>();
-    private static final Queue<Booking> bookingtoQueue = new PriorityQueue<>();
+    private static final Queue<Booking> bookingtoQueue = new PriorityQueue<>(new BookingComparatorDate());
     private static List<Contract> contractList = new ArrayList<>();
 
     @Override
@@ -37,12 +37,20 @@ public class ContactServiceImpl implements ContactService {
         return bookingtoQueue;
     }
 
+    public static void main(String[] args) {
+        Queue<Booking> bookingtoQueueTTT = new ContactServiceImpl().getAllBookByQueue();
+        int a = bookingtoQueueTTT.size();
+        for(int i=0; i<a; i++){
+            System.out.println(bookingtoQueueTTT.poll());
+        }
+    }
     @Override
     public void addNew() {
         new ContactServiceImpl().getAll();
         new ContactServiceImpl().getAllBookByQueue();
         boolean check = false;
-
+        System.out.println("danh sach booking con lai : ");
+        new BookingServiceImpl().disPlay();
         while (!check) {
             if (!bookingtoQueue.isEmpty()) {
                 Booking bookingContract = bookingtoQueue.poll();
@@ -55,8 +63,6 @@ public class ContactServiceImpl implements ContactService {
                     } else {
                         idContract = contractList.get(contractList.size() - 1).getContractNumber() + 1;
                     }
-                    System.out.println("danh sach booking con lai : ");
-                    new BookingServiceImpl().disPlay();
                     System.out.println("ban se lam hop dong voi booking nay: ");
                     System.out.println(bookingContract.toString());
                     System.out.println("nhap so tien coc USD");
@@ -108,7 +114,6 @@ public class ContactServiceImpl implements ContactService {
                     System.out.println("1. nhap so tien coc ");
                     System.out.println("2. nhap tong so tien phai thanh toan ");
                     System.out.println("3. nhap id customer can thay doi ");
-
                     System.out.println("4. thoat chinh sua");
                     System.out.println("nhap lua chon");
                     int choice = new Choice().choice();
