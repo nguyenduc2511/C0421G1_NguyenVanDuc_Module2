@@ -1,10 +1,10 @@
 package caseStudy.services.facility;
 
 import caseStudy.DataStream.ReadAndWriteByteStream;
-import caseStudy.utils.Scan;
-import caseStudy.utils.Choice;
 import caseStudy.models.facility.Room;
 import caseStudy.utils.CheckValidateId;
+import caseStudy.utils.Choice;
+import caseStudy.utils.Scan;
 
 import java.util.LinkedHashMap;
 import java.util.List;

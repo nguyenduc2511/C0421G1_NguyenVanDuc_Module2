@@ -13,16 +13,13 @@ public class CheckDatebooking {
         while (!check) {
             System.out.println(" nhap ngay booking của bạn theo đúng định dạng dd/MM/yyyy; vd 11/11/2021");
             dateBooking = new Scan().input().nextLine();
-
+            if (Pattern.matches(regexCheck, dateBooking)) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate starBook = LocalDate.parse(dateBooking, formatter);
             LocalDate currentDate = LocalDate.now();
-
             long year = ChronoUnit.YEARS.between(currentDate, starBook);
             long month = ChronoUnit.MONTHS.between(currentDate, starBook);
             long day = ChronoUnit.DAYS.between(currentDate, starBook);
-
-            if (Pattern.matches(regexCheck, dateBooking)) {
                 if(year >= 0){
                     if(month >= 0){
                         if(day >=0){
@@ -50,16 +47,14 @@ public class CheckDatebooking {
         while (!check) {
             System.out.println(" nhap ngay ket thuc booking của bạn theo đúng định dạng dd/MM/yyyy; vd 11/11/2021");
             dateBooking = new Scan().input().nextLine();
+            if (Pattern.matches(regexCheck, dateBooking)) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
             LocalDate endbooking = LocalDate.parse(dateBooking, formatter);
             LocalDate starBook = LocalDate.parse(startBooking, formatter);
 
             long year = ChronoUnit.YEARS.between(starBook, endbooking);
             long month = ChronoUnit.MONTHS.between(starBook, endbooking);
             long day = ChronoUnit.DAYS.between(starBook, endbooking);
-
-            if (Pattern.matches(regexCheck, dateBooking)) {
                 if(year >= 0){
                     if(month >= 0){
                         if(day >=0){

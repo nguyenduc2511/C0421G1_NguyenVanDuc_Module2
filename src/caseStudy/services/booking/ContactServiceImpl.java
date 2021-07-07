@@ -32,9 +32,9 @@ public class ContactServiceImpl implements ContactService {
     public Queue<Booking> getAllBookByQueue() {
         Set<Booking> bookingSet = new BookingServiceImpl().getAllBooking();
         for (Booking booking : bookingSet) {
-            if (new CheckIdBook().idBookingHouse(booking.getBookingId()) || new CheckIdBook().idBookingVilla(booking.getBookingId())) {
-                bookingtoQueue.offer(booking);
-            }
+//            if (new CheckIdBook().idBookingHouse(booking.getBookingId()) || new CheckIdBook().idBookingVilla(booking.getBookingId())) {
+            bookingtoQueue.offer(booking);
+//            }
         }
         return bookingtoQueue;
     }
@@ -45,10 +45,11 @@ public class ContactServiceImpl implements ContactService {
         new ContactServiceImpl().getAllBookByQueue();
         boolean check = false;
 
-        if (!bookingtoQueue.isEmpty()) {
-            while (!check) {
+        while (!check) {
+            if (!bookingtoQueue.isEmpty()) {
                 Booking bookingContract = bookingtoQueue.poll();
                 String idBooking = bookingContract.getBookingId();
+                new BookingServiceImpl().getAllBooking();
                 if (new CheckIdBook().idBookingHouse(idBooking) || new CheckIdBook().idBookingVilla(idBooking)) {
                     int idContract = 0;
                     if (contractList.isEmpty()) {
@@ -60,9 +61,6 @@ public class ContactServiceImpl implements ContactService {
                     new BookingServiceImpl().disPlay();
                     System.out.println("ban se lam hop dong voi booking nay: ");
                     System.out.println(bookingContract.toString());
-
-                    new BookingServiceImpl().removeBooking(idBooking);
-
                     System.out.println("nhap so tien coc USD");
                     int moneyF = new Choice().choice();
                     String startB = bookingContract.getStartDay();
@@ -75,26 +73,29 @@ public class ContactServiceImpl implements ContactService {
                     if (new CheckIdBook().idBookingHouse(idBooking)) {
                         new HouseServiceImpl().updateData(bookingContract.getServiceName());
                         paydayMoney = day * 700 - moneyF;
-                        new BookingServiceImpl().addContract(idBooking);
+                        new BookingServiceImpl().saveBooking(idBooking);
+                        new BookingServiceImpl().removeBooking(idBooking);
                     } else if (new CheckIdBook().idBookingVilla(idBooking)) {
                         new VillaServiceImpl().updateData(bookingContract.getServiceName());
                         paydayMoney = day * 1000 - moneyF;
-                        new BookingServiceImpl().addContract(idBooking);
-                    }else {
-                        new RoomServiceImpl().updateData(bookingContract.getServiceName());
+                        new BookingServiceImpl().saveBooking(idBooking);
+                        new BookingServiceImpl().removeBooking(idBooking);
                     }
                     int idCustomer = bookingContract.getCustomerId();
                     Contract contract1 = new Contract(idContract, idBooking, moneyF, paydayMoney, idCustomer);
                     contractList.add(contract1);
                     readAndWriteByteStream.writeFileByteStream(contractList, filepath);
                     check = true;
-                }else {
+                } else {
+                    new BookingServiceImpl().saveBooking(idBooking);
+                    new RoomServiceImpl().updateData(bookingContract.getServiceName());
                     new BookingServiceImpl().removeBooking(idBooking);
-                    new BookingServiceImpl().addContract(idBooking);
                 }
+
+            } else {
+                System.out.println("khong co booking nao de lam hop dong");
+                check = true;
             }
-        } else {
-            System.out.println("khong co booking nao de lam hop dong");
         }
     }
 
@@ -109,38 +110,32 @@ public class ContactServiceImpl implements ContactService {
             if (contractList.get(i).getContractNumber() == idcontract) {
                 boolean check = true;
                 while (check) {
-                    System.out.println("1.sua id booking");
-                    System.out.println("2. nhap so tien coc ");
-                    System.out.println("3. nhap tong so tien phai thanh toan ");
-                    System.out.println("4. nhap id customer can thay doi ");
-                    System.out.println("5. thoat chinh sua");
+                    System.out.println("1. nhap so tien coc ");
+                    System.out.println("2. nhap tong so tien phai thanh toan ");
+                    System.out.println("3. nhap id customer can thay doi ");
+                    System.out.println("4. thoat chinh sua");
                     System.out.println("nhap lua chon");
                     int choice = new Choice().choice();
                     switch (choice) {
                         case 1: {
-                            String idold = contractList.get(i).getBookingId();
-                            String idbookNew = new CheckIdBook().idBooking();
-                            contractList.get(i).setBookingId(idbookNew);
-                            new BookingServiceImpl().editContract(idold, idbookNew);
-                            break;
-                        }
-                        case 2: {
+                            System.out.println(" so tien dat coc ban muon sua ");
                             int moneyF = new Choice().choice();
                             contractList.get(i).setDeposit(moneyF);
                             break;
                         }
-                        case 3: {
+                        case 2: {
+                            System.out.println("nhap tong so tien con lai ");
                             int paydayMoney = new Choice().choice();
                             contractList.get(i).setTotalPayment(paydayMoney);
                             break;
                         }
-                        case 4: {
-                            new CustomverServiceImpl().disPlay();
+                        case 3: {
+
                             int idCustomer = new CustomverServiceImpl().CheckidBook();
                             contractList.get(i).setCustomerId(idCustomer);
                             break;
                         }
-                        case 5: {
+                        case 4: {
                             check = false;
                         }
                         default:

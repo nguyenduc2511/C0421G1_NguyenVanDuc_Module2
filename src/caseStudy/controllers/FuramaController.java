@@ -37,6 +37,7 @@ public class FuramaController {
                     break;
                 case 6:
                     new WaitFixFacility().waitFixxing();
+                    break;
                 case 7:
                     check = false;
             }

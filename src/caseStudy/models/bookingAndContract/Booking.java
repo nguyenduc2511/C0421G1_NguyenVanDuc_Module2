@@ -3,7 +3,7 @@ package caseStudy.models.bookingAndContract;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Booking implements Serializable,Comparable{
+public class Booking implements Serializable,Comparable {
     private String bookingId;
     private String startDay;
     private String endDay;
@@ -72,7 +72,7 @@ public class Booking implements Serializable,Comparable{
 
     @Override
     public String toString() {
-        return "Contract{" +
+        return "Booking{" +
                 "bookingId='" + bookingId + '\'' +
                 ", startDay=" + startDay +
                 ", endDay=" + endDay +

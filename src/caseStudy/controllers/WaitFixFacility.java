@@ -43,15 +43,16 @@ public class WaitFixFacility {
                                 new RoomServiceImpl().displayFixData();
                                 new RoomServiceImpl().fixData();
                                 System.out.println("2. fix Room complete ");
+                                break;
                             }
                             case 3:{
                                 new VillaServiceImpl().displayFixData();
                                 new VillaServiceImpl().fixData();
                                 System.out.println("3. fix Villa Complete");
+                                break;
                             }
                             case 4:{
                                 check=false;
-                                break;
                             }
                             default:break;
                         }
