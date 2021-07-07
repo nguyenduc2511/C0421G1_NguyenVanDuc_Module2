@@ -304,9 +304,6 @@ public class BookingServiceImpl implements BookingService {
         }
     }
 
-    public static void main(String[] args) {
-        new BookingServiceImpl().displayAllBooking();
-    }
     public void editContract(String idold, String idNew) {
         new BookingServiceImpl().getAllBookingYear();
         new BookingServiceImpl().getAllBooking();

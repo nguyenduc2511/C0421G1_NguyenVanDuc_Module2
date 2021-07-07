@@ -37,13 +37,6 @@ public class ContactServiceImpl implements ContactService {
         return bookingtoQueue;
     }
 
-    public static void main(String[] args) {
-        Queue<Booking> bookingtoQueueTTT = new ContactServiceImpl().getAllBookByQueue();
-        int a = bookingtoQueueTTT.size();
-        for(int i=0; i<a; i++){
-            System.out.println(bookingtoQueueTTT.poll());
-        }
-    }
     @Override
     public void addNew() {
         new ContactServiceImpl().getAll();
@@ -87,7 +80,6 @@ public class ContactServiceImpl implements ContactService {
                     Contract contract1 = new Contract(idContract, idBooking, moneyF, paydayMoney, idCustomer);
                     contractList.add(contract1);
                     readAndWriteByteStream.writeFileByteStream(contractList, filepath);
-                    check = true;
                 } else {
                     new BookingServiceImpl().saveBooking(idBooking);
                     new BookingServiceImpl().removeBooking(idBooking);
