@@ -4,7 +4,7 @@ import caseStudy.DataStream.ReadAndWriteByteStream;
 import caseStudy.DataStream.ReadWriteTreeSet;
 import caseStudy.utils.Choice;
 import caseStudy.models.bookingAndContract.Booking;
-import caseStudy.models.bookingAndContract.BookingComparatorDate;
+import caseStudy.utils.BookingComparatorDate;
 import caseStudy.services.CustomerService.CustomverServiceImpl;
 import caseStudy.services.facility.HouseServiceImpl;
 import caseStudy.services.facility.RoomServiceImpl;

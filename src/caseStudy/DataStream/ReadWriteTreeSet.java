@@ -1,7 +1,7 @@
 package caseStudy.DataStream;
 
 import caseStudy.models.bookingAndContract.Booking;
-import caseStudy.models.bookingAndContract.BookingComparatorDate;
+import caseStudy.utils.BookingComparatorDate;
 import caseStudy.models.bookingAndContract.Contract;
 
 import java.io.*;

@@ -2,7 +2,7 @@ package caseStudy.services.PromotionService;
 
 import caseStudy.DataStream.ReadAndWriteByteStream;
 import caseStudy.models.bookingAndContract.Booking;
-import caseStudy.models.bookingAndContract.BookingComparatorDate;
+import caseStudy.utils.BookingComparatorDate;
 import caseStudy.utils.Choice;
 import caseStudy.utils.Scan;
 

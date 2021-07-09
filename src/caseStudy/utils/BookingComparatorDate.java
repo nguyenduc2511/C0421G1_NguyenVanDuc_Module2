@@ -1,4 +1,6 @@
-package caseStudy.models.bookingAndContract;
+package caseStudy.utils;
+
+import caseStudy.models.bookingAndContract.Booking;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -22,14 +24,14 @@ public class BookingComparatorDate implements Comparator<Booking>, Serializable 
         long endyear = ChronoUnit.YEARS.between(o1End, o2End);
         long endMonth = ChronoUnit.MONTHS.between(o1End, o2End);
         long endDay = ChronoUnit.DAYS.between(o1End, o2End);
-// o1 end  25/7  o2 30/7
+
         if (startYear == 0) {
             if (startMonth == 0) {
                 if (startDay == 0) {
                     if (endyear == 0) {
                         if (endMonth == 0) {
                             if (endDay == 0) {
-                                return 0;
+                                return 1;
                             } else if (endDay < 0) {
                                 return 1;
                             } else {
