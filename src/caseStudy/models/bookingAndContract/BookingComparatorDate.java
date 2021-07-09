@@ -22,7 +22,7 @@ public class BookingComparatorDate implements Comparator<Booking>, Serializable 
         long endyear = ChronoUnit.YEARS.between(o1End, o2End);
         long endMonth = ChronoUnit.MONTHS.between(o1End, o2End);
         long endDay = ChronoUnit.DAYS.between(o1End, o2End);
-
+// o1 end  25/7  o2 30/7
         if (startYear == 0) {
             if (startMonth == 0) {
                 if (startDay == 0) {

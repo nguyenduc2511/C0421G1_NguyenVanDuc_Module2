@@ -1,7 +1,6 @@
 package caseStudy.services.PromotionService;
 
 import caseStudy.DataStream.ReadAndWriteByteStream;
-import caseStudy.DataStream.ReadWriteTreeSet;
 import caseStudy.models.bookingAndContract.Booking;
 import caseStudy.models.bookingAndContract.BookingComparatorDate;
 import caseStudy.utils.Choice;
@@ -17,10 +16,8 @@ import java.util.TreeSet;
 
 public class PromotionServiceImpl implements PromotionService {
     private static final String filepathFinalBookYear = "src\\caseStudy\\data\\BookingYear.csv";
-    private static final ReadWriteTreeSet readwriteTreeSet = new ReadWriteTreeSet();
-    private static Set<Booking> promotionBooking = new TreeSet<>(new BookingComparatorDate());
+    private static final Set<Booking> promotionBooking = new TreeSet<>(new BookingComparatorDate());
     private static final ReadAndWriteByteStream<Booking> readAndWriterByte = new ReadAndWriteByteStream<>();
-
 
     @Override
     public Set<Booking> getAllBooking() {

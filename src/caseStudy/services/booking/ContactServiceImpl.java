@@ -123,7 +123,6 @@ public class ContactServiceImpl implements ContactService {
                             break;
                         }
                         case 3: {
-
                             int idCustomer = new CustomverServiceImpl().CheckidBook();
                             contractList.get(i).setCustomerId(idCustomer);
                             break;
@@ -136,7 +135,6 @@ public class ContactServiceImpl implements ContactService {
                     }
                 }
             }
-            break;
         }
         readAndWriteByteStream.clearData(filepath);
         readAndWriteByteStream.writeFileByteStream(contractList, filepath);

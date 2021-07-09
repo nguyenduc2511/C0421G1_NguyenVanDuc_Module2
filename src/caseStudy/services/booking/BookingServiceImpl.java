@@ -68,7 +68,6 @@ public class BookingServiceImpl implements BookingService {
                                     count++;
                                 }
                             }
-
                             for (Booking booking : bookingSet) {
                                 if (!booking.getBookingId().equals(idbook)) {
                                     count2++;
