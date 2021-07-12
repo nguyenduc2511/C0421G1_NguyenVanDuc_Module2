@@ -80,13 +80,14 @@ public class ContactServiceImpl implements ContactService {
                     Contract contract1 = new Contract(idContract, idBooking, moneyF, paydayMoney, idCustomer);
                     contractList.add(contract1);
                     readAndWriteByteStream.writeFileByteStream(contractList, filepath);
+                    System.out.println("ban da lam hop dong thanh cong ");
                 } else {
                     new BookingServiceImpl().saveBooking(idBooking);
                     new BookingServiceImpl().removeBooking(idBooking);
                 }
 
             } else {
-                System.out.println("khong co booking nao de lam hop dong");
+                System.out.println("khong con booking nao de lam hop dong");
                 check = true;
             }
         }

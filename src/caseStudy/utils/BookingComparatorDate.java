@@ -62,5 +62,13 @@ public class BookingComparatorDate implements Comparator<Booking>, Serializable 
         } else {
             return -1;
         }
+
+
     }
 }
+// xai compareto ngắn và tiện hơn, không cần so sánh từng thành phần.
+//if (!o1.getStartDay().equals(o2.getStartDay())) {
+//          return   o1.getStartDay().compareTo(o2.getStartDay());
+//        }else {
+//            return  o1.getEndDay().compareTo(o2.getEndDay());
+//        }
