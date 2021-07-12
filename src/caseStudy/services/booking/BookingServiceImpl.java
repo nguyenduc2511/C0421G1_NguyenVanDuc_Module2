@@ -183,8 +183,8 @@ public class BookingServiceImpl implements BookingService {
         Booking booking = new Booking(idbook, startBook, endBook, idCustomer, idHouse, idname);
         bookingSet.add(booking);
         readwriteTreeSet.writeFileByteStream(bookingSet, filepath);
+        System.out.println("ban da book thanh cong " + booking.toString());
     }
-
 
     @Override
     public void editData() {
@@ -214,6 +214,7 @@ public class BookingServiceImpl implements BookingService {
                                 checkT =false;
                             }
                         }
+                        System.out.println("cảm ơn bạn đã dùng dịch vụ");
                         break;
                     }
                     case 2: {
@@ -285,6 +286,7 @@ public class BookingServiceImpl implements BookingService {
                                 break;
                             }
                         }
+                        System.out.println("ban da sua thanh cong ");
                     }
                 }
                 if (checkT) {
