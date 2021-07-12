@@ -17,8 +17,9 @@ public class TimeTest {
         LocalDate birthDate_LocalDay = LocalDate.parse(bir, formatter);
         LocalDate currentDate = LocalDate.now();
         int currentAge = Period.between(birthDate_LocalDay, currentDate).getYears();
-        long year = ChronoUnit.YEARS.between(birthDate_LocalDay,currentDate);
+        long year = ChronoUnit.DAYS.between(birthDate_LocalDay,currentDate);
         System.out.println(year);
-        System.out.println(currentAge);;
+        System.out.println(currentAge);
+        
     }
 }

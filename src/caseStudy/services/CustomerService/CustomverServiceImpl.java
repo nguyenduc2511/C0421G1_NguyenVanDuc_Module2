@@ -32,21 +32,21 @@ public class CustomverServiceImpl implements CustomerService {
             id = customers.get(customers.size() - 1).getCode() + 1;
         }
         System.out.println(" nhap ten  ");
-        String name = new Scan().input().nextLine();
+        String name = new Scan().inputString();
         System.out.println(" nhap ngay sinh  ");
         String dateBirth = new CheckDateOfBirth().CheckDateOfBirth();
         System.out.println(" chon gioi tinh  ");
         String gender = new Gioitinh().gender();
         System.out.println(" nhap so CMND  ");
-        String cmnd = new Scan().input().nextLine();
+        String cmnd = new Scan().inputString();
         System.out.println(" nhap so dien thoai  ");
-        String numPhone = new Scan().input().nextLine();
+        String numPhone = new Scan().inputString();
         System.out.println(" nhap email  ");
-        String email = new Scan().input().nextLine();
+        String email = new Scan().inputString();
         System.out.println(" chon loai customer ");
         String typeCustomer = new TypeCustomer().choiCustomer();
         System.out.println(" nhap dia chi   ");
-        String address = new Scan().input().nextLine();
+        String address = new Scan().inputString();
 
         Customer customer = new Customer(id, name, dateBirth, gender, cmnd, numPhone, email, typeCustomer, address);
         customers.add(customer);
@@ -77,7 +77,7 @@ public class CustomverServiceImpl implements CustomerService {
                     switch (choice) {
                         case 1:
                             System.out.println("Nhập tên muốn sửa");
-                            String name = new Scan().input().nextLine();
+                            String name = new Scan().inputString();
                             customers.get(i).setFullName(name);
                             break;
                         case 2:
@@ -92,17 +92,17 @@ public class CustomverServiceImpl implements CustomerService {
                             break;
                         case 4:
                             System.out.println("Nhập CMND");
-                            String idPerson = new Scan().input().nextLine();
+                            String idPerson = new Scan().inputString();
                             customers.get(i).setIdNumber(idPerson);
                             break;
                         case 5:
                             System.out.println("Nhập số điện thoại");
-                            String number = new Scan().input().nextLine();
+                            String number = new Scan().inputString();
                             customers.get(i).setPhoneNumber(number);
                             break;
                         case 6:
                             System.out.println("Nhập emailAddress");
-                            String email = new Scan().input().nextLine();
+                            String email = new Scan().inputString();
                             customers.get(i).setEmail(email);
                             break;
                         case 7:
@@ -112,7 +112,7 @@ public class CustomverServiceImpl implements CustomerService {
                             break;
                         case 8:
                             System.out.println("Nhập dia chi ");
-                            String address = new Scan().input().nextLine();
+                            String address = new Scan().inputString();
                             customers.get(i).setAddress(address);
                             break;
                         case 9:
