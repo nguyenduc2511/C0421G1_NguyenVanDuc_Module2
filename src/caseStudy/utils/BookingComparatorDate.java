@@ -62,8 +62,6 @@ public class BookingComparatorDate implements Comparator<Booking>, Serializable 
         } else {
             return -1;
         }
-
-
     }
 }
 // xai compareto ngắn và tiện hơn, không cần so sánh từng thành phần.

@@ -35,7 +35,7 @@ public class CheckIdBook {
         boolean check = false;
         while (!check) {
             System.out.println(" nhap id booking theo đúng định dạng BV-YY; vd BV-01; BH-01; BR-01");
-            id = new Scan().input().nextLine();
+            id = new Scan().inputString();
             if (Pattern.matches(regexCheck1, id)) {
                 check=true;
             }else if (Pattern.matches(regexCheck2, id)) {

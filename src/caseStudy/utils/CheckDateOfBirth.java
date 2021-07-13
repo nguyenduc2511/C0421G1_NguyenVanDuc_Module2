@@ -13,7 +13,7 @@ public class CheckDateOfBirth {
         boolean check = false;
         while (!check) {
             System.out.println(" nhap ngay sinh của bạn theo đúng định dạng dd/MM/yyyy; vd 11/11/1991");
-            dateOfbirth = new Scan().input().nextLine();
+            dateOfbirth = new Scan().inputString();
             if (Pattern.matches(regexCheck, dateOfbirth)) {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 LocalDate birthDate_LocalDay = LocalDate.parse(dateOfbirth, formatter);

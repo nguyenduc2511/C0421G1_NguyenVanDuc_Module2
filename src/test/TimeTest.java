@@ -12,7 +12,7 @@ public class TimeTest {
 //        long years = ChronoUnit.YEARS.between(start, end);
 //        System.out.println(years); // 17
 
-        String bir = "25/11/2025";
+        String bir = "25/02/2025";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate birthDate_LocalDay = LocalDate.parse(bir, formatter);
         LocalDate currentDate = LocalDate.now();
@@ -20,6 +20,10 @@ public class TimeTest {
         long year = ChronoUnit.DAYS.between(birthDate_LocalDay,currentDate);
         System.out.println(year);
         System.out.println(currentAge);
-        
+
+        String[] day = bir.split("/");
+        int daytime = Integer.parseInt(day[1])+10;
+        System.out.println(daytime);
+
     }
 }
