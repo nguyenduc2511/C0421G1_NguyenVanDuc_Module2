@@ -10,7 +10,7 @@ public class Scan {
     }
     public String inputString(){
         String a = null;
-        String regexCheck = "^\\S";
+        String regexCheck = "^\\S+$";
         boolean check = true;
         while (check){
             a =  new Scan().input().nextLine();
