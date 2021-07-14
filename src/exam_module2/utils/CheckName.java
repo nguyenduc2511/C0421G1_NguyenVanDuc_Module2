@@ -6,7 +6,7 @@ public class CheckName {
 
     public  String checkTenSP() {
         boolean checkPatten = false;
-        String regexCheck = "^([a-zA-Z]{1,}\\s?[a-zA-z]{1,}'?-?[a-zA-Z]{2,}\\s?([a-zA-Z]{1,})?)";
+        String regexCheck = "^(([a-zA-Z]{1,})(\\s?[a-zA-z]{1,}'?-?[a-zA-Z]+\\s?)?([a-zA-Z]{1,})?)$";
         String a = null;
         while (!checkPatten){
             a = new InputString().inputString();
