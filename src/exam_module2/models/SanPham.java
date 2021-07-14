@@ -4,14 +4,14 @@ import java.io.Serializable;
 
 public abstract class SanPham implements Serializable {
 //    Id sản phẩm, Mã sản phẩm, Tên sản phẩm, Giá bán, Số lượng, Nhà sản xuất.
-    private int idSP;
+    private Integer idSP;
     private String maSP;
     private String tenSP;
-    private int giaBan;
-    private int soLuong;
+    private Integer giaBan;
+    private Integer soLuong;
     private String nhaSanXuat;
 
-    public int getIdSP() {
+    public Integer getIdSP() {
         return idSP;
     }
 
@@ -35,19 +35,19 @@ public abstract class SanPham implements Serializable {
         this.tenSP = tenSP;
     }
 
-    public int getGiaBan() {
+    public Integer getGiaBan() {
         return giaBan;
     }
 
-    public void setGiaBan(int giaBan) {
+    public void setGiaBan(Integer giaBan) {
         this.giaBan = giaBan;
     }
 
-    public int getSoLuong() {
+    public Integer getSoLuong() {
         return soLuong;
     }
 
-    public void setSoLuong(int soLuong) {
+    public void setSoLuong(Integer soLuong) {
         this.soLuong = soLuong;
     }
 
@@ -60,7 +60,7 @@ public abstract class SanPham implements Serializable {
     }
     public SanPham(){};
 
-    public SanPham(int idSP, String maSP, String tenSP, int giaBan, int soLuong, String nhaSanXuat) {
+    public SanPham(Integer idSP, String maSP, String tenSP, Integer giaBan, Integer soLuong, String nhaSanXuat) {
         this.idSP = idSP;
         this.maSP = maSP;
         this.tenSP = tenSP;
@@ -71,7 +71,7 @@ public abstract class SanPham implements Serializable {
 
     @Override
     public String toString() {
-        return "SanPham{" +
+        return
                 "idSP=" + idSP +
                 ", maSP='" + maSP + '\'' +
                 ", tenSP='" + tenSP + '\'' +
