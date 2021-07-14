@@ -6,7 +6,7 @@ public class ChoiceNumber {
         try {
             choice = Integer.parseInt(new InputString().inputString());
         } catch (NumberFormatException ex) {
-            System.out.println("ban phai gia tri so, vui long nhap lai: ");
+            System.out.println("Bạn phải nhập số, vui lòng nhập lại ");
         }
         return choice;
     }

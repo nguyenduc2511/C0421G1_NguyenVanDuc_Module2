@@ -1,7 +1,6 @@
 package exam_module2.utils;
 
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class InputString {
     public Scanner input(){
@@ -10,14 +9,14 @@ public class InputString {
     }
     public String inputString(){
         String a = null;
-        String regexCheck = "^\\S+$";
+        String regexCheck = "";
         boolean check = true;
         while (check){
             a =  new InputString().input().nextLine();
-            if (Pattern.matches(regexCheck, a)) {
+            if (!a.equals(regexCheck)) {
                 check = false;
             }else {
-                System.out.println("vui long nhap lai khong duoc de trong ");
+                System.out.println("Vui lòng nhập lại không được để trống ");
             }
         }
         return a;

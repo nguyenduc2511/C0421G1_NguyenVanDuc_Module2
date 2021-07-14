@@ -111,8 +111,8 @@ public class XuatKhauServiceImpl implements XuatKhauService {
     }
     public boolean checkData(String a) {
 //        ma sp
-        boolean check = false;
         new XuatKhauServiceImpl().getAll();
+        boolean check = false;
         for (SanPhamXuatKhau xuatKhau : xuatKhaus) {
             if (xuatKhau.getMaSP().equals(a)) {
                 System.out.println(xuatKhau.toString());

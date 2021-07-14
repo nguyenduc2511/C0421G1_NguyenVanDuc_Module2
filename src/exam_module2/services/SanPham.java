@@ -1,7 +1,7 @@
 package exam_module2.services;
 
-import exam_module2.utils.CheckMa;
 import exam_module2.utils.ChoiceNumber;
+import exam_module2.utils.InputString;
 
 public class SanPham implements SanPhamService {
 
@@ -32,16 +32,22 @@ public class SanPham implements SanPhamService {
     @Override
     public void findData() {
         System.out.println("nhập mã sản phẩm bạn muốn tìm ");
-        String maSp = new CheckMa().checkTenSP();
+        String maSp = new InputString().inputString();
         String[] maSPS = maSp.split("-");
-        if (maSPS[0].equals("SPNK")) {
-            if (new NhapKhauServiceImpl().checkData(maSp)) {
-                new NhapKhauServiceImpl().findData(maSp);
+        if(maSPS.length==2) {
+            if (maSPS[0].equals("SPNK")) {
+                if (new NhapKhauServiceImpl().checkData(maSp)) {
+                    new NhapKhauServiceImpl().findData(maSp);
+                }
+            } else if (maSPS[0].equals("SPXK")) {
+                if (new XuatKhauServiceImpl().checkData(maSp)) {
+                    new NhapKhauServiceImpl().findData(maSp);
+                }
+            } else {
+                System.out.println(" san pham khong co");
             }
-        } else if (maSPS[0].equals("SPSK")) {
-            if (new XuatKhauServiceImpl().checkData(maSp)) {
-                new NhapKhauServiceImpl().findData(maSp);
-            }
+        }else {
+            System.out.println("khong co ma hop le ");
         }
     }
 
@@ -56,48 +62,53 @@ public class SanPham implements SanPhamService {
     @Override
     public void removeData() {
         System.out.println("nhập mã sản phẩm bạn muốn xóa ");
-        String maSp = new CheckMa().checkTenSP();
+        String maSp = new InputString().inputString();
         String[] maSPS = maSp.split("-");
-        if (maSPS[0].equals("SPNK")) {
-            if (new NhapKhauServiceImpl().checkData(maSp)) {
-                boolean check = true;
-                while (check) {
-                    System.out.println("chọn 1 nếu bạn muốn xóa");
-                    System.out.println("chọn 2 để bỏ qua ");
-                    int choice = new ChoiceNumber().choice();
-                    switch (choice) {
-                        case 1:
-                            new NhapKhauServiceImpl().removeData(maSp);
-                            break;
-                        case 2:
-                            check = false;
-                            break;
-                        default:
-                            System.out.println("Hãy nhập đúng lựa chọn");
-                            break;
+        if (maSPS.length == 2) {
+            if (maSPS[0].equals("SPNK")) {
+                if (new NhapKhauServiceImpl().checkData(maSp)) {
+                    boolean check = true;
+                    while (check) {
+                        System.out.println("chọn 1 nếu bạn muốn xóa");
+                        System.out.println("chọn 2 để bỏ qua ");
+                        int choice = new ChoiceNumber().choice();
+                        switch (choice) {
+                            case 1:
+                                new NhapKhauServiceImpl().removeData(maSp);
+                                break;
+                            case 2:
+                                check = false;
+                                break;
+                            default:
+                                System.out.println("Hãy nhập đúng lựa chọn");
+                                break;
+                        }
                     }
                 }
-            }
-        } else if (maSPS[0].equals("SPSK")) {
-            if (new XuatKhauServiceImpl().checkData(maSp)) {
-                boolean check = true;
-                while (check) {
-                    System.out.println("chọn 1 nếu bạn muốn xóa");
-                    System.out.println("chọn 2 để bỏ qua ");
-                    int choice = new ChoiceNumber().choice();
-                    switch (choice) {
-                        case 1:
-                            new XuatKhauServiceImpl().removeData(maSp);
-                            break;
-                        case 2:
-                            check = false;
-                            break;
-                        default:
-                            System.out.println("Hãy nhập đúng lựa chọn");
-                            break;
+            } else if (maSPS[0].equals("SPXK")) {
+                if (new XuatKhauServiceImpl().checkData(maSp)) {
+                    boolean check = true;
+                    while (check) {
+                        System.out.println("chọn 1 nếu bạn muốn xóa");
+                        System.out.println("chọn 2 để bỏ qua ");
+                        int choice = new ChoiceNumber().choice();
+                        switch (choice) {
+                            case 1:
+                                new XuatKhauServiceImpl().removeData(maSp);
+                                break;
+                            case 2:
+                                check = false;
+                                break;
+                            default:
+                                System.out.println("Hãy nhập đúng lựa chọn");
+                                break;
+                        }
                     }
                 }
-            }
+            }else {
+                System.out.println("khong co ma hop le");}
+        }else {
+            System.out.println("khong co ma hop le");
         }
     }
 }

@@ -109,11 +109,11 @@ public class NhapKhauServiceImpl implements NhapKhauService {
     public void findData(String a) {
 //        ma sp
         new NhapKhauServiceImpl().getAll();
-        boolean check = true;
+        boolean check = false;
         for (SanPhamNhapKhau nhapKhau : nhapKhaus) {
             if (nhapKhau.getMaSP().equals(a)) {
                 System.out.println(nhapKhau.toString());
-                check = false;
+                check = true;
             }
         }
         if( check){
@@ -123,14 +123,14 @@ public class NhapKhauServiceImpl implements NhapKhauService {
     public boolean checkData(String a) {
 //        ma sp
         new NhapKhauServiceImpl().getAll();
-        boolean check = true;
+        boolean check = false;
         for (SanPhamNhapKhau nhapKhau : nhapKhaus) {
             if (nhapKhau.getMaSP().equals(a)) {
                 System.out.println(nhapKhau.toString());
-                check = false;
+                check = true;
             }
         }
-        if( check){
+        if(check){
             System.out.println("không có sản phẩm nào được tìm thấy ");
         }
         return check;
