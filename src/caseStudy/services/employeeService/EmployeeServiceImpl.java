@@ -26,7 +26,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void addNew() {
         new EmployeeServiceImpl().getAll();
-        int id = 0;
+        int id;
         if (employees.isEmpty()) {
             id = 1;
         } else {
@@ -34,7 +34,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         System.out.println(" nhap ten  ");
         String name = new Scan().inputString();
-
         System.out.println(" nhap ngay sinh  ");
         String dateBirth = new CheckDateOfBirth().CheckDateOfBirth();
         System.out.println(" chon gioi tinh  ");
@@ -55,7 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         while (check){
             salary =new Choice().choice();
             if(salary == 0){
-                System.out.println(" luong >0 va khong duoc de trong gia tri");
+                System.out.println(" luong > 0 va khong duoc de trong gia tri");
             }else {
                 check = false;
             }
@@ -74,6 +73,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             if (employees.get(i).getCode() == id) {
                 boolean check = true;
                 while (check) {
+                    System.out.println(employees.get(i).toString());
                     System.out.println("Bạn muốn sửa thông tin nào cho " + employees.get(i).getFullName());
                     System.out.println("1. Name employee");
                     System.out.println("2. Ngày sinh");

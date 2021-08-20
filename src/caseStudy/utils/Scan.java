@@ -8,9 +8,10 @@ public class Scan {
         Scanner scanner = new Scanner(System.in);
         return scanner;
     }
+
     public String inputString(){
         String a = null;
-        String regexCheck = "^\\S+$";
+        String regexCheck = "^(\\S+)([\\w\\s]*)$";
         boolean check = true;
         while (check){
             a =  new Scan().input().nextLine();
