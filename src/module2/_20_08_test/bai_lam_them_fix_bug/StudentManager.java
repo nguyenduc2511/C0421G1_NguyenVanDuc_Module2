@@ -103,26 +103,34 @@ public class StudentManager {
         if(isNumber(find)){
             int id = Integer.parseInt(find);
             for (int i = 0; i < studentList.length; i++) {
-                if (studentList[i].getId() == id) {
-                    System.out.println("thông tin bạn cần tìm: " + studentList[i].toString());
-                    check1=true;
+                if( studentList[i]!=null) {
+                    if (studentList[i].getId() == id ) {
+                        System.out.println("thông tin bạn cần tìm: " + studentList[i].toString());
+                        check1 = true;
+                    } else {
+                        break;
+                    }
                 }else {
                     break;
                 }
             }
         }else {
             for (int i = 0; i < studentList.length; i++) {
-                if(studentList[i].getName().contains(find)){
-                    System.out.println("thông tin bạn cần tìm: " + studentList[i].toString());
-                    check2=true;
+                if(studentList[i]!=null) {
+                    if (studentList[i].getName().contains(find)) {
+                        System.out.println("thông tin bạn cần tìm: " + studentList[i].toString());
+                        check2 = true;
+                    }else {
+                        break;
+                    }
                 }else {
                     break;
                 }
             }
         }
-        if(check1){
+        if(check1==false){
             System.out.println("Không tìm thấy thông tin id: "+ find);
-        }else if(check2){
+        }else if(check2==false){
             System.out.println("Không tìm thấy thông tin name: "+ find);
         }
     }
