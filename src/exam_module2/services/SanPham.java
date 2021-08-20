@@ -31,6 +31,7 @@ public class SanPham implements SanPhamService {
 
     @Override
     public void findData() {
+        new SanPham().disPlay();
         System.out.println("nhập mã sản phẩm bạn muốn tìm ");
         String maSp = new InputString().inputString();
         String[] maSPS = maSp.split("-");
