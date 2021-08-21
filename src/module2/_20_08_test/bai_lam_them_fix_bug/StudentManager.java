@@ -7,10 +7,12 @@ public class StudentManager {
     public static Scanner scanner = new Scanner(System.in);
 
     static {
-        studentList[0] = new Student(1, "chanh1", 18);
-        studentList[1] = new Student(2, "chanh2", 19);
-        studentList[2] = new Student(3, "chanh3", 20);
-
+        studentList[0] = new Student(1, "chanh", 18);
+        studentList[1] = new Student(2, "Anh", 19);
+        studentList[2] = new Student(3, "BO", 20);
+        studentList[3] = new Student(4, "dUc", 20);
+        studentList[4] = new Student(5, "ThanH", 20);
+        studentList[5] = new Student(6, "Quyen", 20);
     }
 
     public static void add() {
@@ -21,7 +23,7 @@ public class StudentManager {
         int id = 0;
         for (int i = 0; i < studentList.length; i++) {
             if (studentList[i] == null) {
-                id = i + 1;
+                id = studentList[i - 1].getId();
                 Student student = new Student(id, name, age);
                 studentList[i] = student;
                 break;
@@ -90,7 +92,6 @@ public class StudentManager {
         }
         if (check) {
             System.out.println("khong tim thay id ban muon xoa");
-
         }
     }
 
@@ -98,47 +99,45 @@ public class StudentManager {
         System.out.println("tim kiem hoc vien ");
         System.out.println("nhap thong tin ban muon tim kiem theo ten hoac id");
         String find = scanner.nextLine();
-        boolean check1 = false;
-        boolean check2 = false;
-        if(isNumber(find)){
+        int check1 = 0;
+        int check2 = 0;
+        if (isNumber(find)) {
             int id = Integer.parseInt(find);
             for (int i = 0; i < studentList.length; i++) {
-                if( studentList[i]!=null) {
-                    if (studentList[i].getId() == id ) {
+                if (studentList[i] != null) {
+                    if (studentList[i].getId() == id) {
                         System.out.println("thông tin bạn cần tìm: " + studentList[i].toString());
-                        check1 = true;
-                    } else {
-                        break;
+                        check1++;
                     }
-                }else {
+                } else {
                     break;
                 }
             }
-        }else {
+        } else {
             for (int i = 0; i < studentList.length; i++) {
-                if(studentList[i]!=null) {
-                    if (studentList[i].getName().contains(find)) {
+                if (studentList[i] != null) {
+                    if (studentList[i].getName().toLowerCase().contains(find.toLowerCase())) {
                         System.out.println("thông tin bạn cần tìm: " + studentList[i].toString());
-                        check2 = true;
-                    }else {
-                        break;
+                        check2++;
                     }
-                }else {
+                } else {
                     break;
                 }
             }
         }
-        if(check1==false){
-            System.out.println("Không tìm thấy thông tin id: "+ find);
-        }else if(check2==false){
-            System.out.println("Không tìm thấy thông tin name: "+ find);
+        if (check2 == 0) {
+            System.out.println("Không tìm thấy thông tin name: " + find);
+        }
+        if (check1 == 0) {
+            System.out.println("Không tìm thấy thông tin id: " + find);
         }
     }
-    public static boolean isNumber(String string){
+
+    public static boolean isNumber(String string) {
         try {
             Integer.parseInt(string);
             return true;
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             return false;
         }
     }
