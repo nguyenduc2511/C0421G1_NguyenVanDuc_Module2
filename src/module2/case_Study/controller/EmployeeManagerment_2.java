@@ -1,8 +1,8 @@
-package caseStudy.controllers;
+package module2.case_Study.controller;
 
 import caseStudy.utils.Choice;
 
-public class EmployeeManagerment {
+public class EmployeeManagerment_2 {
     public void employeesMenu() {
         while (true) {
             System.out.println("1. Display all employees");

@@ -1,8 +1,8 @@
-package caseStudy.controllers;
+package module2.case_Study.controller;
 
 import caseStudy.utils.Choice;
 
-public class FuramaController {
+public class FuramaController_2 {
 
     public void displayMainMenu() {
         boolean check = true;
@@ -18,25 +18,28 @@ public class FuramaController {
             int choice = new Choice().choice();
             switch (choice) {
                 case 1:
-                    new EmployeeManagerment().employeesMenu();
+                    new EmployeeManagerment_2().employeesMenu();
                     break;
                 case 2:
-                    new CustomerManagerment().customerMenu();
+                    new CustomerManagerment_2().customerMenu();
                     break;
                 case 3:
-                    new FacilityManagerment().facilityMenu();
+                    new FacilityManagerment_2().facilityMenu();
                     break;
                 case 4:
-                    new BookingManagerment().bookingMenu();
+                    new BookingManagerment_2().bookingMenu();
                     break;
                 case 5:
-                    new PromotionManagerment().promotionMenu();
+                    new PromotionManagerment_2().promotionMenu();
                     break;
                 case 6:
-                    new WaitFixFacility().waitFixxing();
+
                     break;
                 case 7:
                     check = false;
+                default:
+                    System.out.println("hay nhap lua chon dung");
+                    break;
             }
         }
     }

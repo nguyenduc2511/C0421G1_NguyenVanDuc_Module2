@@ -20,12 +20,24 @@ public class StudentManager {
         String name = scanner.nextLine();
         System.out.println("nhập  tuổi");
         int age = Integer.parseInt(scanner.nextLine());
+        System.out.println("nhập số nhà");
+        String houseNumber = scanner.nextLine();
+        System.out.println("nhập tên đường");
+        String street = scanner.nextLine();
+        System.out.println("nhập tên phường ");
+        String ward = scanner.nextLine();
+        System.out.println("nhập tên quận ");
+        String district = scanner.nextLine();
+        System.out.println("nhập tên tỉnh/thành phố");
+        String province = scanner.nextLine();
         int id = 0;
         for (int i = 0; i < studentList.length; i++) {
             if (studentList[i] == null) {
-                id = studentList[i - 1].getId();
-                Student student = new Student(id, name, age);
+                id = studentList[i - 1].getId() + 1;
+                Address address = new Address(houseNumber,street,ward,district,province);
+                Student student = new Student(id, name, age,address);
                 studentList[i] = student;
+                System.out.println("them moi thanh cong");
                 break;
             }
         }
@@ -47,13 +59,27 @@ public class StudentManager {
         int id = Integer.parseInt(scanner.nextLine());
         boolean check = false;
         for (int i = 0; i < studentList.length; i++) {
-            if (studentList[i].getId() == id) {
-                System.out.println("nhập tên");
-                studentList[i].setName(scanner.nextLine());
-                System.out.println("nhập  tuổi");
-                studentList[i].setAGE(Integer.parseInt(scanner.nextLine()));
-                break;
-            } else {
+            if(studentList[i]!=null) {
+                if (studentList[i].getId() == id) {
+                    System.out.println("nhập tên");
+                    studentList[i].setName(scanner.nextLine());
+                    System.out.println("nhập  tuổi");
+                    studentList[i].setAGE(Integer.parseInt(scanner.nextLine()));
+                    System.out.println("nhập số nhà");
+                    String houseNumber = scanner.nextLine();
+                    System.out.println("nhập tên đường");
+                    String street = scanner.nextLine();
+                    System.out.println("nhập tên phường ");
+                    String ward = scanner.nextLine();
+                    System.out.println("nhập tên quận");
+                    String district = scanner.nextLine();
+                    System.out.println("nhập tên tỉnh/ thành phố");
+                    String provice = scanner.nextLine();
+                    Address address = new Address(houseNumber, street, ward, district, provice);
+                    studentList[i].setAddress(address);
+                    break;
+                }
+            }else {
                 check = true;
                 break;
             }

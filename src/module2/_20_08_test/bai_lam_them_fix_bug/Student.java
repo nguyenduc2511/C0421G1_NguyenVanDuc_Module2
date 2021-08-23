@@ -5,8 +5,17 @@ public class Student {
     private int id;
     private String name;
     private  int AGE;
+    private Address address;
 
     public Student() {
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public static String getSchool() {
@@ -33,14 +42,19 @@ public class Student {
         this.AGE = AGE;
     }
 
-
-
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Student(int id, String name, int AGE, Address address) {
+        this.id = id;
+        this.name = name;
+        this.AGE = AGE;
+        this.address = address;
     }
 
     public Student(int id, String name, int AGE) {
@@ -54,7 +68,8 @@ public class Student {
         return "Student{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", AGE=" + AGE + ", School=" + school +
+                ", AGE=" + AGE +
+                ", " + address + ", school=" + school+
                 '}';
     }
 }
