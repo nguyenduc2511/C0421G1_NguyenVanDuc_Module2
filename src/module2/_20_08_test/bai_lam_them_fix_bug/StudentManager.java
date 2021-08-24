@@ -91,27 +91,29 @@ public class StudentManager {
 
     public static void delete() {
         display();
-        System.out.println("nhập  id ban muon xoa");
+        System.out.println("nhập id ban muon xoa");
         int id = Integer.parseInt(scanner.nextLine());
         boolean check = false;
         for (int i = 0; i < studentList.length; i++) {
-            if (studentList[i].getId() == id) {
-                System.out.println("chắc chắn bạn muốn xóa: " + studentList[i].toString());
-                System.out.println("1:ok xoa \n" + "2.cancel");
-                int choose = Integer.parseInt(scanner.nextLine());
-                switch (choose) {
-                    case 1:
-                        for (int j = i; j < studentList.length - 1; j++) {
-                            studentList[j] = studentList[j + 1];
-                            studentList[j + 1] = null;
-                        }
-                        break;
-                    case 2:
-                        System.out.println("ban da cancel xoa ");
-                        break;
+            if(studentList[i]!=null) {
+                if (studentList[i].getId() == id) {
+                    System.out.println("chắc chắn bạn muốn xóa: " + studentList[i].toString());
+                    System.out.println("1:ok xoa \n" + "2.cancel");
+                    int choose = Integer.parseInt(scanner.nextLine());
+                    switch (choose) {
+                        case 1:
+                            for (int j = i; j < studentList.length - 1; j++) {
+                                studentList[j] = studentList[j + 1];
+                                studentList[j + 1] = null;
+                            }
+                            break;
+                        case 2:
+                            System.out.println("ban da cancel xoa ");
+                            break;
+                    }
+                    break;
                 }
-                break;
-            } else {
+            }else {
                 check = true;
                 break;
             }
