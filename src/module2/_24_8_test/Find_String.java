@@ -29,34 +29,40 @@ public class Find_String {
         }
     }
 
-    public static String[] findst(String string) {
-        String[] strings = new String[string.length()];
-        String[] strings1 = new String[string.length()];
+    public static Character[] findst(String string) {
+        Character[] characters = new Character[string.length()];
+        Character[] characters1 = new Character[string.length()];
         int temp = 0;
         for (int i = 0; i < string.length(); i++) {
-            strings[i] = String.valueOf(string.charAt(i));
+            characters[i] = string.charAt(i);
         }
-        for (int i = 0; i < strings.length - 1; i++) {
-            for (int j = i + 1; j < strings.length; j++) {
-                if (strings[i].equals(strings[j]) && strings[i] != " ") {
-                    strings1[temp] = strings[i];
+        for (int i = 0; i < characters.length - 1 ; i++) {
+            int count = 0;
+            for (int j = i + 1; j < characters.length; j++) {
+                if (characters[i].equals(characters[j]) && characters[i] !=' ') {
+                    count++;
+                    characters[j] = ' ';
+                }
+                if(count != 0 && j == characters.length -1 && characters[i] !=' '){
+                    characters1[temp] = characters[i];
                     temp++;
-                    strings[j] = " ";
-                    break;
                 }
             }
         }
-        String[] strings2 = new String[temp];
-        for (int i = 0; i < temp; i++) {
-            strings2[i] = strings1[i];
+        Character[] characters2 = new Character[temp];
+        for (int i = 0; i < temp ; i++) {
+            characters2[i] = characters1[i];
 
         }
-        return strings2;
+        return characters2;
     }
 
     public static void main(String[] args) {
         String a = "abcbdcef a b cbc";
         find(a);
         System.out.println(Arrays.toString(findst(a)));
+        String b = "aaaaaaaaa a b cbcbbcc";
+        find(b);
+        System.out.println(Arrays.toString(findst(b)));
     }
 }
