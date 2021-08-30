@@ -7,18 +7,20 @@ import caseStudy.models.employee.Gioitinh;
 import caseStudy.utils.CheckDateOfBirth;
 import caseStudy.utils.Choice;
 import caseStudy.utils.Scan;
+import module2.case_Study.dataCharacter.ReadAndWrite;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class CustomverServiceImpl implements CustomerService {
-    private static final String filepath = "src\\caseStudy\\data\\Customer.csv";
+    private static final String filepath = "src\\module2\\case_Study\\data\\Customer.csv";
     public static List<Customer> customers = new LinkedList<>();
-    public static final ReadAndWriteByteStream<Customer> readAndWriteByteStream = new ReadAndWriteByteStream<Customer>();
+    public static final ReadAndWrite readAndWriteByteStream = new ReadAndWrite();
 
     @Override
     public List<Customer> getAll() {
-        customers = readAndWriteByteStream.readFileByteStream(filepath);
+
+//        customers = readAndWriteByteStream.readFile(filepath);
         return customers;
     }
 

@@ -1,4 +1,4 @@
-package module2._24_8_test;
+package module2._27_8_test;
 
 import java.util.Arrays;
 
