@@ -1,7 +1,5 @@
 package reviewBaiTapATrung;
 
-import _16_IO_File.exercise.ReadAndWriteNational;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +70,6 @@ public class ReadAndWriteStudent {
 
     public void editData(String filePath, String lineLocation, String lineEdit){
         List<String[]> list = new ArrayList<>();
-
         try {
             FileReader fileReader = new FileReader(filePath);
             BufferedReader bufferedReader =new BufferedReader(fileReader);

@@ -2,9 +2,7 @@ package module2.case_Study.models.Customer;
 
 import module2.case_Study.models.employee.Person;
 
-import java.io.Serializable;
-
-public class Customer extends Person implements Serializable {
+public class Customer extends Person {
     private String customerType;
     private String address;
 
