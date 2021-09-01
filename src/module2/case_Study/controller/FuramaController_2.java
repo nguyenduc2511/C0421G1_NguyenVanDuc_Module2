@@ -37,6 +37,7 @@ public class FuramaController_2 {
                     break;
                 case 7:
                     check = false;
+                    break;
                 default:
                     System.out.println("hay nhap lua chon dung");
                     break;
