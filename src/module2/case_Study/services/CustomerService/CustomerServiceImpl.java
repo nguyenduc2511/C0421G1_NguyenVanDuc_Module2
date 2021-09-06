@@ -54,11 +54,12 @@ public class CustomerServiceImpl implements CustomerService {
         String typeCustomer = new TypeCustomer().choiCustomer();
         System.out.println(" nhap dia chi   ");
         String address = new Scan().inputString();
-
+        System.out.println("ban nhap thanh cong...");
         Customer customer = new Customer(id, name, dateBirth, gender, cmnd, numPhone, email, typeCustomer, address);
         String line = customer.getCode() + "," + customer.getFullName() + "," + customer.getDateOfBirth() + "," +
                 customer.getGender() + "," + customer.getIdNumber() + "," + customer.getPhoneNumber() + "," + customer.getEmail() + ","
                 + customer.getCustomerType() + "," + customer.getAddress();
+        customers.add(customer);
         readAndWrite.writeData(filepath, line);
     }
 

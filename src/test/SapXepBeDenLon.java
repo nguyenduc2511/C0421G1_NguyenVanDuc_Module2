@@ -11,12 +11,15 @@ public class SapXepBeDenLon {
 
     }
     private static void bubbleSort(int[] arrays){
-        for(int i=0;i<arrays.length-1;i++){
+        boolean check = true;
+        for(int i=0;i<arrays.length-1 && check;i++){
+            check=false;
             for(int j=i+1;j<arrays.length;j++){
                 if(arrays[i] > arrays[j]){
                     int x = arrays[i];
                     arrays[i] = arrays[j];
                     arrays[j] = x;
+                    check= true;
                 }
             }
         }
