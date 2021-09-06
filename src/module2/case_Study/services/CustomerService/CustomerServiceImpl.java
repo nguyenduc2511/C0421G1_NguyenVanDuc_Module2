@@ -20,12 +20,13 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<Customer> getAll() {
         List<String[]> list = readAndWrite.readFile(filepath);
-        if (list.size() != customers.size()) {
-            for (String[] element : list) {
-                Customer customer = new Customer(Integer.parseInt(element[0]), element[1], element[2], element[3], element[4], element[5], element[6], element[7], element[8]);
-                customers.add(customer);
-            }
+        customers.clear();
+        for (String[] element : list) {
+            Customer customer = new Customer(Integer.parseInt(element[0]), element[1], element[2],
+                    element[3], element[4], element[5], element[6], element[7], element[8]);
+            customers.add(customer);
         }
+
         return customers;
     }
 
@@ -145,7 +146,7 @@ public class CustomerServiceImpl implements CustomerService {
                 break;
             }
         }
-        if(check2){
+        if (check2) {
             System.out.println("khong tim thay id ban vua nhap");
         }
         readAndWrite.editData(filepath, lineLocation, line);
@@ -196,7 +197,7 @@ public class CustomerServiceImpl implements CustomerService {
                 break;
             }
         }
-        if(check2){
+        if (check2) {
             System.out.println("khong tim thay id ban vua nhap");
         }
         readAndWrite.removeData(filepath, line);

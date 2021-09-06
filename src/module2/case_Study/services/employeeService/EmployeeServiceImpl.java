@@ -1,25 +1,32 @@
 package module2.case_Study.services.employeeService;
 
-import caseStudy.DataStream.ReadAndWriteByteStream;
-import caseStudy.models.employee.AcademicLevel;
-import caseStudy.models.employee.Employee;
-import caseStudy.models.employee.Gioitinh;
-import caseStudy.models.employee.PositionChoice;
-import caseStudy.utils.CheckDateOfBirth;
-import caseStudy.utils.Choice;
-import caseStudy.utils.Scan;
+
+import module2.case_Study.dataCharacter.ReadAndWriteCustomer;
+import module2.case_Study.models.employee.AcademicLevel;
+import module2.case_Study.models.employee.Employee;
+import module2.case_Study.models.employee.Gioitinh;
+import module2.case_Study.models.employee.PositionChoice;
+import module2.case_Study.utils.CheckDateOfBirth;
+import module2.case_Study.utils.Choice;
+import module2.case_Study.utils.Scan;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeServiceImpl implements EmployeeService {
-    private static final String filepath = "src\\caseStudy\\data\\Employee.csv";
+    private static final String filepath = "src\\module2\\case_Study\\data\\Employee.csv";
     private static List<Employee> employees = new ArrayList<>();
-    private static final ReadAndWriteByteStream<Employee> readFileByteStream = new ReadAndWriteByteStream<Employee>();
+    private static final ReadAndWriteCustomer readAndWrite = new ReadAndWriteCustomer();
 
     @Override
     public List<Employee> getAll() {
-        employees = readFileByteStream.readFileByteStream(filepath);
+        List<String[]> list = readAndWrite.readFile(filepath);
+       employees.clear();
+       for(String[] element : list){
+           Employee employee = new Employee(Integer.parseInt(element[0]),element[1],element[2],element[3],element[4],
+                   element[5],element[6],element[7],element[8],Integer.parseInt(element[9]));
+           employees.add(employee);
+       }
         return employees;
     }
 
@@ -61,7 +68,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         Employee employee = new Employee(id, name, dateBirth, gender, cmnd, numPhone, email, academicLevel, position, salary);
         employees.add(employee);
-        readFileByteStream.writeFileByteStream(employees, filepath);
+        String line = employee.getCode()+","+employee.getFullName()+","+employee.getDateOfBirth()+","+employee.getGender()+","+employee.getIdNumber()
+                +","+employee.getPhoneNumber()+","+employee.getEmail()+","+employee.getAcademicLevel()+","+employee.getPosition()+","+  employee.getSalary();
+        readAndWrite.writeData(filepath, line );
     }
 
     @Override
@@ -69,12 +78,18 @@ public class EmployeeServiceImpl implements EmployeeService {
         new EmployeeServiceImpl().getAll();
         System.out.println("nhap id ban muon sua");
         int id = new Choice().choice();
+        String lineLocation = "";
+        String line = "";
+        boolean check2 = true;
         for (int i = 0; i < employees.size(); i++) {
             if (employees.get(i).getCode() == id) {
+                lineLocation = employees.get(i).getCode() + "," + employees.get(i).getFullName() + "," + employees.get(i).getDateOfBirth() + "," +
+                        employees.get(i).getGender() + "," + employees.get(i).getIdNumber() + "," + employees.get(i).getPhoneNumber() + ","
+                        + employees.get(i).getEmail() + "," + employees.get(i).getAcademicLevel() + "," + employees.get(i).getPosition()+","+employees.get(i).getSalary();
                 boolean check = true;
                 while (check) {
                     System.out.println(employees.get(i).toString());
-                    System.out.println("Bạn muốn sửa thông tin nào cho " + employees.get(i).getFullName());
+                    System.out.println("Bạn muốn sửa thông tin nào cho " + employees.get(i).toString());
                     System.out.println("1. Name employee");
                     System.out.println("2. Ngày sinh");
                     System.out.println("3. Giới tính");
@@ -139,11 +154,17 @@ public class EmployeeServiceImpl implements EmployeeService {
                             break;
                     }
                 }
+                line = employees.get(i).getCode() + "," + employees.get(i).getFullName() + "," + employees.get(i).getDateOfBirth() + "," +
+                        employees.get(i).getGender() + "," + employees.get(i).getIdNumber() + "," + employees.get(i).getPhoneNumber() + ","
+                        + employees.get(i).getEmail() + "," + employees.get(i).getAcademicLevel() + "," + employees.get(i).getPosition()+","+employees.get(i).getSalary();
+                check2 = false;
                 break;
             }
         }
-        readFileByteStream.clearData(filepath);
-        readFileByteStream.writeFileByteStream(employees, filepath);
+        if (check2) {
+            System.out.println("khong tim thay id ban vua nhap");
+        }
+        readAndWrite.editData(filepath, lineLocation, line);
     }
 
     @Override
@@ -159,6 +180,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         new EmployeeServiceImpl().getAll();
         System.out.println("nhap id ban muon xoa");
         int id = new Choice().choice();
+        String line="";
+        boolean check2=true;
         for (int i = 0; i < employees.size(); i++) {
             if (employees.get(i).getCode() == id) {
                 boolean check = true;
@@ -171,6 +194,10 @@ public class EmployeeServiceImpl implements EmployeeService {
                     switch (choice){
                         case 1: {
                             employees.remove(i);
+                            line = employees.get(i).getCode() + "," + employees.get(i).getFullName() + "," + employees.get(i).getDateOfBirth() + "," +
+                                    employees.get(i).getGender() + "," + employees.get(i).getIdNumber() + "," + employees.get(i).getPhoneNumber() + ","
+                                    + employees.get(i).getEmail() + "," + employees.get(i).getAcademicLevel() + "," + employees.get(i).getPosition()+","+employees.get(i).getSalary();
+                            check2 = false;
                             check=false;
                             break;
                         }
@@ -184,7 +211,9 @@ public class EmployeeServiceImpl implements EmployeeService {
                 break;
             }
         }
-        readFileByteStream.clearData(filepath);
-        readFileByteStream.writeFileByteStream(employees, filepath);
+        if (check2) {
+            System.out.println("khong tim thay id ban vua nhap");
+        }
+        readAndWrite.removeData(filepath, line);
     }
 }
