@@ -165,8 +165,10 @@ public class RoomServiceImpl implements RoomService {
         System.out.println("nhap dich vu mien phi di kem room");
         String free = new Scan().input().nextLine();
         Room room2 = new Room(name, useArea, rentalFees, maxNumsPeople, rentalType, free);
+        String line = room2.getUtilName()+","+room2.getUseArea()+","+room2.getRentalFees()
+                +","+room2.getMaxNumsPeople()+","+room2.getRentalType()+","+room2.getFreeServices()+","+0;
         roomMap.put(room2, 0);
-
+        readAndWrite.writeData(filepath,line);
 
     }
 
