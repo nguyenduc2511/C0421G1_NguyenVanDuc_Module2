@@ -7,6 +7,7 @@ import caseStudy.models.bookingAndContract.Contract;
 import caseStudy.services.CustomerService.CustomverServiceImpl;
 import caseStudy.utils.CheckIdBook;
 import caseStudy.utils.Choice;
+import module2.case_Study.models.facility.Room;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -21,7 +22,7 @@ public class ContactServiceImpl implements ContactService {
     private static List<Contract> contractList = new ArrayList<>();
 
     @Override
-    public List<Contract> getAll() {
+    public List<Room> getAll() {
         contractList = readAndWriteByteStream.readFileByteStream(filepath);
         return contractList;
     }

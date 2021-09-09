@@ -1,10 +1,11 @@
-package caseStudy.services.facility;
+package module2.case_Study.services.facility;
 
-import caseStudy.DataStream.ReadAndWriteByteStream;
-import caseStudy.models.facility.Room;
-import caseStudy.utils.CheckValidateId;
-import caseStudy.utils.Choice;
-import caseStudy.utils.Scan;
+
+import module2.case_Study.dataCharacter.ReadAndWriteCharacterStream;
+import module2.case_Study.models.facility.Room;
+import module2.case_Study.utils.CheckValidateId;
+import module2.case_Study.utils.Choice;
+import module2.case_Study.utils.Scan;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -12,13 +13,20 @@ import java.util.Map;
 import java.util.Set;
 
 public class RoomServiceImpl implements RoomService {
-    private static final String filepath = "src\\caseStudy\\data\\Room.csv";
-    private static final ReadAndWriteByteStream<Room> roomReadAndWrite = new ReadAndWriteByteStream<Room>();
+    private static final String filepath = "src\\module2\\case_Study\\data\\Room.csv";
+    public static final ReadAndWriteCharacterStream readAndWrite = new ReadAndWriteCharacterStream();
     private static Map<Room, Integer> roomMap = new LinkedHashMap<>();
 
     @Override
     public Map<Room, Integer> getAllRoom() {
-        roomMap = roomReadAndWrite.readMapbyteStream(filepath);
+        List<String[]> list = readAndWrite.readFile(filepath);
+        roomMap.clear();
+        for (String[] element : list) {
+            Room room = new Room(element[0], Integer.parseInt(element[1]), Integer.parseInt(element[2]),
+                    Integer.parseInt(element[3]), element[4], element[5]);
+            int value = Integer.parseInt(element[6]);
+            roomMap.put(room,value);
+        }
         return roomMap;
     }
 
@@ -40,9 +48,10 @@ public class RoomServiceImpl implements RoomService {
                 }
             }
         }
-        roomReadAndWrite.clearData(filepath);
-        roomReadAndWrite.writeMapByteStream(roomMap, filepath);
+
+
     }
+
     public void updateDataLow(String idRoom) {
         new RoomServiceImpl().getAllRoom();
         boolean check = true;
@@ -59,10 +68,12 @@ public class RoomServiceImpl implements RoomService {
                     break;
                 }
             }
+
         }
-        roomReadAndWrite.clearData(filepath);
-        roomReadAndWrite.writeMapByteStream(roomMap, filepath);
+
+
     }
+
     @Override
     public void fixData() {
         new RoomServiceImpl().getAllRoom();
@@ -73,8 +84,8 @@ public class RoomServiceImpl implements RoomService {
                 break;
             }
         }
-        roomReadAndWrite.clearData(filepath);
-        roomReadAndWrite.writeMapByteStream(roomMap, filepath);
+
+
     }
 
 
@@ -86,10 +97,12 @@ public class RoomServiceImpl implements RoomService {
                 System.out.println(i + " " + roomMap.get(i));
             }
         }
+
     }
 
+
     @Override
-    public List<module2.case_Study.models.facility.Room> getAll() {
+    public List<Room> getAll() {
         return null;
     }
 
@@ -153,7 +166,8 @@ public class RoomServiceImpl implements RoomService {
         String free = new Scan().input().nextLine();
         Room room2 = new Room(name, useArea, rentalFees, maxNumsPeople, rentalType, free);
         roomMap.put(room2, 0);
-        roomReadAndWrite.writeMapByteStream(roomMap, filepath);
+
+
     }
 
     @Override
@@ -227,6 +241,7 @@ public class RoomServiceImpl implements RoomService {
                                 rentalType = new Scan().input().nextLine();
                                 check5 = new CheckValidateId().checkDate(rentalType);
                             }
+
                             break;
                         }
                         case 5: {
@@ -241,13 +256,14 @@ public class RoomServiceImpl implements RoomService {
                     }
                 }
                 Room room1 = new Room(name, useArea, rentalFees, maxNumsPeople, rentalType, free);
-                roomMap.remove(roomEdit);
-                roomMap.put(room1, 0);
+
+
+
                 break;
             }
         }
-        roomReadAndWrite.clearData(filepath);
-        roomReadAndWrite.writeMapByteStream(roomMap, filepath);
+
+
     }
 
     @Override

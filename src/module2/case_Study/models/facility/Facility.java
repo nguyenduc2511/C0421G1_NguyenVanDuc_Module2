@@ -1,9 +1,8 @@
 package module2.case_Study.models.facility;
 
-import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Facility implements Serializable {
+public abstract class Facility {
     private String utilName;
     private Integer useArea;
     private Integer rentalFees;

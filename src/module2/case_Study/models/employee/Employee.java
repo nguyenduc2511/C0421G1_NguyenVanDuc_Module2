@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Employee extends Person implements Serializable {
     private String  academicLevel;
     private String position;
-    private Integer salary;
+    private int salary;
 
     public Employee() {
     }
@@ -39,7 +39,7 @@ public class Employee extends Person implements Serializable {
         this.position = position;
     }
 
-    public float getSalary() {
+    public int getSalary() {
         return salary;
     }
 

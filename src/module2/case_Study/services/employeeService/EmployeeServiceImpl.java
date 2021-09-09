@@ -1,7 +1,7 @@
 package module2.case_Study.services.employeeService;
 
 
-import module2.case_Study.dataCharacter.ReadAndWriteCustomer;
+import module2.case_Study.dataCharacter.ReadAndWriteCharacterStream;
 import module2.case_Study.models.employee.AcademicLevel;
 import module2.case_Study.models.employee.Employee;
 import module2.case_Study.models.employee.Gioitinh;
@@ -16,7 +16,7 @@ import java.util.List;
 public class EmployeeServiceImpl implements EmployeeService {
     private static final String filepath = "src\\module2\\case_Study\\data\\Employee.csv";
     private static List<Employee> employees = new ArrayList<>();
-    private static final ReadAndWriteCustomer readAndWrite = new ReadAndWriteCustomer();
+    private static final ReadAndWriteCharacterStream readAndWrite = new ReadAndWriteCharacterStream();
 
     @Override
     public List<Employee> getAll() {
@@ -24,7 +24,7 @@ public class EmployeeServiceImpl implements EmployeeService {
        employees.clear();
        for(String[] element : list){
            Employee employee = new Employee(Integer.parseInt(element[0]),element[1],element[2],element[3],element[4],
-                   element[5],element[6],element[7],element[8],Integer.parseInt(element[9]));
+                   element[5],element[6],element[7],element[8], Integer.parseInt(element[9]) );
            employees.add(employee);
        }
         return employees;
@@ -41,7 +41,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         System.out.println(" nhap ten  ");
         String name = new Scan().inputString();
-        System.out.println(" nhap ngay sinh  ");
+//        System.out.println(" nhap ngay sinh  ");
         String dateBirth = new CheckDateOfBirth().CheckDateOfBirth();
         System.out.println(" chon gioi tinh  ");
         String gender = new Gioitinh().gender();
@@ -69,7 +69,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = new Employee(id, name, dateBirth, gender, cmnd, numPhone, email, academicLevel, position, salary);
         employees.add(employee);
         String line = employee.getCode()+","+employee.getFullName()+","+employee.getDateOfBirth()+","+employee.getGender()+","+employee.getIdNumber()
-                +","+employee.getPhoneNumber()+","+employee.getEmail()+","+employee.getAcademicLevel()+","+employee.getPosition()+","+  employee.getSalary();
+                +","+employee.getPhoneNumber()+","+employee.getEmail()+","+employee.getAcademicLevel()+","+employee.getPosition()+","+employee.getSalary();
         readAndWrite.writeData(filepath, line );
     }
 
@@ -99,7 +99,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                     System.out.println("7. Trình độ");
                     System.out.println("8. Vị trí");
                     System.out.println("9. Salary");
-                    System.out.println(" 10. thoat edit");
+                    System.out.println("10. thoat edit");
                     int choice = new Choice().choice();
                     switch (choice) {
                         case 1:
@@ -144,7 +144,16 @@ public class EmployeeServiceImpl implements EmployeeService {
                             break;
                         case 9:
                             System.out.println("Nhập lương");
-                            int salary = new Choice().choice();
+                            int salary = 0;
+                            boolean check3 = true;
+                            while (check3){
+                                salary =new Choice().choice();
+                                if(salary == 0){
+                                    System.out.println(" luong > 0 va khong duoc de trong gia tri");
+                                }else {
+                                    check3 = false;
+                                }
+                            }
                             employees.get(i).setSalary(salary);
                             break;
                         case 10:
@@ -193,12 +202,13 @@ public class EmployeeServiceImpl implements EmployeeService {
                     int choice = new Choice().choice();
                     switch (choice){
                         case 1: {
-                            employees.remove(i);
+
                             line = employees.get(i).getCode() + "," + employees.get(i).getFullName() + "," + employees.get(i).getDateOfBirth() + "," +
                                     employees.get(i).getGender() + "," + employees.get(i).getIdNumber() + "," + employees.get(i).getPhoneNumber() + ","
                                     + employees.get(i).getEmail() + "," + employees.get(i).getAcademicLevel() + "," + employees.get(i).getPosition()+","+employees.get(i).getSalary();
                             check2 = false;
                             check=false;
+                            employees.remove(i);
                             break;
                         }
                         case 2:{

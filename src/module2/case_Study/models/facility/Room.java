@@ -1,9 +1,8 @@
 package module2.case_Study.models.facility;
 
-import java.io.Serializable;
 import java.util.Objects;
 
-public class Room extends Facility implements Serializable {
+public class Room extends Facility {
     private String freeServices;
 
     public Room() {

@@ -2,7 +2,7 @@ package module2.case_Study.services.CustomerService;
 
 
 import caseStudy.utils.CheckDateOfBirth;
-import module2.case_Study.dataCharacter.ReadAndWriteCustomer;
+import module2.case_Study.dataCharacter.ReadAndWriteCharacterStream;
 import module2.case_Study.models.Customer.Customer;
 import module2.case_Study.models.Customer.TypeCustomer;
 import module2.case_Study.models.employee.Gioitinh;
@@ -15,7 +15,7 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
     private static final String filepath = "src\\module2\\case_Study\\data\\Customer.csv";
     public static List<Customer> customers = new LinkedList<>();
-    public static final ReadAndWriteCustomer readAndWrite = new ReadAndWriteCustomer();
+    public static final ReadAndWriteCharacterStream readAndWrite = new ReadAndWriteCharacterStream();
 
     @Override
     public List<Customer> getAll() {

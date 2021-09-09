@@ -1,0 +1,13 @@
+package module2.case_Study.services.facility;
+
+import caseStudy.models.facility.Room;
+import caseStudy.services.CRUDService;
+
+import java.util.Map;
+
+public interface RoomService extends CRUDService<Room> {
+    Map<module2.case_Study.models.facility.Room, Integer> getAllRoom();
+    void updateData(String data);
+    void fixData();
+    void displayFixData();
+}

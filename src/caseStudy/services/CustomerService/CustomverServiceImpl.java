@@ -7,6 +7,7 @@ import caseStudy.models.Customer.Customer;
 import caseStudy.models.Customer.TypeCustomer;
 import caseStudy.models.employee.Gioitinh;
 import caseStudy.utils.CheckDateOfBirth;
+import module2.case_Study.models.facility.Room;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -17,7 +18,7 @@ public class CustomverServiceImpl implements CustomerService {
     public static final ReadAndWriteByteStream<Customer> readAndWriteByteStream = new ReadAndWriteByteStream<Customer>();
 
     @Override
-    public List<Customer> getAll() {
+    public List<Room> getAll() {
         customers = readAndWriteByteStream.readFileByteStream(filepath);
         return customers;
     }

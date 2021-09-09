@@ -8,6 +8,7 @@ import caseStudy.models.employee.AcademicLevel;
 import caseStudy.models.employee.Employee;
 import caseStudy.models.employee.Gioitinh;
 import caseStudy.models.employee.PositionChoice;
+import module2.case_Study.models.facility.Room;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private static final ReadAndWriteByteStream<Employee> readFileByteStream = new ReadAndWriteByteStream<Employee>();
 
     @Override
-    public List<Employee> getAll() {
+    public List<Room> getAll() {
         employees = readFileByteStream.readFileByteStream(filepath);
         return employees;
     }

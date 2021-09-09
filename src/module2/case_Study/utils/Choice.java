@@ -1,7 +1,7 @@
 package module2.case_Study.utils;
 
 public class Choice {
-    public Integer choice(){
+    public int choice(){
         int choice = 0;
         try {
             choice = Integer.parseInt(new Scan().inputString());
